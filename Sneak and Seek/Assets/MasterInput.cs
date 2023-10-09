@@ -46,6 +46,15 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""UnHide"",
+                    ""type"": ""Button"",
+                    ""id"": ""807916ba-c14e-4472-ada5-d5933ca2ed3b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""PickUp"",
                     ""type"": ""Button"",
                     ""id"": ""d91e3412-27b0-4034-9771-1e46106169db"",
@@ -115,7 +124,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""e3bd20ee-3355-4ee2-b2ea-576f06fb91d5"",
                     ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hide"",
@@ -132,6 +141,17 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""586c8baf-7fb1-46ac-8f53-b030e6230f4f"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnHide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,6 +162,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Hide = m_Player.FindAction("Hide", throwIfNotFound: true);
+        m_Player_UnHide = m_Player.FindAction("UnHide", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
     }
 
@@ -206,6 +227,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Hide;
+    private readonly InputAction m_Player_UnHide;
     private readonly InputAction m_Player_PickUp;
     public struct PlayerActions
     {
@@ -213,6 +235,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
         public PlayerActions(@MasterInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Hide => m_Wrapper.m_Player_Hide;
+        public InputAction @UnHide => m_Wrapper.m_Player_UnHide;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -229,6 +252,9 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
             @Hide.started += instance.OnHide;
             @Hide.performed += instance.OnHide;
             @Hide.canceled += instance.OnHide;
+            @UnHide.started += instance.OnUnHide;
+            @UnHide.performed += instance.OnUnHide;
+            @UnHide.canceled += instance.OnUnHide;
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
@@ -242,6 +268,9 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
             @Hide.started -= instance.OnHide;
             @Hide.performed -= instance.OnHide;
             @Hide.canceled -= instance.OnHide;
+            @UnHide.started -= instance.OnUnHide;
+            @UnHide.performed -= instance.OnUnHide;
+            @UnHide.canceled -= instance.OnUnHide;
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
@@ -266,6 +295,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnHide(InputAction.CallbackContext context);
+        void OnUnHide(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
     }
 }
