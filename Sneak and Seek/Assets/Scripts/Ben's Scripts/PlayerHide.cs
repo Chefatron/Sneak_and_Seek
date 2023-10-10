@@ -7,12 +7,12 @@ using UnityEngine;
 public class PlayerHide : MonoBehaviour
 {
     GameObject HidingPlace;
+    ParticleSystem Smoke;
     CapsuleCollider Collider;
     MeshRenderer PlayerSprite;
 
     Vector3 ExitPosition;
-    Color PlayerColor;      // This isn't actually used for a color, only to change the transparency :-) 
-
+    
     bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
                             // to avoid the method repeating and throwing too many errors :p 
 
@@ -21,6 +21,9 @@ public class PlayerHide : MonoBehaviour
     // it would still allow the player to go into the hidden state without actually hiding anywhere (Not what is meant to happen)
     private bool DoesTagExist(string tag)
     {
+        // This is a function that checks whether an object with a certain tag exists in the current instance
+
+        // In this case, it is used to check if an object with the tag "Hiding spot (Active)" exists (See line 54) 
         if (GameObject.FindGameObjectsWithTag(tag).Length == 0)
         {
             return false;
@@ -39,9 +42,6 @@ public class PlayerHide : MonoBehaviour
         // Storing information about the game objects that may need altering
         PlayerSprite = GetComponentInChildren<MeshRenderer>();
 
-        // Getting the sprites original color settings (The ONLY thing that changes SHOULD be the transparency) 
-        PlayerColor = PlayerSprite.GetComponent<Color>();
-
         // Setting hidden to false
         Hidden = false;
     }
@@ -49,11 +49,13 @@ public class PlayerHide : MonoBehaviour
     // This is a function called when the player interacts with a hiding place
     void OnHide()
     {
-
+        // This checks that the player isn't cureently in the hidden state already, as well
+        // as making sure making sure their is an available hiding spot
         if (Hidden == false && DoesTagExist("Hiding spot (Active)") == true)
         {
             // This finds an 'activated' hiding spot (whenever the player is in a hiding spots 'HideTrigger' collider)
             HidingPlace = GameObject.FindGameObjectWithTag("Hiding spot (Active)");
+            //Smoke = HidingPlace.GetComponentInChildren<ParticleSystem>();
 
             // This stores the players locations prior to getting into the hiding spot (Used when the player leaves)
             ExitPosition = this.transform.position;
@@ -62,8 +64,14 @@ public class PlayerHide : MonoBehaviour
             PlayerSprite.gameObject.SetActive(false);
             Collider.enabled = false;
             
+            // Smoke effect start
+            // Smoke.Play();
+
             // This sets the players position to that of the object they're planning on hiding in
             this.transform.SetPositionAndRotation(HidingPlace.transform.position, this.transform.rotation);
+
+            // Smoke effect end
+            // Smoke.enable = false;
 
             // Updating the players Hidden status
             Hidden = true;
