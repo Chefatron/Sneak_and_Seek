@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HideCheck : MonoBehaviour
+{
+    [SerializeField] GameObject Wardrobe;
+
+    private void Start()
+    {
+
+    }
+
+    // When the player walks into the trigger zone, update the hiding spots tag
+    private void OnTriggerEnter(Collider other)
+    {
+        Wardrobe.tag = "Hiding spot (Active)";
+        Debug.Log("Status: Active");
+    }
+
+    // Reserve the change made to tag to signal that the player is out of range
+    private void OnTriggerExit(Collider other)
+    {
+        Wardrobe.tag = "Hiding spot";
+        Debug.Log("Status: Inactive");
+    }
+}
