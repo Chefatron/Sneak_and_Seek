@@ -74,15 +74,24 @@ public class WallDisappear : MonoBehaviour
     // Is called while player is in the parent objects trigger
     public void WallTransparency()
     {
-        //Debug.Log("WallTransparency has been called");
+        Debug.Log("WallTransparency has been called");
 
         // Calculates how far behind the wall the player is
         trans = player.position.z - wall.position.z;
 
+        Debug.Log(player.position.z);
+        Debug.Log(wall.position.z);
+
+        Debug.Log("Trans - " + trans);
+
         trans = trans / 10;
+
+        Debug.Log("Trans - " + trans);
 
         // Sets the transparency value to the absolute so we can avoid negatives
         Mathf.Abs(trans);
+
+        Debug.Log("Trans - " + trans);
 
         // Makes sure the transparency value doesn't go over 1 as that causes strange material bugs
         if (trans > 1)
@@ -90,13 +99,17 @@ public class WallDisappear : MonoBehaviour
             trans = 1;
         }
 
+        Debug.Log("Trans - " + trans);
+
         // Rounds to 2 decimal points
         trans = (Mathf.Round(trans * 100f) / 100f);
+
+        Debug.Log("Dynamic Trans - " + dynamicTrans);
 
         // This if statement will simply set the wall to the distance based value of trans if dynamic trans has already equaled it, and if not it will adjust dynamic trans accordingly
         if (trans == dynamicTrans)
         {
-            //Debug.Log("THEY ARE EQUAL");
+            // Debug.Log("THEY ARE EQUAL");
 
             // Sets the alpha value of the material based on trans
             colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
@@ -125,7 +138,7 @@ public class WallDisappear : MonoBehaviour
     // Resets the alpha of the wall
     public void ResetWall()
     {
-        //Debug.Log("ResetWall has been called");
+        // Debug.Log("ResetWall has been called");
 
         resetTrans = true;
     }
