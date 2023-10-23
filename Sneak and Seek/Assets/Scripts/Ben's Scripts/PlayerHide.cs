@@ -13,7 +13,7 @@ public class PlayerHide : MonoBehaviour
 
     Vector3 ExitPosition;
     
-    bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
+    public bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
                             // to avoid the method repeating and throwing too many errors :p 
 
 

@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody playerRB;
 
+    PlayerHide Hiding;
+
     Vector3 movement;
 
     Vector2 stickInputData;
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Enable();
 
         controls.Player.Movement.Enable();
+
+        Hiding = GetComponent<PlayerHide>();
     }
 
     // Is called when left stick on controller is used
@@ -40,7 +44,10 @@ public class PlayerMovement : MonoBehaviour
     // Runs physics update for movement
     void FixedUpdate()
     {
-        // Applying physics based movement
-        playerRB.AddForce(movement * speed);
+        if (Hiding.Hidden == false)
+        {
+            // Applying physics based movement
+            playerRB.AddForce(movement * speed);
+        }
     }
 }
