@@ -34,7 +34,7 @@ public class WallDisappear : MonoBehaviour
     {
         wallRender = GetComponent<MeshRenderer>();
 
-        trans = 1f;
+        trans = 0f;
 
         dynamicTrans = 1f;
 
@@ -65,7 +65,7 @@ public class WallDisappear : MonoBehaviour
             else if (trans == 1)
             {
                 dynamicTrans = 1f;
-                trans = 1f;
+                trans = 0f;
                 resetTrans = false;
             }
         }
@@ -74,37 +74,22 @@ public class WallDisappear : MonoBehaviour
     // Is called while player is in the parent objects trigger
     public void WallTransparency()
     {
-        Debug.Log("WallTransparency has been called");
-
         // Calculates how far behind the wall the player is
-        trans = player.position.z - wall.position.z;
+        //trans = player.position.z - wall.position.z;
 
-        Debug.Log(player.position.z);
-        Debug.Log(wall.position.z);
-
-        Debug.Log("Trans - " + trans);
-
-        trans = trans / 10;
-
-        Debug.Log("Trans - " + trans);
+        //trans = trans / 10;
 
         // Sets the transparency value to the absolute so we can avoid negatives
-        Mathf.Abs(trans);
-
-        Debug.Log("Trans - " + trans);
+        //Mathf.Abs(trans);
 
         // Makes sure the transparency value doesn't go over 1 as that causes strange material bugs
-        if (trans > 1)
-        {
-            trans = 1;
-        }
-
-        Debug.Log("Trans - " + trans);
+        //if (trans > 1)
+        //{
+        //    trans = 1;
+        //}
 
         // Rounds to 2 decimal points
-        trans = (Mathf.Round(trans * 100f) / 100f);
-
-        Debug.Log("Dynamic Trans - " + dynamicTrans);
+        //trans = (Mathf.Round(trans * 100f) / 100f);
 
         // This if statement will simply set the wall to the distance based value of trans if dynamic trans has already equaled it, and if not it will adjust dynamic trans accordingly
         if (trans == dynamicTrans)
