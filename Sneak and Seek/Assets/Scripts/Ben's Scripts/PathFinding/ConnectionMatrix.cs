@@ -5,10 +5,10 @@ using UnityEngine;
 public class ConnectionMatrix : MonoBehaviour
 {
     // Creates an empty 2D array used to store the available paths for each node
-    int[] connectionMatrix[][];
+    public int[,] connectionMatrix;
 
     // Creates an empty array containing the child objects (nodes) within the matrix
-    GameObject[] nodeCount[];
+    GameObject[] matrixNodes;
 
     // Stores the total number of nodes (chilren) available in the matrix
     int maxMatrixLength;
@@ -16,16 +16,48 @@ public class ConnectionMatrix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxMatrixLength = this.transform.childCount;
+        //
+        GameObject matrix = this.gameObject;
 
-        nodeCount = new GameObject[maxMatrixLength];
+        //
+        maxMatrixLength = matrix.transform.childCount;
+        //Debug.Log(maxMatrixLength);                   // Testing - Outputs the max array length
 
-        connectionMatrix[maxMatrixLength][maxMatrixLength];
+        //
+        matrixNodes = new GameObject[maxMatrixLength];
+        //Debug.Log(matrixNodes.Length);                  // Testing - Outputs the number of registers child objects
 
-        for (int i = 0; i < maxMatrixLength; i++)
+        //
+        connectionMatrix = new int[maxMatrixLength, maxMatrixLength];
+
+        //
+        for (int i = 0; i < matrixNodes.Length; i++)
         {
-            nodeCount[i].this.transfrom.GetChild(i).gameObject;
-            nodeCount[i].GetComponent<Node>().connectionMapping();
+            matrixNodes[i] = matrix.transform.GetChild(i).gameObject;
+        }
+
+        // Testing section - Outputs the contents of nodeCount (array containing the nodes)
+        //for (int i = 0; i < maxMatrixLength; i++)
+        //{
+        //    Debug.Log(matrixNodes[i].name);
+        //}
+
+        //
+        for (int i = 0; i < maxMatrixLength; ++i)
+        {
+            matrixNodes[i].GetComponent<Node>().connectionMapping();
+        }
+
+        // Testing section - Checks the contents of the Connections Matrix
+        for (int i = 0;i < maxMatrixLength; i++)
+        {
+            for (int j = 0; j < maxMatrixLength; j++)
+            {
+                if (i != j)
+                {
+                    Debug.Log("Connection Matrix path " + i + "/" + j + " - " + connectionMatrix[i, j]);
+                }
+            }
         }
     }
 
