@@ -20,7 +20,7 @@ public class PickupScript : MonoBehaviour
 
     }
 
-    void start()
+    void Start()
     {
         inventory = GetComponent<Inventory>();
     }
@@ -30,8 +30,8 @@ public class PickupScript : MonoBehaviour
     {
         if (DoesTagExist("Pickup (Active)") == true)
         {
-            // This calls the function from inventory to add an item to the players inventory
-            inventory.AddItem();
+            // This calls the function from inventory to add the correct item id to the players inventory
+            inventory.AddItem(GameObject.FindGameObjectWithTag("Pickup (Active)").GetComponent<PickupCheck>().ID);
 
             // This destroys the pickup object
             Destroy(GameObject.FindWithTag("Pickup (Active)"));
