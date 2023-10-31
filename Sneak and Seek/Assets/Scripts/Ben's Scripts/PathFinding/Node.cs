@@ -64,4 +64,16 @@ public class Node : MonoBehaviour
 
     }
 
+    //void OnTriggerEnter(Collider collider)
+    //{
+    //    Debug.Log("Collision");
+
+    //    if (collider.gameObject.tag == "Enemy")
+    //    {
+    //        Debug.Log("...with an enemy");
+
+    //        //changeTarget = true;
+    //    }
+    //}
+
 }

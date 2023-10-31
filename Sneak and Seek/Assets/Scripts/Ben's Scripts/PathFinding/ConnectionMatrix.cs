@@ -59,7 +59,7 @@ public class ConnectionMatrix : MonoBehaviour
             }
         }
         // Testing section - Checks the contents of the Connections Matrix
-        //for (int i = 0;i < maxMatrixLength; i++)
+        //for (int i = 0; i < maxMatrixLength; i++)
         //{
         //    for (int j = 0; j < maxMatrixLength; j++)
         //    {
@@ -72,4 +72,5 @@ public class ConnectionMatrix : MonoBehaviour
     }
 
     
+
 }
