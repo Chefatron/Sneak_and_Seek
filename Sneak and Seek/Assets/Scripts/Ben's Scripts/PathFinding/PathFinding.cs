@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PathFinding : MonoBehaviour
 {
-    int[,] connectionMatrix;
+    public ConnectionMatrix _connectionMatrix;
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
 
@@ -16,12 +16,13 @@ public class PathFinding : MonoBehaviour
     //bool alternateTarget = false;
     bool changeTarget = false;
 
+    int[,] connectionMatrix;
     int[] path;
     //public List<int> subPath;
     int sourceNode;
 
 
-    int DijkstraAlgorithm(int Nodes, int SourceNode, int targetNode)
+    int DijkstraAlgorithm(int[,] connectionMatrix, int Nodes, int SourceNode, int targetNode)
     {
         int[] DistancePerNode = new int[Nodes];
         int[] PredictedWeightPerNode = new int[Nodes];
@@ -31,7 +32,7 @@ public class PathFinding : MonoBehaviour
         int MinimumDistance;
         int NextNode = 0;
 
-        int startNode, endNode;
+        //int startNode, endNode;
 
         //if(SourceNode > targetNode)
         //{
@@ -48,7 +49,7 @@ public class PathFinding : MonoBehaviour
         for (int i = 0; i < Nodes; i++)
         {
             // Uses an array to store the 'difficulty' values
-            //DistancePerNode[i] = connectionMatrix.connectionMatrix[SourceNode, i];
+            DistancePerNode[i] = connectionMatrix[SourceNode, i];
 
             //
             for (int ii = 0; ii < DistancePerNode.Length; ii++)
@@ -99,12 +100,12 @@ public class PathFinding : MonoBehaviour
                 if (VisitedNodes[i] == 0)                                                                           // or checking if there is a shorter route that
                 {                                                                                                   // involves a more than one stage
                                                                                                                     // ...and the n plus n+1 movement is lower than the initial distance?                           //
-                    //if (MinimumDistance + connectionMatrix.connectionMatrix[NextNode, i] < DistancePerNode[i])      // Say in the event one is a quicker movement and
-                    //{                                                                                               // has a negative value?
-                    //    DistancePerNode[i] = MinimumDistance + connectionMatrix.connectionMatrix[NextNode, i];      //
-                    //                                                                                                //
-                    //    PredictedWeightPerNode[i] = NextNode;                                                       //
-                    //}                                                                                               //
+                    if (MinimumDistance + connectionMatrix[NextNode, i] < DistancePerNode[i])                       // Say in the event one is a quicker movement and
+                    {                                                                                               // has a negative value?
+                        DistancePerNode[i] = MinimumDistance + connectionMatrix[NextNode, i];                       //
+                                                                                                                    //
+                        PredictedWeightPerNode[i] = NextNode;                                                       //
+                    }                                                                                               //
                 }                                                                                                   //
             }                                                                                                       //
 
@@ -131,6 +132,7 @@ public class PathFinding : MonoBehaviour
 
         return 1;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -153,13 +155,15 @@ public class PathFinding : MonoBehaviour
             nodeList[i] = nodeMatrix.transform.GetChild(i).gameObject;
         }
 
-        //
+        // Assigns the values to a local array to be used (should fix issue)
+
+        connectionMatrix = new int[nodeList.Length, nodeList.Length];
 
         for (int i = 0; i < nodeList.Length; i++)
         {
             for (int ii = 0; ii < nodeList.Length; ii++)
             {
-                //connectionMatrix[i, ii] = ;
+                connectionMatrix[i, ii] = _connectionMatrix.connectionMatrix[i, ii];
             }
         }
 
@@ -181,7 +185,7 @@ public class PathFinding : MonoBehaviour
                 sourceNode = 0;
             }
 
-            int temp = DijkstraAlgorithm(nodeList.Length, path[sourceNode], path[sourceNode + 1]);
+            DijkstraAlgorithm(connectionMatrix, nodeList.Length, path[sourceNode], path[sourceNode + 1]);
 
             changeTarget = false;
         }
