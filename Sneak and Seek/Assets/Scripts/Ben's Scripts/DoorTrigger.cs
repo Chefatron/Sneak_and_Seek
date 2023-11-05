@@ -9,12 +9,12 @@ public class DoorTrigger : MonoBehaviour
     void OnTriggerEnter()
     {
         Door.tag = "Door (Active)";
-        Debug.Log("Status: Active");
+        //Debug.Log("Status: Active");
     }
 
     void OnTriggerExit()
     {
         Door.tag = "Door";
-        Debug.Log("Status: Inactive");
+        //Debug.Log("Status: Inactive");
     }
 }

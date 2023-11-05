@@ -4,19 +4,64 @@ using UnityEngine;
 
 public class DoorUse : MonoBehaviour
 {
+    // A variable used to store needed script of the found active door so we don't have to keep GameObject.Find-ing it
+    DoorMove activeDoor;
+
+    // The players inventory used for checking keys
+    Inventory playerInventory;
+
+    private void Start()
+    {
+        // Gets the players inventory
+        playerInventory = GetComponent<Inventory>();
+    }
+
     void OnOpenDoor()
     {
-        Debug.Log("Input OpenDoor has been called");
-
+        //Debug.Log("Input OpenDoor has been called");
+        
+        // Checks if an active door actually exists
         if (DoesTagExist("Door (Active)") == true)
         {
-            if (GameObject.FindGameObjectWithTag("Door (Active)").GetComponent<DoorMove>().doorIsOpen == false)
+            // Gets the door
+            activeDoor = GameObject.FindWithTag("Door (Active)").GetComponent<DoorMove>();
+
+            // Checks if the door is unlocked or, is locked and the player has the key or, is locked and the player doesn't have the key
+            if (activeDoor.isLocked == false)
             {
-                GameObject.FindGameObjectWithTag("Door (Active)").GetComponent<DoorMove>().openDoor();
+                // Checks if the door is opened or closed and calls the correct function based on said state
+                if (activeDoor.doorIsOpen == false)
+                {
+                    activeDoor.openDoor();
+                }
+                else if (activeDoor.doorIsOpen == true)
+                {
+                    activeDoor.closeDoor();
+                } 
             }
-            else if (GameObject.FindGameObjectWithTag("Door (Active)").GetComponent<DoorMove>().doorIsOpen == true)
+            else if (activeDoor.isLocked == true && playerInventory.inventory.Contains(activeDoor.lockID))
             {
-                GameObject.FindGameObjectWithTag("Door (Active)").GetComponent<DoorMove>().closeDoor();
+                Debug.Log("The door has been unlocked");
+
+                // Sets the door to unlocked
+                activeDoor.isLocked = false;
+
+                // Checks if the door is opened or closed and calls the correct function based on said state
+                if (activeDoor.doorIsOpen == false)
+                {
+                    activeDoor.openDoor();
+                }
+                else if (activeDoor.doorIsOpen == true)
+                {
+                    activeDoor.closeDoor();
+                }
+
+                // Removes the key from the players inventory
+                playerInventory.RemoveItem(activeDoor.lockID);
+            }
+            else
+            {
+                Debug.Log("This door is locked and you don't have the key");
             }
         }
     }
@@ -24,8 +69,6 @@ public class DoorUse : MonoBehaviour
     // This function checks that an object with a certain tag exists
     private bool DoesTagExist(string tag)
     {
-        
-
         if (GameObject.FindGameObjectsWithTag(tag).Length == 0)
         {
             return false;
@@ -34,6 +77,5 @@ public class DoorUse : MonoBehaviour
         {
             return true;
         }
-
     }
 }

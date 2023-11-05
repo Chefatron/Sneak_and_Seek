@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class DoorMove : MonoBehaviour
 {
+    // Used to check and set the current state of the door
     bool doorOpening;
 
     bool doorClosing;
 
     public bool doorIsOpen;
 
-    float previousRotation;
+    // Used to set whether this door is a locked door or not
+    public bool isLocked;
+
+    // Used to set which key corresponds to the door
+    public int lockID;
 
     // Start is called before the first frame update
     void Start()
@@ -19,65 +24,70 @@ public class DoorMove : MonoBehaviour
 
         doorClosing = false;
 
-        doorIsOpen = false;
-
-        Debug.Log(Mathf.Sin(10f));
+        // Sets the rotation of the door based on the state set in editor
+        if (doorIsOpen == true)
+        {
+            transform.localEulerAngles = new Vector3(0, 120, 0);
+        }
+        else if (doorIsOpen == false) 
+        {
+            transform.localEulerAngles = new Vector3(0, 0, 0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Mathf.Sin(10f));
+        // Checks if the door opening state is true and then if it is also less than or greater than 120 degrees rotation
         if (doorOpening == true && transform.localEulerAngles.y < 120)
         {
-            Debug.Log("Door is opening");
+            //Debug.Log("Door is opening");
 
-            transform.Rotate(0, 30 * Time.deltaTime, 0);
-
-            Debug.Log(transform.localEulerAngles.y - previousRotation);
-
-            previousRotation = transform.localEulerAngles.y;
+            // Rotates the door
+            transform.Rotate(0, 50 * Time.deltaTime, 0);
         }
-        else if (transform.localEulerAngles.y >= 120)
+        else if (doorOpening == true && transform.localEulerAngles.y >= 120)
         {
-            transform.localEulerAngles.Set(0, 120, 0);
+            // Sets the door to the correct angle incase it over shot at all
+            transform.localEulerAngles = new Vector3(0, 120, 0);
 
+            // Sets correct states
             doorOpening = false;
 
             doorIsOpen = true;
         }
 
-        if (doorClosing == true && transform.localEulerAngles.y > 0)
+        // Checks if the door closing state is true and then if it is also less than or greater than 0 degrees rotation
+        if (doorClosing == true && transform.localEulerAngles.y > 1)
         {
-            Debug.Log("Door is closing");
+            //Debug.Log("Door is closing");
 
-            transform.Rotate(0, -30 * Time.deltaTime, 0);
-
-            Debug.Log(transform.localEulerAngles.y - previousRotation);
-
-            previousRotation = transform.localEulerAngles.y;
+            // Rotates the door
+            transform.Rotate(0, -50 * Time.deltaTime, 0);
         }
-        else if (transform.localEulerAngles.y <= 0)
+        else if (doorClosing == true && transform.localEulerAngles.y <= 1)
         {
-            transform.localEulerAngles.Set(0, 0, 0);
+            // Sets the door to the correct angle incase it over shot at all
+            transform.localEulerAngles = new Vector3(0, 0, 0);
 
+            // Sets correct states
             doorClosing = false;
 
             doorIsOpen = false;
         }
-
     }
 
+    // These are both self-explanatory
     public void openDoor()
     {
-        Debug.Log("openDoor has been called");
+        //Debug.Log("openDoor has been called");
 
         doorOpening = true;
     }
 
     public void closeDoor()
     {
-        Debug.Log("closeDoor has been called");
+        //Debug.Log("closeDoor has been called");
 
         doorClosing = true;
     }
