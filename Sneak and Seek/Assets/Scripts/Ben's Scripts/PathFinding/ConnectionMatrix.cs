@@ -48,18 +48,29 @@ public class ConnectionMatrix : MonoBehaviour
             matrixNodes[i].GetComponent<Node>().connectionMapping();
         }
 
-        // Testing section - Checks the contents of the Connections Matrix
-        for (int i = 0;i < maxMatrixLength; i++)
+        for (int i = 0; i < maxMatrixLength; i++)
         {
-            for (int j = 0; j < maxMatrixLength; j++)
+            for (int ii = 0; ii < maxMatrixLength; ii++)
             {
-                if (i != j)
+                if (connectionMatrix[i,ii] == 0)
                 {
-                    Debug.Log("Connection Matrix path " + i + "/" + j + " - " + connectionMatrix[i, j]);
+                    connectionMatrix[i,ii] = 999;
                 }
             }
         }
+        // Testing section - Checks the contents of the Connections Matrix
+        //for (int i = 0; i < maxMatrixLength; i++)
+        //{
+        //    for (int j = 0; j < maxMatrixLength; j++)
+        //    {
+        //        if (i != j)
+        //        {
+        //            Debug.Log("Connection Matrix path " + i + "/" + j + " - " + connectionMatrix[i, j]);
+        //        }
+        //    }
+        //}
     }
 
     
+
 }
