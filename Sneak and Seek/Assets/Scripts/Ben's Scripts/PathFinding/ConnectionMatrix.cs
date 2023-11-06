@@ -54,7 +54,7 @@ public class ConnectionMatrix : MonoBehaviour
             {
                 if (connectionMatrix[i,ii] == 0)
                 {
-                    connectionMatrix[i,ii] = 999;
+                    connectionMatrix[i,ii] = 9999;
                 }
             }
         }

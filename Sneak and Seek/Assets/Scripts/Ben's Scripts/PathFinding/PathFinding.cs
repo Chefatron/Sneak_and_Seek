@@ -52,12 +52,12 @@ public class PathFinding : MonoBehaviour
             DistancePerNode[i] = connectionMatrix[SourceNode, i];
 
             //
-            for (int ii = 0; ii < DistancePerNode.Length; ii++)
-            {
-                Debug.Log(DistancePerNode[ii]);
-            }
+            //for (int ii = 0; ii < DistancePerNode.Length; ii++)
+            //{
+            //    Debug.Log(DistancePerNode[ii]);
+            //}
 
-            // no idea
+            //
             PredictedWeightPerNode[i] = SourceNode;
 
             // Resets the visited nodes to allow for the algorithm to check all possible moves
@@ -93,21 +93,10 @@ public class PathFinding : MonoBehaviour
             // indicates that the shortest movement has been found
             VisitedNodes[NextNode] = 1;
 
-            // this loop determines the next (n+1) movement, i think                                                // This still doesn't full make sense
-            for (int i = 0; i < Nodes; i++)                                                                         //
-            {                                                                                                       // I'm pretty sure it's either to do with
-                                                                                                                    // if the node hasn't been visited...                                                               // determining the next move (nth move +1)
-                if (VisitedNodes[i] == 0)                                                                           // or checking if there is a shorter route that
-                {                                                                                                   // involves a more than one stage
-                                                                                                                    // ...and the n plus n+1 movement is lower than the initial distance?                           //
-                    if (MinimumDistance + connectionMatrix[NextNode, i] < DistancePerNode[i])                       // Say in the event one is a quicker movement and
-                    {                                                                                               // has a negative value?
-                        DistancePerNode[i] = MinimumDistance + connectionMatrix[NextNode, i];                       //
-                                                                                                                    //
-                        PredictedWeightPerNode[i] = NextNode;                                                       //
-                    }                                                                                               //
-                }                                                                                                   //
-            }                                                                                                       //
+            for (int i = 0; i < Nodes; i++)
+            {
+                
+            }
 
             Counter++;
         }
