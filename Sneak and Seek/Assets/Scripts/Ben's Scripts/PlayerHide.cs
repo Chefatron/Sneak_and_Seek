@@ -11,6 +11,8 @@ public class PlayerHide : MonoBehaviour
     CapsuleCollider Collider;
     MeshRenderer PlayerSprite;
 
+    Light candle;
+
     Vector3 ExitPosition;
     
     public bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
@@ -42,6 +44,9 @@ public class PlayerHide : MonoBehaviour
         // Storing information about the game objects that may need altering
         PlayerSprite = GetComponentInChildren<MeshRenderer>();
 
+        // Gets the light
+        candle = GetComponentInChildren<Light>();
+
         // Setting hidden to false
         Hidden = false;
     }
@@ -63,6 +68,10 @@ public class PlayerHide : MonoBehaviour
             // This makes the players sprite invisible
             PlayerSprite.gameObject.SetActive(false);
             Collider.enabled = false;
+
+            // Turns of the players light while they hide
+            candle.gameObject.SetActive(false);
+            
             
             // Smoke effect start
             // Smoke.Play();
@@ -85,6 +94,9 @@ public class PlayerHide : MonoBehaviour
             // This makes the players sprite visible
             PlayerSprite.gameObject.SetActive(true);
             Collider.enabled = true;
+
+            // Turns the players light back on
+            candle.gameObject.SetActive(true);
 
             // This sets the players position to that of the object they're planning on hiding in
             this.transform.SetPositionAndRotation(ExitPosition, this.transform.rotation);

@@ -56,23 +56,28 @@ public class WallTrigger : MonoBehaviour
 
 
     // Is called when the trigger is entered
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        // Runs through the array and calls the function for each one
-        for (int i = 0; i < childAmount; i++)
+        if (other.gameObject.CompareTag("Player"))
         {
-            walls[i].GetComponent<WallDisappear>().WallTransparency();
+            // Runs through the array and calls the function for each one
+            for (int i = 0; i < childAmount; i++)
+            {
+                walls[i].GetComponent<WallDisappear>().WallTransparency();
+            }
         }
-        
     }
 
     // Is called when the trigger is exited
     private void OnTriggerExit(Collider other)
     {
-        // Runs through the array and calls the function for each one
-        for (int i = 0; i < childAmount; i++)
+        if (other.gameObject.CompareTag("Player"))
         {
-            walls[i].GetComponent<WallDisappear>().ResetWall();
+            // Runs through the array and calls the function for each one
+            for (int i = 0; i < childAmount; i++)
+            {
+                walls[i].GetComponent<WallDisappear>().ResetWall();
+            }
         }
     }
 
