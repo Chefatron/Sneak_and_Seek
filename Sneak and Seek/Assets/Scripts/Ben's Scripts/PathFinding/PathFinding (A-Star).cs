@@ -12,14 +12,14 @@ public class AStarPathfinding : MonoBehaviour
 
     bool changeTarget = false;
 
-    int[] path = new int[4] {3, 8, 1, 6};
+    public int[] path;
 
-    int sourceNode;
+    int targetNode;
 
     // Start is called before the first frame update
     void Start()
     {
-        sourceNode = 0;
+        targetNode = 0;
 
         target = GetComponent<NavMeshAgent>();
 
@@ -30,7 +30,7 @@ public class AStarPathfinding : MonoBehaviour
             nodeList[i] = nodeMatrix.transform.GetChild(i).gameObject;
         }
 
-        target.destination = nodeList[0].transform.position;
+        target.destination = nodeList[path[0] - 1].transform.position;
     }
 
     // Update is called once per frame
@@ -38,27 +38,45 @@ public class AStarPathfinding : MonoBehaviour
     {
         if (changeTarget)
         {
-            sourceNode++;
+            targetNode++;
 
-            if (sourceNode > path.Length - 1)
+            if (targetNode > path.Length - 1)
             {
-                sourceNode = 0;
+                targetNode = 0;
             }
 
-            target.destination = nodeList[path[sourceNode]].transform.position;
+            target.destination = nodeList[path[targetNode] - 1].transform.position;
 
             changeTarget = false;
         }
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider trigger)
     {
-        //if (other.gameObject.tag == "Nodes")
-        //{
-        //    changeTarget = true;
-        //}
+        Node temp = trigger.GetComponent<Node>();
 
-        changeTarget = true;
+        // Debug.Log("Trigger - " + temp.nodeID);
+        // Debug.Log(path[targetNode]);
+
+        // Debug.Log(temp.name);
+
+        try
+        {
+            if (temp.nodeID != path[targetNode])
+            {
+                Debug.Log("Ignore");
+            }
+            else
+            {
+                Debug.Log("State changed");
+
+                changeTarget = true;
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log("Ignore");
+        }
     }
 }
