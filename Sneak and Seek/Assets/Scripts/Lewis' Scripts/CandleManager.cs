@@ -12,6 +12,8 @@ public class CandleManager : MonoBehaviour
 
     Inventory inventory;
 
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class CandleManager : MonoBehaviour
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -41,6 +45,10 @@ public class CandleManager : MonoBehaviour
 
             // Resets light value
             lightValue = 3;
+        }
+        else
+        {
+            gameManager.ResetScene();
         }
 
         // Sets the light value devided by an amount so it is reasonable for a lights range

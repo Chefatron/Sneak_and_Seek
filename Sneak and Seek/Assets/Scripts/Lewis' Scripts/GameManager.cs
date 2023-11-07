@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("1st Level");
     }
 
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void CloseGame()
     {
         // Closes the application, only works in build
@@ -59,6 +64,12 @@ public class GameManager : MonoBehaviour
 
         // Calculates the time to stop rumbling based on current time plus the time fed into the function
         rumbleStopTime = Time.unscaledTime + time;
+    }
+
+    public void ResetScene()
+    {
+        // Resets the current scene loaded
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
 }
