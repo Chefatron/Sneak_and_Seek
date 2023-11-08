@@ -49,5 +49,6 @@ public class PlayerMovement : MonoBehaviour
             // Applying physics based movement
             playerRB.AddForce(movement * speed);
         }
+
     }
 }
