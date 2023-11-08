@@ -68,8 +68,11 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
+        Debug.Log("Scene has been reset");
+
+        print("Scene has been reset");
+
         // Resets the current scene loaded
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    
+    }  
 }

@@ -36,7 +36,11 @@ public class CandleManager : MonoBehaviour
         if (lightValue > 0.5)
         {
             // Lowers the light value
-            lightValue = lightValue - 0.0001f;
+            lightValue = lightValue - 0.05f * Time.deltaTime;
+
+            print("Lightvalue: " + lightValue);
+
+            Debug.Log("Lightvalue: " + lightValue);
         }
         else if (inventory.inventory.Contains(1))
         {
