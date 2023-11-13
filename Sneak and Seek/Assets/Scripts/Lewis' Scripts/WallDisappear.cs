@@ -37,7 +37,7 @@ public class WallDisappear : MonoBehaviour
     {
         wallRender = GetComponent<MeshRenderer>();
 
-        trans = 0.2f;
+        trans = 0.3f;
 
         dynamicTrans = 1f;
 
@@ -65,7 +65,7 @@ public class WallDisappear : MonoBehaviour
                     // Sets the alpha value of the material based on trans
                     colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
                     wallRender.materials[i].SetColor("_Color", colourValue);
-                    wallRender.materials[i].renderQueue = 3000;
+                    wallRender.materials[i].renderQueue = 3001;
                 }
             }
             else if (trans > 1)
@@ -119,7 +119,7 @@ public class WallDisappear : MonoBehaviour
                     // Sets the alpha value of the material based on dynamic trans
                     colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
                     wallRender.materials[i].SetColor("_Color", colourValue);
-                    wallRender.materials[i].renderQueue = 3002;
+                    wallRender.materials[i].renderQueue = 3003;
                 }
             }    
         }
@@ -163,7 +163,7 @@ public class WallDisappear : MonoBehaviour
         //{
         //    if (trans < dynamicTrans)
         //    {
-        //        dynamicTrans = dynamicTrans - 0.01f;
+        //        dynamicTrans = dynamicTrans - 0.01f;a
         //    }
         //    else if (trans > dynamicTrans)
         //    {
