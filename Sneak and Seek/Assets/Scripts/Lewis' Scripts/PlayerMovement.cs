@@ -82,5 +82,6 @@ public class PlayerMovement : MonoBehaviour
                 playerSprite.sprite = downSprite;
             }
         }
+
     }
 }
