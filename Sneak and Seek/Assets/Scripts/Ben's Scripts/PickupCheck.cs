@@ -6,6 +6,8 @@ public class PickupCheck : MonoBehaviour
 {
     [SerializeField] GameObject pickup;
 
+    public int ID;
+
     // Start is called before the first frame update
     void OnTriggerEnter()
     {

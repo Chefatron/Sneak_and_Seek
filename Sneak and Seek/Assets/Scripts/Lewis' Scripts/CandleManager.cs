@@ -10,6 +10,10 @@ public class CandleManager : MonoBehaviour
     // Used to set the range of the players candle
     float lightValue;
 
+    Inventory inventory;
+
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,18 +22,37 @@ public class CandleManager : MonoBehaviour
 
         // Sets the light value to the defualt value of 90
         lightValue = 3;
+
+        // Gets the inventory script from the player
+        inventory = GetComponent<Inventory>();
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Checks if the candle reaches a low enough level and either keeps lowering it or checks if the player has a candle item to refill it
         if (lightValue > 0.5)
         {
-            lightValue = lightValue - 0.0001f;
+            // Lowers the light value
+            lightValue = lightValue - 0.05f * Time.deltaTime;
+
+            print("Lightvalue: " + lightValue);
+
+            Debug.Log("Lightvalue: " + lightValue);
+        }
+        else if (inventory.inventory.Contains(1))
+        {
+            // Calls the remove function item and removes the correct item
+            inventory.RemoveItem(1);
+
+            // Resets light value
+            lightValue = 3;
         }
         else
         {
-            lightValue = 3;
+            gameManager.ResetScene();
         }
 
         // Sets the light value devided by an amount so it is reasonable for a lights range
