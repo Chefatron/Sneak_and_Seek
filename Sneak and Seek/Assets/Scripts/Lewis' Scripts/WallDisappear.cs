@@ -26,6 +26,9 @@ public class WallDisappear : MonoBehaviour
     // Used to tell update to make the object's materials transparent
     bool makeTrans;
 
+    // Used to tell update to keep the materials objects transparent basically just used for diagonal walls -_-
+    bool keepTrans;
+
     // Will be used to find position of player
     //Transform player;
 
@@ -51,6 +54,63 @@ public class WallDisappear : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (keepTrans == true)
+        {
+            for(int i = 0; i < wallRender.materials.Length; i++)
+                {
+                // Sets the alpha value of the material based on trans
+                colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
+                wallRender.materials[i].SetColor("_Color", colourValue);
+
+            }
+        }
+
+        // Checks if the materials are to be made transparents
+        if (makeTrans == true)
+        {
+            if (trans == dynamicTrans)
+            {
+                // Debug.Log("THEY ARE EQUAL");
+
+                // Runs through all materials on the wall
+                for (int i = 0; i < wallRender.materials.Length; i++)
+                {
+                    // Sets the alpha value of the material based on trans
+                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
+                    wallRender.materials[i].SetColor("_Color", colourValue);
+
+                }
+
+                // Sets make trans to false
+                makeTrans = false;
+
+                keepTrans = true;
+            }
+            else if (trans != dynamicTrans)
+            {
+                if (trans < dynamicTrans)
+                {
+                    dynamicTrans = dynamicTrans - 1f * Time.deltaTime;
+                }
+                else if (trans > dynamicTrans)
+                {
+                    dynamicTrans = dynamicTrans + 1f * Time.deltaTime;
+                }
+
+                // Rounds to 2 decimal points
+                dynamicTrans = (Mathf.Round(dynamicTrans * 100f) / 100f);
+
+                // Runs through all materials on the wall
+                for (int i = 0; i < wallRender.materials.Length; i++)
+                {
+                    // Sets the alpha value of the material based on dynamic trans
+                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
+                    wallRender.materials[i].SetColor("_Color", colourValue);
+                    wallRender.materials[i].renderQueue = 3003;
+                }
+            }
+        }
+
         // Checks if the materials of the walls are to be reset
         if (resetTrans == true)
         {
@@ -80,49 +140,7 @@ public class WallDisappear : MonoBehaviour
             }
         }
 
-        // Checks if the materials are to be made transparents
-        if (makeTrans ==  true)
-        {
-            if (trans == dynamicTrans)
-            {
-                // Debug.Log("THEY ARE EQUAL");
-
-                // Runs through all materials on the wall
-                for (int i = 0; i < wallRender.materials.Length; i++)
-                {
-                    // Sets the alpha value of the material based on trans
-                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                    wallRender.materials[i].SetColor("_Color", colourValue);
-                    
-                }
-
-                // Sets make trans to false
-                makeTrans = false;
-            }
-            else if (trans != dynamicTrans)
-            {
-                if (trans < dynamicTrans)
-                {
-                    dynamicTrans = dynamicTrans - 1f * Time.deltaTime;
-                }
-                else if (trans > dynamicTrans)
-                {
-                    dynamicTrans = dynamicTrans + 1f * Time.deltaTime;
-                }
-
-                // Rounds to 2 decimal points
-                dynamicTrans = (Mathf.Round(dynamicTrans * 100f) / 100f);
-
-                // Runs through all materials on the wall
-                for (int i = 0; i < wallRender.materials.Length; i++)
-                {
-                    // Sets the alpha value of the material based on dynamic trans
-                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
-                    wallRender.materials[i].SetColor("_Color", colourValue);
-                    wallRender.materials[i].renderQueue = 3003;
-                }
-            }    
-        }
+        
     }
 
     // Is called while player is in the parent objects trigger
@@ -183,6 +201,8 @@ public class WallDisappear : MonoBehaviour
     public void ResetWall()
     {
         //Debug.Log("ResetWall has been called");
+
+        keepTrans = false;
 
         resetTrans = true;
     }
