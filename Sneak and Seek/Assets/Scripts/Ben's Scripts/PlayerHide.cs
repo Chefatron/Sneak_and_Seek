@@ -15,8 +15,9 @@ public class PlayerHide : MonoBehaviour
     Vector3 ExitPosition;
     
     public bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
-                            // to avoid the method repeating and throwing too many errors :p 
+                                   // to avoid the method repeating and throwing too many errors :p 
 
+    public bool playerSpotted;
 
     // As I found when testing the code without this, if you held the input, reagardless of if there was an object with the tag "Hiding spot (Active)"
     // it would still allow the player to go into the hidden state without actually hiding anywhere (Not what is meant to happen)
@@ -54,6 +55,9 @@ public class PlayerHide : MonoBehaviour
 
         // Setting hidden to false
         Hidden = false;
+
+        // The default state of not spotted
+        playerSpotted = false;
     }
 
     // This is a function called when the player interacts with a hiding place
@@ -61,7 +65,7 @@ public class PlayerHide : MonoBehaviour
     {
         // This checks that the player isn't cureently in the hidden state already, as well
         // as making sure making sure their is an available hiding spot
-        if (Hidden == false && DoesTagExist("Hiding spot (Active)") == true)
+        if (Hidden == false && DoesTagExist("Hiding spot (Active)") == true && playerSpotted == false)
         {
             // This finds an 'activated' hiding spot (whenever the player is in a hiding spots 'HideTrigger' collider)
             HidingPlace = GameObject.FindGameObjectWithTag("Hiding spot (Active)");  

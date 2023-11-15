@@ -6,9 +6,9 @@ public class FoV : MonoBehaviour
 {
     // == Declarations ==
     [SerializeField] float range;                       // 
-    [SerializeField] float angle;                       // 
+    [SerializeField] public float angle;                // 
     [SerializeField] LayerMask layerMask;               // This allows us to pass though the layers in which the rays should interact with
-    [SerializeField] int rayCount = 0;                  // This determines the number of rays making up the cone
+    [SerializeField] int rayCount;                      // This determines the number of rays making up the cone
 
     // == GameObjects ==
 
@@ -25,14 +25,16 @@ public class FoV : MonoBehaviour
     float currentAngle;                                 //
     float angleIncrement;                               //
     public Vector3 playerLocation;                      //
-
+    public bool playerSpotted;
 
     // Start is called before the first frame update
     void Start()
     {
         meshFilter = transform.GetComponent<MeshFilter>();      //
         visionConeMesh = new Mesh();                            // Gets the Mesh object
+        rayCount = Mathf.RoundToInt(angle);                     // Sets the rayCount to the visable angle
         angle = angle * Mathf.Deg2Rad;                          // Converts the angle to a radius
+        
     }
 
     // Update is called once per frame
@@ -64,8 +66,21 @@ public class FoV : MonoBehaviour
                 {
                     playerLocation = hitInfo.point;
 
-                    GetComponentInParent<EnemyBehaviour>().enemyState = 3;
-                    GetComponentInParent<EnemyBehaviour>().timerDuration = 15;
+                    hitInfo.collider.gameObject.GetComponent<PlayerHide>().playerSpotted = true;
+
+                    if (GetComponentInParent<EnemyBehaviour>().enemyState == 1)
+                    {
+                        GetComponentInParent<EnemyBehaviour>().enemyState = 2;
+                        GetComponentInParent<EnemyBehaviour>().timerDuration = 1;
+                    }
+                    else if (GetComponentInParent<EnemyBehaviour>().enemyState == 3)
+                    {
+                        GetComponentInParent<EnemyBehaviour>().timerDuration = 15;
+                    }
+                }
+                else
+                {
+                    hitInfo.collider.gameObject.GetComponent<PlayerHide>().playerSpotted = false;
                 }
             }
             else

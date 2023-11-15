@@ -6,6 +6,8 @@ public class HideCheck : MonoBehaviour
 {
     [SerializeField] GameObject hidingSpot;
 
+    public int nearestNodeID;
+
     private void Start()
     {
 
