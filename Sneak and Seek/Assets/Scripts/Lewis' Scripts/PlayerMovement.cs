@@ -11,6 +11,16 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerHide Hiding;
 
+    SpriteRenderer playerSprite;
+
+    [SerializeField] Sprite upSprite;
+
+    [SerializeField] Sprite downSprite;
+
+    [SerializeField] Sprite leftSprite;
+
+    [SerializeField] Sprite rightSprite;
+
     Vector3 movement;
 
     Vector2 stickInputData;
@@ -21,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
+
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
 
         controls = new MasterInput();
 
@@ -48,6 +60,28 @@ public class PlayerMovement : MonoBehaviour
         {
             // Applying physics based movement
             playerRB.AddForce(movement * speed);
+
+            if (movement.z < 0f)
+            {
+                playerSprite.sprite = downSprite;
+            }
+            else if (movement.z > 0f)
+            {
+                playerSprite.sprite = upSprite;
+            }
+            else if (movement.x < 0f)
+            {
+                playerSprite.sprite = leftSprite;
+            }
+            else if (movement.x > 0f)
+            {
+                playerSprite.sprite = rightSprite;
+            }
+            else
+            {
+                playerSprite.sprite = downSprite;
+            }
         }
+
     }
 }
