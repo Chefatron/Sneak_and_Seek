@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerHide : MonoBehaviour
 {
     GameObject HidingPlace;
-    ParticleSystem Smoke;
+    GameObject Smoke;
     CapsuleCollider Collider;
-    MeshRenderer PlayerSprite;
+    SpriteRenderer PlayerSprite;
+
+    Light candle;
 
     Vector3 ExitPosition;
     
-    bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
+    public bool Hidden;            // Given the slight change I made to the inputs and their functions, i needed a way
                             // to avoid the method repeating and throwing too many errors :p 
 
 
@@ -40,7 +41,16 @@ public class PlayerHide : MonoBehaviour
         Collider = this.GetComponent<CapsuleCollider>();
 
         // Storing information about the game objects that may need altering
-        PlayerSprite = GetComponentInChildren<MeshRenderer>();
+        PlayerSprite = GetComponentInChildren<SpriteRenderer>();
+
+        // Gets the light
+        candle = GetComponentInChildren<Light>();
+
+        // Gets the smoke particle game object
+        Smoke = GameObject.Find("Smoke");
+
+        // Sets the particle system to not active
+        Smoke.SetActive(false);
 
         // Setting hidden to false
         Hidden = false;
@@ -54,8 +64,7 @@ public class PlayerHide : MonoBehaviour
         if (Hidden == false && DoesTagExist("Hiding spot (Active)") == true)
         {
             // This finds an 'activated' hiding spot (whenever the player is in a hiding spots 'HideTrigger' collider)
-            HidingPlace = GameObject.FindGameObjectWithTag("Hiding spot (Active)");
-            //Smoke = HidingPlace.GetComponentInChildren<ParticleSystem>();
+            HidingPlace = GameObject.FindGameObjectWithTag("Hiding spot (Active)");  
 
             // This stores the players locations prior to getting into the hiding spot (Used when the player leaves)
             ExitPosition = this.transform.position;
@@ -63,15 +72,21 @@ public class PlayerHide : MonoBehaviour
             // This makes the players sprite invisible
             PlayerSprite.gameObject.SetActive(false);
             Collider.enabled = false;
-            
-            // Smoke effect start
-            // Smoke.Play();
+
+            // Turns of the players light while they hide
+            candle.gameObject.SetActive(false);
 
             // This sets the players position to that of the object they're planning on hiding in
             this.transform.SetPositionAndRotation(HidingPlace.transform.position, this.transform.rotation);
 
-            // Smoke effect end
-            // Smoke.enable = false;
+            // Enables the particlr
+            Smoke.SetActive(true);
+
+            // Moves it to the position the player enters the hide from
+            Smoke.transform.SetPositionAndRotation(ExitPosition, this.transform.rotation);
+
+            // Plays it
+            Smoke.GetComponent<ParticleSystem>().Play();
 
             // Updating the players Hidden status
             Hidden = true;
@@ -86,8 +101,17 @@ public class PlayerHide : MonoBehaviour
             PlayerSprite.gameObject.SetActive(true);
             Collider.enabled = true;
 
+            // Turns the players light back on
+            candle.gameObject.SetActive(true);
+
             // This sets the players position to that of the object they're planning on hiding in
             this.transform.SetPositionAndRotation(ExitPosition, this.transform.rotation);
+
+            // Reattaches the particle to the player
+            Smoke.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);   
+
+            // Disables the particle again
+            Smoke.SetActive(false);
 
             // Updating the players Hidden state
             Hidden = false;

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bri_Woodfloor
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 2100000, guid: 1d7f7d016cb1b094badabeba393484f8, type: 2}
+  m_ModifiedSerializedProperties: 16
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  - _NORMALMAP
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2501
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: daa608d29f93fd54586845ad2f7d32eb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 2.3, y: 0.95}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: f39d57be5cbdec34b8f0b642b2ae4188, type: 3}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 2.3, y: 0.95}
+    m_Ints: []
+    m_Floats:
+    - _DetailNormalMapScale: 0.5
+    - _GlossMapScale: 1
+    - _Metallic: 1
+    m_Colors:
+    - _Color: {r: 0.736312, g: 0.7028747, b: 0.764151, a: 1}
+  m_BuildTextureStacks: []

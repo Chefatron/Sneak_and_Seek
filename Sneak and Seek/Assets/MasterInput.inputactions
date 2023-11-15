@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "d1d0a497-2fd1-4d92-ae47-0f36be1d1ecd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenDoor",
+                    "type": "Button",
+                    "id": "bb23f5eb-88e3-481a-836c-04544ede6e1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -111,7 +129,7 @@
                     "name": "",
                     "id": "e3bd20ee-3355-4ee2-b2ea-576f06fb91d5",
                     "path": "<XInputController>/buttonSouth",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.1)",
                     "processors": "",
                     "groups": "",
                     "action": "Hide",
@@ -148,6 +166,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bfbba73-d7ea-41b7-9773-70d70026740d",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "685e8add-226e-4e46-a009-486513fb7e30",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenDoor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

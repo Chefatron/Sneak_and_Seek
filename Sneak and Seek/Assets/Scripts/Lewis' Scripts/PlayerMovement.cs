@@ -9,6 +9,18 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody playerRB;
 
+    PlayerHide Hiding;
+
+    SpriteRenderer playerSprite;
+
+    [SerializeField] Sprite upSprite;
+
+    [SerializeField] Sprite downSprite;
+
+    [SerializeField] Sprite leftSprite;
+
+    [SerializeField] Sprite rightSprite;
+
     Vector3 movement;
 
     Vector2 stickInputData;
@@ -20,11 +32,15 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody>();
 
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
+
         controls = new MasterInput();
 
         controls.Enable();
 
         controls.Player.Movement.Enable();
+
+        Hiding = GetComponent<PlayerHide>();
     }
 
     // Is called when left stick on controller is used
@@ -40,7 +56,32 @@ public class PlayerMovement : MonoBehaviour
     // Runs physics update for movement
     void FixedUpdate()
     {
-        // Applying physics based movement
-        playerRB.AddForce(movement * speed);
+        if (Hiding.Hidden == false)
+        {
+            // Applying physics based movement
+            playerRB.AddForce(movement * speed);
+
+            if (movement.z < 0f)
+            {
+                playerSprite.sprite = downSprite;
+            }
+            else if (movement.z > 0f)
+            {
+                playerSprite.sprite = upSprite;
+            }
+            else if (movement.x < 0f)
+            {
+                playerSprite.sprite = leftSprite;
+            }
+            else if (movement.x > 0f)
+            {
+                playerSprite.sprite = rightSprite;
+            }
+            else
+            {
+                playerSprite.sprite = downSprite;
+            }
+        }
+
     }
 }
