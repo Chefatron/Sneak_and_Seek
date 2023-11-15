@@ -39,12 +39,16 @@ public class GameManager : MonoBehaviour
 
     public void PlayGame()
     {
+        Time.timeScale = 1f;
+
         // Loads the scene corresponding to the first level
         SceneManager.LoadScene("1st Level");
     }
 
     public void LoadScene(string sceneName)
     {
+        Time.timeScale = 1f;
+
         SceneManager.LoadScene(sceneName);
     }
 
@@ -70,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Scene has been reset");
 
-        print("Scene has been reset");
+        Time.timeScale = 1f;
 
         // Resets the current scene loaded
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

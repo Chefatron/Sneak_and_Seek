@@ -21,13 +21,13 @@ public class PlayerPause : MonoBehaviour
         // Sets the pause panel's active status to whatever it currently isn't out of true or false
         pausePanel.SetActive(!pausePanel.activeInHierarchy);
 
-        //if (Time.timeScale == 1)
-        //{
-        //    Time.timeScale = 0;
-        //}
-        //else if (Time.timeScale == 0)
-        //{
-        //    Time.timeScale = 1;
-        //}
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 }

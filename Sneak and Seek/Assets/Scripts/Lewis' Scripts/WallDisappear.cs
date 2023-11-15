@@ -26,15 +26,6 @@ public class WallDisappear : MonoBehaviour
     // Used to tell update to make the object's materials transparent
     bool makeTrans;
 
-    // Used to tell update to keep the materials objects transparent basically just used for diagonal walls -_-
-    bool keepTrans;
-
-    // Will be used to find position of player
-    //Transform player;
-
-    // Will be used to find position of wall
-    //Transform wall;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -45,25 +36,11 @@ public class WallDisappear : MonoBehaviour
         dynamicTrans = 1f;
 
         originalColourValue = wallRender.material.color;
-
-        //wall = GetComponent<Transform>();
-
-        //player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (keepTrans == true)
-        {
-            for(int i = 0; i < wallRender.materials.Length; i++)
-                {
-                // Sets the alpha value of the material based on trans
-                colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                wallRender.materials[i].SetColor("_Color", colourValue);
-
-            }
-        }
 
         // Checks if the materials are to be made transparents
         if (makeTrans == true)
@@ -83,8 +60,6 @@ public class WallDisappear : MonoBehaviour
 
                 // Sets make trans to false
                 makeTrans = false;
-
-                keepTrans = true;
             }
             else if (trans != dynamicTrans)
             {
@@ -150,59 +125,12 @@ public class WallDisappear : MonoBehaviour
 
         // Sets make trans to true so in update all of the materials on the object can be edited
         makeTrans = true;
-
-        // Calculates how far behind the wall the player is
-        //trans = player.position.z - wall.position.z;
-
-        //trans = trans / 10;
-
-        // Sets the transparency value to the absolute so we can avoid negatives
-        //Mathf.Abs(trans);
-
-        // Makes sure the transparency value doesn't go over 1 as that causes strange material bugs
-        //if (trans > 1)
-        //{
-        //    trans = 1;
-        //}
-
-        // Rounds to 2 decimal points
-        //trans = (Mathf.Round(trans * 100f) / 100f);
-
-        // This if statement will simply set the wall to the distance based value of trans if dynamic trans has already equaled it, and if not it will adjust dynamic trans accordingly
-        //if (trans == dynamicTrans)
-        //{
-        //    // Debug.Log("THEY ARE EQUAL");
-
-        //    // Sets the alpha value of the material based on trans
-        //    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-        //    wallRender.material.SetColor("_Color", colourValue);
-        //}
-        //else if (trans != dynamicTrans)
-        //{
-        //    if (trans < dynamicTrans)
-        //    {
-        //        dynamicTrans = dynamicTrans - 0.01f;a
-        //    }
-        //    else if (trans > dynamicTrans)
-        //    {
-        //        dynamicTrans = dynamicTrans + 0.01f;
-        //    }
-
-        //    // Rounds to 2 decimal points
-        //    dynamicTrans = (Mathf.Round(dynamicTrans * 100f) / 100f);
-
-        //    // Sets the alpha value of the material based on dynamic trans
-        //    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
-        //    wallRender.material.SetColor("_Color", colourValue);
-        //}
     }
 
     // Resets the alpha of the wall
     public void ResetWall()
     {
         //Debug.Log("ResetWall has been called");
-
-        keepTrans = false;
 
         resetTrans = true;
     }
