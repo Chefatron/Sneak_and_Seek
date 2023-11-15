@@ -38,9 +38,9 @@ public class CandleManager : MonoBehaviour
             // Lowers the light value
             lightValue = lightValue - 0.05f * Time.deltaTime;
 
-            print("Lightvalue: " + lightValue);
+            //print("Lightvalue: " + lightValue);
 
-            Debug.Log("Lightvalue: " + lightValue);
+            //Debug.Log("Lightvalue: " + lightValue);
         }
         else if (inventory.inventory.Contains(1))
         {
@@ -52,7 +52,7 @@ public class CandleManager : MonoBehaviour
         }
         else
         {
-            gameManager.ResetScene();
+            //gameManager.ResetScene();
         }
 
         // Sets the light value devided by an amount so it is reasonable for a lights range

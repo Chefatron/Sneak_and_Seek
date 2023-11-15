@@ -12,6 +12,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     NavMeshAgent target;
 
+    Vector3 lastKnownLocation;
+
+    // == A bad thing ==
+    Quaternion spriteRotation = Quaternion.Euler(45, 0, 0);
+
+    //
     bool changeTarget = false;
 
     public int enemyState;
@@ -30,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
         enemyState = 1;
 
         targetNode = 0;
-
+        
         target = GetComponent<NavMeshAgent>();
 
         nodeList = new GameObject[nodeMatrix.transform.childCount];
@@ -46,55 +52,13 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (enemyState)
-        {
-            case 1:     // Roaming
-                if (changeTarget)
-                {
-                    targetNode++;
+        //Debug.Log(path[targetNode]);
+        //Debug.Log(enemyState);
+        
+        GetComponentInChildren<SpriteRenderer>().transform.rotation = spriteRotation;
 
-                    if (targetNode > path.Length - 1)
-                    {
-                        targetNode = 0;
-                    }
+        stateChange();
 
-                    target.destination = nodeList[path[targetNode] - 1].transform.position;
-
-                    changeTarget = false;
-                }
-                break;
-
-            case 2:     // Staring
-
-                break;
-
-            case 3:     // Chasing
-                if (Mathf.RoundToInt(timerDuration) > 0)
-                {
-                    target.destination = playerLocation.transform.position;
-
-                    timerDuration -= Time.deltaTime;
-                    Debug.Log(timerDuration);
-                }
-                else
-                {
-                    enemyState = 4;
-                    timerDuration = 5;
-                }
-                
-                break;
-
-            case 4:     // Searching
-                if (Mathf.RoundToInt(timerDuration) > 0)
-                {
-
-                }
-                else
-                {
-                    enemyState = 1;
-                }
-                break;
-        }
 
     }
 
@@ -126,6 +90,79 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 // Debug.Log("Ignore");
             }
+        }
+    }
+
+    private void stateChange()
+    {
+        switch (enemyState)
+        {
+            case 1:     // Roaming
+                if (changeTarget)
+                {
+                    targetNode++;
+
+                    if (targetNode > path.Length - 1)
+                    {
+                        targetNode = 0;
+                    }
+
+                    target.destination = nodeList[path[targetNode] - 1].transform.position;
+
+                    changeTarget = false;
+                }
+                break;
+
+            case 2:     // Staring
+                if (Mathf.RoundToInt(timerDuration) > 0)
+                {
+                    target.destination = transform.position;
+                    timerDuration -= Time.deltaTime;
+                    //Debug.Log(timerDuration);
+                }
+                else
+                {
+                    timerDuration = 15;
+                    enemyState = 3;
+                }
+
+                break;
+
+            case 3:     // Chasing
+                if (Mathf.RoundToInt(timerDuration) > 0)
+                {
+                    target.destination = playerLocation.transform.position;
+
+                    timerDuration -= Time.deltaTime;
+                    //Debug.Log(timerDuration);
+                }
+                else
+                {
+                    lastKnownLocation = playerLocation.transform.position;
+                    enemyState = 4;
+                    timerDuration = 5;
+                }
+
+                break;
+
+            case 4:     // Searching
+                if (Vector3.Distance(transform.position, lastKnownLocation) < 3) //transform.position.x == lastKnownLocation.x && transform.position.z == lastKnownLocation.z)
+                {
+                    if (Mathf.RoundToInt(timerDuration) > 0)
+                    {
+                        timerDuration -= Time.deltaTime;
+                        //Debug.Log(timerDuration);
+                    }
+                    else
+                    {
+                        target.destination = nodeList[path[targetNode]-1].transform.position;
+                        enemyState = 1;
+                    }
+
+                }
+
+                break;
+
         }
     }
 
