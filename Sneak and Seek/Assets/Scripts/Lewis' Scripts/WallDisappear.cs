@@ -31,7 +31,7 @@ public class WallDisappear : MonoBehaviour
     {
         wallRender = GetComponent<MeshRenderer>();
 
-        trans = 0.3f;
+        trans = 0f;
 
         dynamicTrans = 1f;
 
@@ -52,9 +52,13 @@ public class WallDisappear : MonoBehaviour
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
                 {
-                    // Sets the alpha value of the material based on trans
-                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                    wallRender.materials[i].SetColor("_Color", colourValue);
+                    Debug.Log(wallRender.materials[i].name);
+                    if (wallRender.materials[i].name != "Skirt_material (Instance)")
+                    {
+                        // Sets the alpha value of the material based on trans
+                        colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
+                        wallRender.materials[i].SetColor("_Color", colourValue);
+                    }
 
                 }
 
@@ -78,10 +82,14 @@ public class WallDisappear : MonoBehaviour
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
                 {
-                    // Sets the alpha value of the material based on dynamic trans
-                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
-                    wallRender.materials[i].SetColor("_Color", colourValue);
-                    wallRender.materials[i].renderQueue = 3003;
+                    Debug.Log(wallRender.materials[i].name);
+                    if (wallRender.materials[i].name != "Skirt_material (Instance)")
+                    {
+                        // Sets the alpha value of the material based on dynamic trans
+                        colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
+                        wallRender.materials[i].SetColor("_Color", colourValue);
+                        wallRender.materials[i].renderQueue = 3003;
+                    }
                 }
             }
         }
@@ -110,7 +118,7 @@ public class WallDisappear : MonoBehaviour
             else if (trans == 1)
             {
                 dynamicTrans = 1f;
-                trans = 0.2f;
+                trans = 0f;
                 resetTrans = false;
             }
         }
