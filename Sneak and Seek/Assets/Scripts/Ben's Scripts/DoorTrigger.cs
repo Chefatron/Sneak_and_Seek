@@ -6,15 +6,20 @@ public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] GameObject Door;
     
-    void OnTriggerEnter()
+    void OnTriggerStay(Collider other)
     {
-        Door.tag = "Door (Active)";
-        //Debug.Log("Status: Active");
+        if (other.CompareTag("Enemy"))
+        {
+            Door.tag = "Door (Enemy)";
+        }
+        else if (other.CompareTag("Player"))
+        {
+            Door.tag = "Door (Player)";
+        }
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        Door.tag = "Door";
-        //Debug.Log("Status: Inactive");
+            Door.tag = "Door";
     }
 }

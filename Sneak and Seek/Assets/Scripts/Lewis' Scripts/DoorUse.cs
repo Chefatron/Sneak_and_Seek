@@ -21,10 +21,10 @@ public class DoorUse : MonoBehaviour
         //Debug.Log("Input OpenDoor has been called");
         
         // Checks if an active door actually exists
-        if (DoesTagExist("Door (Active)") == true)
+        if (DoesTagExist("Door (Player)") == true)
         {
             // Gets the door
-            activeDoor = GameObject.FindWithTag("Door (Active)").GetComponent<DoorMove>();
+            activeDoor = GameObject.FindWithTag("Door (Player)").GetComponent<DoorMove>();
 
             // Checks if the door is unlocked or, is locked and the player has the key or, is locked and the player doesn't have the key
             if (activeDoor.isLocked == false)
