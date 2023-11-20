@@ -105,10 +105,13 @@ public class WallDisappear : MonoBehaviour
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
                 {
-                    // Sets the alpha value of the material based on trans
-                    colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                    wallRender.materials[i].SetColor("_Color", colourValue);
-                    wallRender.materials[i].renderQueue = 3001;
+                    if (wallRender.materials[i].name != "Skirt_material (Instance)")
+                    {
+                        // Sets the alpha value of the material based on trans
+                        colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
+                        wallRender.materials[i].SetColor("_Color", colourValue);
+                        wallRender.materials[i].renderQueue = 3001;
+                    }
                 }
             }
             else if (trans > 1)

@@ -23,15 +23,25 @@ public class FloorChange : MonoBehaviour
     {
         //Debug.Log("The stair trigger has been entered");
 
-        if (SceneManager.GetActiveScene().name == "1st Level")
+        if (SceneManager.GetActiveScene().name == "First Floor")
         {
             //Debug.Log("Loading 2nd level");
-            gameManager.LoadScene("2nd Level");
+            gameManager.LoadScene("Ground Floor");
         }
-        else if (SceneManager.GetActiveScene().name == "2nd Level")
+        else if (SceneManager.GetActiveScene().name == "Ground Floor")
         {
             //Debug.Log("Loading 1st level");
-            gameManager.LoadScene("1st Level");
+            gameManager.LoadScene("First Floor");
+        }
+        else if (SceneManager.GetActiveScene().name == "Dark First Floor")
+        {
+            //Debug.Log("Loading 2nd level");
+            gameManager.LoadScene("Dark Ground Floor");
+        }
+        else if (SceneManager.GetActiveScene().name == "Dark Ground Floor")
+        {
+            //Debug.Log("Loading 1st level");
+            gameManager.LoadScene("Dark First Floor");
         }
     }
 }
