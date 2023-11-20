@@ -80,7 +80,14 @@ public class FoV : MonoBehaviour
                 }
                 else
                 {
-                    hitInfo.collider.gameObject.GetComponent<PlayerHide>().playerSpotted = false;
+                    try
+                    {
+                        hitInfo.collider.gameObject.GetComponent<PlayerHide>().playerSpotted = false;
+                    } 
+                    catch (System.Exception ex)
+                    {
+
+                    }
                 }
             }
             else

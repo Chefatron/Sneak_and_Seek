@@ -8,7 +8,7 @@ public class Node : MonoBehaviour
     GameObject hit;
 
     Vector3 direction;
-    public int nodeID = 0;
+    public int nodeID;
 
     [SerializeField] int speed;
     int rayCount;
@@ -41,7 +41,7 @@ public class Node : MonoBehaviour
 
                 if (hitInfo.collider.tag == "Nodes")
                 {
-                    //Debug.Log("Node found");    // Testing
+                    Debug.Log("Node found");    // Testing
 
                     //
                     int tempID = hitInfo.collider.gameObject.GetComponent<Node>().nodeID;
@@ -54,6 +54,20 @@ public class Node : MonoBehaviour
                         this.GetComponentInParent<ConnectionMatrix>().connectionMatrix[nodeID - 1, tempID - 1] = Mathf.RoundToInt(hitInfo.distance);
                     }
                 }
+                else if (hitInfo.collider.tag == "Furniture")
+                {
+                    Debug.Log("Hiding spot found");
+
+                    try
+                    {
+                        hitInfo.collider.GetComponentInParent<GameObject>().GetComponentInChildren<HideCheck>().nearestNodeID = nodeID;
+                    }
+                    catch(System.Exception ex)
+                    {
+
+                    }
+                    
+                }
                 
             }
 
@@ -62,6 +76,7 @@ public class Node : MonoBehaviour
         }
 
     }
+
 
     //void OnTriggerEnter(Collider collider)
     //{

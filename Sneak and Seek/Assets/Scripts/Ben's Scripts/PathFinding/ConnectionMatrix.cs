@@ -45,7 +45,7 @@ public class ConnectionMatrix : MonoBehaviour
         //
         for (int i = 0; i < maxMatrixLength; ++i)
         {
-            matrixNodes[i].GetComponent<Node>().connectionMapping();
+            //matrixNodes[i].GetComponent<Node>().connectionMapping();
         }
 
         for (int i = 0; i < maxMatrixLength; i++)
