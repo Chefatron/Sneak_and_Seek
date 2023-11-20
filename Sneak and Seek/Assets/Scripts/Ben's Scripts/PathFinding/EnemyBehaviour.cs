@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -79,14 +80,20 @@ public class EnemyBehaviour : MonoBehaviour
                 {
                     // Debug.Log("Ignore");
                 }
+                else if (trigger.gameObject.tag == "Door (Enemy)")
+                {
+                    trigger.GetComponent<DoorMove>().openDoor();
+                    
+                }
                 else
                 {
                     // Debug.Log("State changed");
 
                     changeTarget = true;
                 }
+                
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 // Debug.Log("Ignore");
             }
@@ -138,7 +145,15 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    lastKnownLocation = playerLocation.transform.position;
+                    if (GameObject.Find("Player").GetComponent<PlayerHide>().Hidden == true)
+                    {
+                        lastKnownLocation = nodeList[GameObject.Find("Hiding spot (Active)").GetComponent<HideCheck>().nearestNodeID].transform.position;
+                    }
+                    else
+                    {
+                        lastKnownLocation = playerLocation.transform.position;
+                    }
+                    
                     enemyState = 4;
                     timerDuration = 5;
                 }
