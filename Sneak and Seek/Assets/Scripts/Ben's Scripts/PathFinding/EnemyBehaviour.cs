@@ -17,6 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     // == A bad thing ==
     Quaternion spriteRotation = Quaternion.Euler(45, 0, 0);
+    //
 
     //
     bool changeTarget = false;
@@ -63,7 +64,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider trigger)
+    private void OnTriggerStay(Collider trigger)
     {
         if (enemyState == 1)
         {
@@ -73,17 +74,24 @@ public class EnemyBehaviour : MonoBehaviour
             // Debug.Log(path[targetNode]);
 
             // Debug.Log(temp.name);
+            try
+            {
+                if (trigger.gameObject.tag == "Door (Enemy)")
+                {
+                    trigger.GetComponentInParent<DoorMove>().doorOpening = true;
+                    trigger.GetComponentInParent<DoorMove>().doorClosing = false;
+                }
+            }
+            catch (System.Exception)
+            {
+
+            }
 
             try
             {
                 if (temp.nodeID != path[targetNode])
                 {
                     // Debug.Log("Ignore");
-                }
-                else if (trigger.gameObject.tag == "Door (Enemy)")
-                {
-                    trigger.GetComponent<DoorMove>().openDoor();
-                    
                 }
                 else
                 {
@@ -97,6 +105,23 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 // Debug.Log("Ignore");
             }
+        }
+    }
+
+    void OnTriggerExit(Collider trigger)
+    {
+        try
+        {
+            if (trigger.gameObject.tag == "Door (Enemy)")
+            {
+                trigger.GetComponentInParent<DoorMove>().doorOpening = false;
+                trigger.GetComponentInParent<DoorMove>().doorClosing = true;
+
+            }
+        }
+        catch (System.Exception)
+        {
+
         }
     }
 

@@ -62,7 +62,7 @@ public class Node : MonoBehaviour
                     {
                         hitInfo.collider.GetComponentInParent<GameObject>().GetComponentInChildren<HideCheck>().nearestNodeID = nodeID;
                     }
-                    catch(System.Exception ex)
+                    catch(System.Exception)
                     {
 
                     }
