@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentScene == "First Floor")
         {
-
+           
         }
         else if (currentScene == "Ground Floor")
         {
