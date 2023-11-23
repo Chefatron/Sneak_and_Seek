@@ -5,7 +5,12 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] GameObject Door;
-    
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.tag);
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))

@@ -52,7 +52,7 @@ public class WallDisappear : MonoBehaviour
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
                 {
-                    Debug.Log(wallRender.materials[i].name);
+                    //Debug.Log(wallRender.materials[i].name);
                     if (wallRender.materials[i].name != "Skirt_material (Instance)")
                     {
                         // Sets the alpha value of the material based on trans
@@ -82,7 +82,7 @@ public class WallDisappear : MonoBehaviour
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
                 {
-                    Debug.Log(wallRender.materials[i].name);
+                    //Debug.Log(wallRender.materials[i].name);
                     if (wallRender.materials[i].name != "Skirt_material (Instance)")
                     {
                         // Sets the alpha value of the material based on dynamic trans

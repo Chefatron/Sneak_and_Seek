@@ -5,9 +5,9 @@ using UnityEngine;
 public class DoorMove : MonoBehaviour
 {
     // Used to check and set the current state of the door
-    bool doorOpening;
+    public bool doorOpening;
 
-    bool doorClosing;
+    public bool doorClosing;
 
     public bool doorIsOpen;
 
@@ -75,6 +75,11 @@ public class DoorMove : MonoBehaviour
 
             doorIsOpen = false;
         }
+
+        if (!doorOpening && !doorClosing)
+        {
+            GetComponentInChildren<BoxCollider>().GameObject.SetActive(true);
+        }
     }
 
     // These are both self-explanatory
@@ -83,6 +88,10 @@ public class DoorMove : MonoBehaviour
         //Debug.Log("openDoor has been called");
 
         doorOpening = true;
+
+        GetComponentInChildren<BoxCollider>().SetActive(false);
+
+
     }
 
     public void closeDoor()
@@ -90,5 +99,7 @@ public class DoorMove : MonoBehaviour
         //Debug.Log("closeDoor has been called");
 
         doorClosing = true;
+
+        GetComponentInChildren<BoxCollider>().Enable = false;
     }
 }
