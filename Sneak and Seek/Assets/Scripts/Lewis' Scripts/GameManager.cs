@@ -47,23 +47,33 @@ public class GameManager : MonoBehaviour
     {
         if (currentScene == "First Floor")
         {
-           
+            // Spawn the player
+
+            
+
+            // Open the doors that were opened prevoisly by the player
         }
         else if (currentScene == "Ground Floor")
         {
+            // Spawn the player
 
+            // Open the doors that were opened prevoisly by the player
         }
         else if (currentScene == "Dark Ground Floor")
         {
+            // Spawn the player
 
+            // Open the doors that were opened prevoisly by the player
         }
         else if (currentScene == "Dark First Floor")
         {
+            // Spawn the player
 
+            // Open the doors that were opened prevoisly by the player
         }
         else if (currentScene == "Title Screen")
         {
-
+            // Play title music
         }
     }
 
@@ -72,6 +82,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void playGame()
+    {
+        // Checks the level the player last saved on to say which level to load
     }
 
     public void CloseGame()

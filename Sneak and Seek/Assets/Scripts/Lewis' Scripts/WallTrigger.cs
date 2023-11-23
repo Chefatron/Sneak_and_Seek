@@ -33,6 +33,11 @@ public class WallTrigger : MonoBehaviour
             // Sets the current iterations slot to the corresponding child 
             walls[i] = trigger.transform.GetChild(i).gameObject;
         }
+
+        //for (int i = 0; i < childAmount; i++)
+        //{
+        //    Debug.Log(walls[i].name);
+        //}
     }
 
 

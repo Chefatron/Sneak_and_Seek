@@ -14,8 +14,17 @@ public class DoorMove : MonoBehaviour
     // Used to set whether this door is a locked door or not
     public bool isLocked;
 
+    public bool isDoubleLocked;
+
     // Used to set which key corresponds to the door
     public int lockID;
+
+    public int lock2ID;
+
+    //Vector3 startRotation;
+
+    // The collider for the door mesh
+    BoxCollider doorCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -24,15 +33,22 @@ public class DoorMove : MonoBehaviour
 
         doorClosing = false;
 
+        //startRotation = transform.localEulerAngles;
+
+        //Debug.Log("Start rotation: " + startRotation.y);
+
+        //Debug.Log("Start rotation plus 120: " + (startRotation.y + 120));
+
         // Sets the rotation of the door based on the state set in editor
         if (doorIsOpen == true)
         {
             transform.localEulerAngles = new Vector3(0, 120, 0);
         }
-        else if (doorIsOpen == false) 
-        {
-            transform.localEulerAngles = new Vector3(0, 0, 0);
-        }
+
+        // Gets the collider then enables it
+        doorCollider = GetComponentInChildren<BoxCollider>();
+            
+        doorCollider.enabled = true;
     }
 
     // Update is called once per frame
@@ -78,7 +94,9 @@ public class DoorMove : MonoBehaviour
 
         if (!doorOpening && !doorClosing)
         {
-            GetComponentInChildren<BoxCollider>().isTrigger = false;
+            //GetComponentInChildren<BoxCollider>().isTrigger = false;
+
+            doorCollider.enabled = true;
         }
     }
 
@@ -89,7 +107,9 @@ public class DoorMove : MonoBehaviour
 
         doorOpening = true;
 
-        GetComponentInChildren<BoxCollider>().isTrigger = true;
+        //GetComponentInChildren<BoxCollider>().isTrigger = true;
+
+        doorCollider.enabled = false;
 
 
     }
@@ -100,6 +120,8 @@ public class DoorMove : MonoBehaviour
 
         doorClosing = true;
 
-        GetComponentInChildren<BoxCollider>().isTrigger = true;
+        //GetComponentInChildren<BoxCollider>().isTrigger = true;
+
+        doorCollider.enabled = false;
     }
 }

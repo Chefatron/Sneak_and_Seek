@@ -8,7 +8,7 @@ public class DoorTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log(other.gameObject.tag);
     }
 
     void OnTriggerStay(Collider other)

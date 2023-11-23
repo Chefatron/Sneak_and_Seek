@@ -14,6 +14,11 @@ public class Node : MonoBehaviour
     int rayCount;
     int angleChange;
 
+    private void Start()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+    }
+
     //
     public void connectionMapping()
     {
