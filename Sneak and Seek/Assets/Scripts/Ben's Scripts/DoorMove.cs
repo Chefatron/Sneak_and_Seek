@@ -78,7 +78,7 @@ public class DoorMove : MonoBehaviour
 
         if (!doorOpening && !doorClosing)
         {
-            GetComponentInChildren<BoxCollider>().GameObject.SetActive(true);
+            GetComponentInChildren<BoxCollider>().isTrigger = false;
         }
     }
 
@@ -89,7 +89,7 @@ public class DoorMove : MonoBehaviour
 
         doorOpening = true;
 
-        GetComponentInChildren<BoxCollider>().SetActive(false);
+        GetComponentInChildren<BoxCollider>().isTrigger = true;
 
 
     }
@@ -100,6 +100,6 @@ public class DoorMove : MonoBehaviour
 
         doorClosing = true;
 
-        GetComponentInChildren<BoxCollider>().Enable = false;
+        GetComponentInChildren<BoxCollider>().isTrigger = true;
     }
 }
