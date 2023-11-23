@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class FloorChange : MonoBehaviour
 {
-    GameManager gameManager;
+    // The gamemanager script
+    [SerializeField] GameManager gameManager;
+
+    // The name of the scene for the stairs to load
+    [SerializeField] string sceneName;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -21,27 +25,6 @@ public class FloorChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("The stair trigger has been entered");
-
-        if (SceneManager.GetActiveScene().name == "First Floor")
-        {
-            //Debug.Log("Loading 2nd level");
-            gameManager.LoadScene("Ground Floor");
-        }
-        else if (SceneManager.GetActiveScene().name == "Ground Floor")
-        {
-            //Debug.Log("Loading 1st level");
-            gameManager.LoadScene("First Floor");
-        }
-        else if (SceneManager.GetActiveScene().name == "Dark First Floor")
-        {
-            //Debug.Log("Loading 2nd level");
-            gameManager.LoadScene("Dark Ground Floor");
-        }
-        else if (SceneManager.GetActiveScene().name == "Dark Ground Floor")
-        {
-            //Debug.Log("Loading 1st level");
-            gameManager.LoadScene("Dark First Floor");
-        }
+        gameManager.LoadScene(sceneName);
     }
 }

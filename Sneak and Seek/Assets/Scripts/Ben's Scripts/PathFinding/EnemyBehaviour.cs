@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    GameObject playerLocation;
+    [SerializeField] GameObject playerLocation;
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
 
@@ -32,8 +32,6 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerLocation = GameObject.Find("Player");
-
         enemyState = 1;
 
         targetNode = 0;
@@ -169,7 +167,7 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if (GameObject.Find("Player").GetComponent<PlayerHide>().Hidden == true)
+                    if (playerLocation.GetComponent<PlayerHide>().Hidden == true)
                     {
                         lastKnownLocation = nodeList[GameObject.Find("Hiding spot (Active)").GetComponent<HideCheck>().nearestNodeID].transform.position;
                     }

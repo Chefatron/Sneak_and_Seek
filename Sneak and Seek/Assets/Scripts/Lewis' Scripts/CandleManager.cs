@@ -5,28 +5,23 @@ using UnityEngine;
 public class CandleManager : MonoBehaviour
 {
     // The candle light attached to the player
-    Light candle;
+    [SerializeField] Light candle;
 
     // Used to set the range of the players candle
     float lightValue;
 
     Inventory inventory;
 
-    GameManager gameManager;
+    [SerializeField] GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Finds the players candle light and assigns it to candle
-        candle = GameObject.Find("Candle").GetComponent<Light>();
-
         // Sets the light value to the defualt value of 90
         lightValue = 3;
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
-
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

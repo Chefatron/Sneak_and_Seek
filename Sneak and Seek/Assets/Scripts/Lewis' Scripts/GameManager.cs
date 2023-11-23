@@ -12,11 +12,17 @@ public class GameManager : MonoBehaviour
     // Used to store what time the controller should stop rumbling
     float rumbleStopTime;
 
+    // The player object
+    [SerializeField] GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         // Sets isRumbling to default of false
         isRumbling = false;
+
+        // Call setupLevel with the current scene name so it can set everything up based on the current level
+        setupLevel(SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame
@@ -37,12 +43,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayGame()
+    void setupLevel(string currentScene)
     {
-        Time.timeScale = 1f;
+        if (currentScene == "First Floor")
+        {
 
-        // Loads the scene corresponding to the first level
-        SceneManager.LoadScene("1st Level");
+        }
+        else if (currentScene == "Ground Floor")
+        {
+
+        }
+        else if (currentScene == "Dark Ground Floor")
+        {
+
+        }
+        else if (currentScene == "Dark First Floor")
+        {
+
+        }
+        else if (currentScene == "Title Screen")
+        {
+
+        }
     }
 
     public void LoadScene(string sceneName)
