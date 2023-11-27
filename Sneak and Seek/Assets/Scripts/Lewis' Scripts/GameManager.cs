@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     // The player object
     [SerializeField] GameObject player;
+
+    GameObject winBackground;
 
     // Start is called before the first frame update
     void Start()
@@ -118,6 +121,10 @@ public class GameManager : MonoBehaviour
 
             // Open the doors that were opened prevoisly by the player
 
+            winBackground = GameObject.Find("WinBackground");
+
+            winBackground.SetActive(false);
+
             PlayerPrefs.SetInt("CurrentStage", 4);
         }
         else if (currentScene == 0)
@@ -165,5 +172,12 @@ public class GameManager : MonoBehaviour
 
         // Resets the current scene loaded
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }  
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        winBackground.SetActive(true);
+
+        Time.timeScale = 0f;  
+    }
 }
