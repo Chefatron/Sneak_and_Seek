@@ -43,12 +43,12 @@ public class PickupScript : MonoBehaviour
                 inventory.AddItem(currentPickup.ID);
 
                 // This destroys the pickup object
-                Destroy(currentPickup);
+                Destroy(currentPickup.gameObject);
             }
             else
             {
                 // Calls the dark level
-                gameManager.LoadScene("Dark Ground Floor");
+                gameManager.LoadScene(3);
             }
         }
     }

@@ -9,7 +9,7 @@ public class FloorChange : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     // The name of the scene for the stairs to load
-    [SerializeField] string sceneName;
+    [SerializeField] int sceneIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,6 @@ public class FloorChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.LoadScene(sceneName);
+        gameManager.LoadScene(sceneIndex);
     }
 }
