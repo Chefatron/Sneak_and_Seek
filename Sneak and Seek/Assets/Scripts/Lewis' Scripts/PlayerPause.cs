@@ -16,20 +16,22 @@ public class PlayerPause : MonoBehaviour
     void OnPauseMenu()
     {
         pause();
+        
     }
 
     public void pause()
     {
-        // Sets the pause panel's active status to whatever it currently isn't out of true or false
+        //Sets the pause panel's active status to whatever it currently isn't out of true or false
         pausePanel.SetActive(!pausePanel.activeInHierarchy);
 
-        if (Time.timeScale == 1)
+        if (pausePanel.activeInHierarchy)
         {
             Time.timeScale = 0;
         }
-        else if (Time.timeScale == 0)
+        else if (!pausePanel.activeInHierarchy)
         {
             Time.timeScale = 1;
         }
+
     }
 }

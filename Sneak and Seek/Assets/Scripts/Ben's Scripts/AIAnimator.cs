@@ -9,8 +9,8 @@ public class AIAnimator : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] NavMeshAgent navMeshAgent;
 
-    [SerializeField] Vector3 pos;
-    [SerializeField] Vector3 nextPos;
+    Vector3 pos;
+    Vector3 nextPos;
 
     // Update is called once per frame
     void Update()

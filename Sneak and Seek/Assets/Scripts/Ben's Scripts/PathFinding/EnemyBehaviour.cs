@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject playerLocation;
+    [SerializeField] GameObject UIeye;
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
 
@@ -32,6 +33,10 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UIeye.GetComponent<Animator>().SetBool("Hidden", true);
+        UIeye.GetComponent<Animator>().SetBool("Searching", false);
+        UIeye.GetComponent<Animator>().SetBool("Seen", false);
+
         enemyState = 1;
 
         targetNode = 0;
@@ -140,6 +145,9 @@ public class EnemyBehaviour : MonoBehaviour
 
                     changeTarget = false;
                 }
+
+
+
                 break;
 
             case 2:     // Staring
@@ -151,6 +159,10 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    UIeye.GetComponent<Animator>().SetBool("Hidden", false);
+                    UIeye.GetComponent<Animator>().SetBool("Searching", false);
+                    UIeye.GetComponent<Animator>().SetBool("Seen", true);
+
                     timerDuration = 15;
                     enemyState = 3;
                 }
@@ -160,6 +172,8 @@ public class EnemyBehaviour : MonoBehaviour
             case 3:     // Chasing
                 if (Mathf.RoundToInt(timerDuration) > 0)
                 {
+                    
+
                     target.destination = playerLocation.transform.position;
 
                     timerDuration -= Time.deltaTime;
@@ -175,7 +189,11 @@ public class EnemyBehaviour : MonoBehaviour
                     {
                         lastKnownLocation = playerLocation.transform.position;
                     }
-                    
+
+                    UIeye.GetComponent<Animator>().SetBool("Hidden", false);
+                    UIeye.GetComponent<Animator>().SetBool("Searching", true);
+                    UIeye.GetComponent<Animator>().SetBool("Seen", false);
+
                     enemyState = 4;
                     timerDuration = 5;
                 }
@@ -192,6 +210,10 @@ public class EnemyBehaviour : MonoBehaviour
                     }
                     else
                     {
+                        UIeye.GetComponent<Animator>().SetBool("Hidden", true);
+                        UIeye.GetComponent<Animator>().SetBool("Searching", false);
+                        UIeye.GetComponent<Animator>().SetBool("Seen", false);
+
                         target.destination = nodeList[path[targetNode]-1].transform.position;
                         enemyState = 1;
                     }
