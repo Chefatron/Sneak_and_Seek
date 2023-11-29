@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     // Runs physics update for movement
     void FixedUpdate()
     {
+        /*
         if (Hiding.Hidden == false)
         {
             // Applying physics based movement
@@ -75,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
                 playerSprite.sprite = downSprite;
             }
         }
+        */
 
     }
 }
