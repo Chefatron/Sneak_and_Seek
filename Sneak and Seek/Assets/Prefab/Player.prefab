@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859204211800053798}
   - component: {fileID: 8995959031935919979}
-  - component: {fileID: 594851332890385923}
+  - component: {fileID: 2880188399369287559}
   m_Layer: 6
   m_Name: Player Sprite
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &594851332890385923
+--- !u!95 &2880188399369287559
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 2904573295956541631}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a04d2df303d561d41a3eb5e2105677f7, type: 2}
+  m_Controller: {fileID: 9100000, guid: c074681835712f140bd2b741fd4af76b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5160,7 +5160,8 @@ MonoBehaviour:
   downSprite: {fileID: 21300000, guid: 0392c6ff33098a94d93bf93b1f1275e5, type: 3}
   leftSprite: {fileID: 21300000, guid: b641c20acd5107142b4e2078c1b3a5ce, type: 3}
   rightSprite: {fileID: 21300000, guid: 7610f126a61f8964680fc1f6a0233ad5, type: 3}
-  speed: 30
+  speed: 1500
+  playerAnimator: {fileID: 2880188399369287559}
 --- !u!114 &7276599454617696881
 MonoBehaviour:
   m_ObjectHideFlags: 0

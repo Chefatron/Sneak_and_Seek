@@ -44,8 +44,13 @@ public class PlayerHide : MonoBehaviour
         // Storing information about the game objects that may need altering
         PlayerSprite = GetComponentInChildren<SpriteRenderer>();
 
-        // Gets the light
-        candle = GetComponentInChildren<Light>();
+        try
+        {
+            // Gets the light
+            candle = GetComponentInChildren<Light>();
+        }
+        catch (System.Exception) { }
+        
 
         // Sets the particle system to not active
         Smoke.SetActive(false);
@@ -74,8 +79,12 @@ public class PlayerHide : MonoBehaviour
             PlayerSprite.gameObject.SetActive(false);
             Collider.enabled = false;
 
-            // Turns of the players light while they hide
-            candle.gameObject.SetActive(false);
+            try
+            {
+                // Turns of the players light while they hide
+                candle.gameObject.SetActive(false);
+            }
+            catch(System.Exception) { }
 
             // This sets the players position to that of the object they're planning on hiding in
             this.transform.SetPositionAndRotation(HidingPlace.transform.position, this.transform.rotation);
