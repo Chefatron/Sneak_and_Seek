@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    MasterInput controls;
 
     Rigidbody playerRB;
 
@@ -25,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 stickInputData;
 
-    public int speed;
+    [SerializeField] int speed;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +32,6 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
 
         playerSprite = GetComponentInChildren<SpriteRenderer>();
-
-        controls = new MasterInput();
-
-        controls.Enable();
-
-        controls.Player.Movement.Enable();
 
         Hiding = GetComponent<PlayerHide>();
     }

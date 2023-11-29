@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHide : MonoBehaviour
 {
     GameObject HidingPlace;
-    GameObject Smoke;
+    [SerializeField] GameObject Smoke;
     CapsuleCollider Collider;
     SpriteRenderer PlayerSprite;
 
@@ -39,16 +39,13 @@ public class PlayerHide : MonoBehaviour
 
     private void Start()
     {
-        Collider = this.GetComponent<CapsuleCollider>();
+        Collider = GetComponent<CapsuleCollider>();
 
         // Storing information about the game objects that may need altering
         PlayerSprite = GetComponentInChildren<SpriteRenderer>();
 
         // Gets the light
         candle = GetComponentInChildren<Light>();
-
-        // Gets the smoke particle game object
-        Smoke = GameObject.Find("Smoke");
 
         // Sets the particle system to not active
         Smoke.SetActive(false);
@@ -65,7 +62,7 @@ public class PlayerHide : MonoBehaviour
     {
         // This checks that the player isn't cureently in the hidden state already, as well
         // as making sure making sure their is an available hiding spot
-        if (Hidden == false && DoesTagExist("Hiding spot (Active)") == true && playerSpotted == false)
+        if (Hidden == false && DoesTagExist("Hiding spot (Active)") == true && playerSpotted == false && Time.timeScale == 1)
         {
             // This finds an 'activated' hiding spot (whenever the player is in a hiding spots 'HideTrigger' collider)
             HidingPlace = GameObject.FindGameObjectWithTag("Hiding spot (Active)");  
@@ -95,11 +92,7 @@ public class PlayerHide : MonoBehaviour
             // Updating the players Hidden status
             Hidden = true;
         }
-    }
-
-    void OnUnHide()
-    {
-        if (Hidden == true)
+        else if (Hidden == true && Time.timeScale == 1)
         {
             // This makes the players sprite visible
             PlayerSprite.gameObject.SetActive(true);
@@ -109,16 +102,46 @@ public class PlayerHide : MonoBehaviour
             candle.gameObject.SetActive(true);
 
             // This sets the players position to that of the object they're planning on hiding in
-            this.transform.SetPositionAndRotation(ExitPosition, this.transform.rotation);
+            this.transform.SetPositionAndRotation(ExitPosition, transform.rotation);
 
             // Reattaches the particle to the player
-            Smoke.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);   
+            Smoke.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
             // Disables the particle again
             Smoke.SetActive(false);
 
             // Updating the players Hidden state
             Hidden = false;
-        } 
+        }
     }
+
+    //void OnUnHide()
+    //{
+    //    if (Hidden == true)
+    //    {
+    //        if (Time.timeScale == 1)
+    //        {
+    //            // This makes the players sprite visible
+    //            PlayerSprite.gameObject.SetActive(true);
+    //            Collider.enabled = true;
+
+    //            // Turns the players light back on
+    //            candle.gameObject.SetActive(true);
+
+    //            // This sets the players position to that of the object they're planning on hiding in
+    //            this.transform.SetPositionAndRotation(ExitPosition, transform.rotation);
+
+    //            // Reattaches the particle to the player
+    //            Smoke.transform.SetPositionAndRotation(transform.position, transform.rotation);
+
+    //            // Disables the particle again
+    //            Smoke.SetActive(false);
+
+    //            // Updating the players Hidden state
+    //            Hidden = false;
+    //        }
+            
+            
+    //    } 
+    //}
 }

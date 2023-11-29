@@ -59,6 +59,26 @@ public class DoorUse : MonoBehaviour
                 // Removes the key from the players inventory
                 playerInventory.RemoveItem(activeDoor.lockID);
             }
+            else if (activeDoor.isDoubleLocked == true && playerInventory.inventory.Contains(activeDoor.lockID) && playerInventory.inventory.Contains(activeDoor.lock2ID))
+            {
+                Debug.Log("The toy room door has been unlocked");
+
+                activeDoor.isDoubleLocked = false;
+
+                // Checks if the door is opened or closed and calls the correct function based on said state
+                if (activeDoor.doorIsOpen == false)
+                {
+                    activeDoor.openDoor();
+                }
+                else if (activeDoor.doorIsOpen == true)
+                {
+                    activeDoor.closeDoor();
+                }
+
+                // Removes the keys from the players inventory
+                playerInventory.RemoveItem(activeDoor.lockID);
+                playerInventory.RemoveItem(activeDoor.lock2ID);
+            }
             else
             {
                 Debug.Log("This door is locked and you don't have the key");

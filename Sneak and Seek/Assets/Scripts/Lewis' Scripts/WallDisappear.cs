@@ -45,27 +45,8 @@ public class WallDisappear : MonoBehaviour
         // Checks if the materials are to be made transparents
         if (makeTrans == true)
         {
-            if (trans == dynamicTrans)
-            {
-                // Debug.Log("THEY ARE EQUAL");
-
-                // Runs through all materials on the wall
-                for (int i = 0; i < wallRender.materials.Length; i++)
-                {
-                    Debug.Log(wallRender.materials[i].name);
-                    if (wallRender.materials[i].name != "Skirt_material (Instance)")
-                    {
-                        // Sets the alpha value of the material based on trans
-                        colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                        wallRender.materials[i].SetColor("_Color", colourValue);
-                    }
-
-                }
-
-                // Sets make trans to false
-                makeTrans = false;
-            }
-            else if (trans != dynamicTrans)
+            
+            if (trans != dynamicTrans)
             {
                 if (trans < dynamicTrans)
                 {
@@ -82,7 +63,7 @@ public class WallDisappear : MonoBehaviour
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
                 {
-                    Debug.Log(wallRender.materials[i].name);
+                    //Debug.Log(wallRender.materials[i].name);
                     if (wallRender.materials[i].name != "Skirt_material (Instance)")
                     {
                         // Sets the alpha value of the material based on dynamic trans
@@ -91,6 +72,26 @@ public class WallDisappear : MonoBehaviour
                         wallRender.materials[i].renderQueue = 3003;
                     }
                 }
+            }
+            else if (trans == dynamicTrans)
+            {
+                // Debug.Log("THEY ARE EQUAL");
+
+                // Runs through all materials on the wall
+                for (int i = 0; i < wallRender.materials.Length; i++)
+                {
+                    //Debug.Log(wallRender.materials[i].name);
+                    if (wallRender.materials[i].name != "Skirt_material (Instance)")
+                    {
+                        // Sets the alpha value of the material based on trans
+                        colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
+                        wallRender.materials[i].SetColor("_Color", colourValue);
+                    }
+
+                }
+
+                // Sets make trans to false
+                makeTrans = false;
             }
         }
 

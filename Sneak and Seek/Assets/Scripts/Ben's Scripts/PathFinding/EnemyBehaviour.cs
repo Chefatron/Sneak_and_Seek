@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    GameObject playerLocation;
+    [SerializeField] GameObject playerLocation;
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
 
@@ -17,6 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     // == A bad thing ==
     Quaternion spriteRotation = Quaternion.Euler(45, 0, 0);
+    //
 
     //
     bool changeTarget = false;
@@ -32,8 +32,6 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerLocation = GameObject.Find("Player");
-
         enemyState = 1;
 
         targetNode = 0;
@@ -63,7 +61,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider trigger)
+    private void OnTriggerStay(Collider trigger)
     {
         if (enemyState == 1)
         {
@@ -73,17 +71,24 @@ public class EnemyBehaviour : MonoBehaviour
             // Debug.Log(path[targetNode]);
 
             // Debug.Log(temp.name);
+            try
+            {
+                if (trigger.gameObject.tag == "Door (Enemy)")
+                {
+                    trigger.GetComponentInParent<DoorMove>().doorOpening = true;
+                    trigger.GetComponentInParent<DoorMove>().doorClosing = false;
+                }
+            }
+            catch (System.Exception)
+            {
+
+            }
 
             try
             {
                 if (temp.nodeID != path[targetNode])
                 {
                     // Debug.Log("Ignore");
-                }
-                else if (trigger.gameObject.tag == "Door (Enemy)")
-                {
-                    trigger.GetComponent<DoorMove>().openDoor();
-                    
                 }
                 else
                 {
@@ -97,6 +102,23 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 // Debug.Log("Ignore");
             }
+        }
+    }
+
+    void OnTriggerExit(Collider trigger)
+    {
+        try
+        {
+            if (trigger.gameObject.tag == "Door (Enemy)")
+            {
+                trigger.GetComponentInParent<DoorMove>().doorOpening = false;
+                trigger.GetComponentInParent<DoorMove>().doorClosing = true;
+
+            }
+        }
+        catch (System.Exception)
+        {
+
         }
     }
 
@@ -145,7 +167,7 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if (GameObject.Find("Player").GetComponent<PlayerHide>().Hidden == true)
+                    if (playerLocation.GetComponent<PlayerHide>().Hidden == true)
                     {
                         lastKnownLocation = nodeList[GameObject.Find("Hiding spot (Active)").GetComponent<HideCheck>().nearestNodeID].transform.position;
                     }

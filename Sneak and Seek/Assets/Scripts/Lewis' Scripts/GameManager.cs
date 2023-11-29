@@ -12,11 +12,17 @@ public class GameManager : MonoBehaviour
     // Used to store what time the controller should stop rumbling
     float rumbleStopTime;
 
+    // The player object
+    [SerializeField] GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         // Sets isRumbling to default of false
         isRumbling = false;
+
+        // Call setupLevel with the current scene name so it can set everything up based on the current level
+        setupLevel(SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame
@@ -37,12 +43,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayGame()
+    void setupLevel(string currentScene)
     {
-        Time.timeScale = 1f;
+        if (currentScene == "First Floor")
+        {
+            // Spawn the player
 
-        // Loads the scene corresponding to the first level
-        SceneManager.LoadScene("1st Level");
+            
+
+            // Open the doors that were opened prevoisly by the player
+        }
+        else if (currentScene == "Ground Floor")
+        {
+            // Spawn the player
+
+            // Open the doors that were opened prevoisly by the player
+        }
+        else if (currentScene == "Dark Ground Floor")
+        {
+            // Spawn the player
+
+            // Open the doors that were opened prevoisly by the player
+        }
+        else if (currentScene == "Dark First Floor")
+        {
+            // Spawn the player
+
+            // Open the doors that were opened prevoisly by the player
+        }
+        else if (currentScene == "Title Screen")
+        {
+            // Play title music
+        }
     }
 
     public void LoadScene(string sceneName)
@@ -50,6 +82,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void playGame()
+    {
+        // Checks the level the player last saved on to say which level to load
     }
 
     public void CloseGame()
