@@ -1,26 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class VideoPlay : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] GameObject video;
+
+    public void PlayVideo()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private VideoPlayer MyVideoPlayer;
-
-    public void PlayVideo(){
-        MyVideoPlayer =  GetComponent<StartingVideo>();
         //Calls the video player so it can be played whenever
-        MyVideoPlayer.Play();
+        var videoPlayer = video.GetComponent<UnityEngine.Video.VideoPlayer>();
+
+        videoPlayer.isLooping = false;
+
+        videoPlayer.Play();
+
+        if (!videoPlayer.isPlaying)
+        {
+            
+        }
     }
 }
