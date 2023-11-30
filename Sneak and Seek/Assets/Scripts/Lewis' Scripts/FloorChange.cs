@@ -9,14 +9,14 @@ public class FloorChange : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     // The name of the scene for the stairs to load
-    [SerializeField] int sceneIndex;
+    [SerializeField] string sceneIndex;
 
-    IEnumerator loadNextScene(int nextScene)
+    IEnumerator loadNextScene(string nextScene)
     {
         SceneManager.LoadScene("LoadingScene");
-        AsyncOperation asyncLoaing = SceneManager.LoadSceneAsync(nextScene);
+        AsyncOperation asyncLoading = SceneManager.LoadSceneAsync(nextScene);
 
-        while (!asyncLoaing.isDone) 
+        while (!asyncLoading.isDone) 
         {
             yield return null;
         }
