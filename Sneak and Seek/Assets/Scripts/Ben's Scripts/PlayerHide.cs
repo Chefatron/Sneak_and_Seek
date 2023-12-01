@@ -108,7 +108,12 @@ public class PlayerHide : MonoBehaviour
             Collider.enabled = true;
 
             // Turns the players light back on
-            candle.gameObject.SetActive(true);
+            try
+            {
+                candle.gameObject.SetActive(true);
+            } 
+            catch(System.Exception) { }
+            
 
             // This sets the players position to that of the object they're planning on hiding in
             this.transform.SetPositionAndRotation(ExitPosition, transform.rotation);

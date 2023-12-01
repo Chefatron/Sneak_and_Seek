@@ -26,13 +26,14 @@ public class FloorChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger active");
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log("Trigger active");
+        //Debug.Log(other.gameObject.tag);
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player Found");
-            loadNextScene(sceneName);
+            //Debug.Log("Player Found");
+            //loadNextScene(sceneName);
+            SceneManager.LoadScene(sceneName);
         }
     }
 

@@ -24,7 +24,7 @@ public class DoorUse : MonoBehaviour
         if (DoesTagExist("Door (Player)") == true)
         {
             // Gets the door
-            activeDoor = GameObject.FindWithTag("Door (Player)").GetComponent<DoorMove>();
+            activeDoor = GameObject.FindWithTag("Door (Player)").GetComponentInParent<DoorMove>();
 
             // Checks if the door is unlocked or, is locked and the player has the key or, is locked and the player doesn't have the key
             if (activeDoor.isLocked == false)
