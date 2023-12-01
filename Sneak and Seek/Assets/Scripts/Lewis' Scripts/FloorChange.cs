@@ -9,22 +9,26 @@ public class FloorChange : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     // The name of the scene for the stairs to load
-    [SerializeField] string sceneName;
+    [SerializeField] string sceneIndex;
 
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator loadNextScene(string nextScene)
     {
+        SceneManager.LoadScene("LoadingScene");
+        AsyncOperation asyncLoading = SceneManager.LoadSceneAsync(nextScene);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        while (!asyncLoading.isDone) 
+        {
+            yield return null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.LoadScene(sceneName);
+        loadNextScene(sceneIndex);
+    }
+
+    public void OnButtonPress()
+    {
+        loadNextScene(sceneIndex);
     }
 }

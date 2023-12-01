@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     // The player object
     [SerializeField] GameObject player;
 
+    GameObject winBackground;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,13 @@ public class GameManager : MonoBehaviour
         isRumbling = false;
 
         // Call setupLevel with the current scene name so it can set everything up based on the current level
-        setupLevel(SceneManager.GetActiveScene().name);
+        SetupLevel(SceneManager.GetActiveScene().buildIndex);
+
+        // Checks if the player pref saves have been made and makes them if not
+        if (!PlayerPrefs.HasKey("SavesMade") || PlayerPrefs.GetInt("SavesMade") == 1)
+        {
+            CreateSaves();
+        }
     }
 
     // Update is called once per frame
@@ -43,50 +52,98 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void setupLevel(string currentScene)
+    void CreateSaves()
     {
-        if (currentScene == "First Floor")
+        // Checks if all of the necessary saves for the game have been made
+        if (!PlayerPrefs.HasKey("IntroSeen"))
+        {
+            PlayerPrefs.SetInt("IntroSeen", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("TutorialCompleted"))
+        {
+            PlayerPrefs.SetInt("TutorialCompleted", 0);
+        }
+
+        // Current stage is 1 because we don't want it to load the player into the tutorial
+        if (!PlayerPrefs.HasKey("CurrentStage"))
+        {
+            PlayerPrefs.SetInt("CurrentStage", 1);
+        }
+
+        if (!PlayerPrefs.HasKey("CandleAmount"))
+        {
+            PlayerPrefs.SetInt("CandleAmount", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("KeyID1"))
+        {
+            PlayerPrefs.SetInt("KeyID1", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("KeyID2"))
+        {
+            PlayerPrefs.SetInt("KeyID2", 0);
+        }
+
+        PlayerPrefs.SetInt("SavesMade", 1);
+    }
+
+    void SetupLevel(int currentScene)
+    {
+        if (currentScene == 1)
         {
             // Spawn the player
 
-            
-
             // Open the doors that were opened prevoisly by the player
+
+            PlayerPrefs.SetInt("CurrentStage", 1);
         }
-        else if (currentScene == "Ground Floor")
+        else if (currentScene == 2)
         {
             // Spawn the player
 
             // Open the doors that were opened prevoisly by the player
+
+            PlayerPrefs.SetInt("CurrentStage", 2);
         }
-        else if (currentScene == "Dark Ground Floor")
+        else if (currentScene == 3)
         {
             // Spawn the player
 
             // Open the doors that were opened prevoisly by the player
+
+            PlayerPrefs.SetInt("CurrentStage", 3);
         }
-        else if (currentScene == "Dark First Floor")
+        else if (currentScene == 4)
         {
             // Spawn the player
 
             // Open the doors that were opened prevoisly by the player
+
+            winBackground = GameObject.Find("WinBackground");
+
+            winBackground.SetActive(false);
+
+            PlayerPrefs.SetInt("CurrentStage", 4);
         }
-        else if (currentScene == "Title Screen")
+        else if (currentScene == 0)
         {
             // Play title music
         }
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(int sceneIndex)
     {
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneIndex);
     }
 
-    public void playGame()
+    public void PlayGame()
     {
         // Checks the level the player last saved on to say which level to load
+        LoadScene(PlayerPrefs.GetInt("CurrentStage"));     
     }
 
     public void CloseGame()
@@ -114,6 +171,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         // Resets the current scene loaded
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }  
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        winBackground.SetActive(true);
+
+        Time.timeScale = 0f;  
+    }
 }
