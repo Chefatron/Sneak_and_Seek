@@ -6,17 +6,19 @@ using UnityEngine.SceneManagement;
 public class FloorChange : MonoBehaviour
 {
     // The gamemanager script
-    [SerializeField] GameManager gameManager;
+    //[SerializeField] GameManager gameManager;
 
     // The name of the scene for the stairs to load
-    [SerializeField] string sceneIndex;
+    [SerializeField] string sceneName;
 
     IEnumerator loadNextScene(string nextScene)
     {
+        Debug.Log("Scene Change start");
+
         SceneManager.LoadScene("LoadingScene");
         AsyncOperation asyncLoading = SceneManager.LoadSceneAsync(nextScene);
 
-        while (!asyncLoading.isDone) 
+        while (!asyncLoading.isDone)
         {
             yield return null;
         }
@@ -24,11 +26,18 @@ public class FloorChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        loadNextScene(sceneIndex);
+        Debug.Log("Trigger active");
+        Debug.Log(other.gameObject.tag);
+
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player Found");
+            loadNextScene(sceneName);
+        }
     }
 
     public void OnButtonPress()
     {
-        loadNextScene(sceneIndex);
+        loadNextScene(sceneName);
     }
 }

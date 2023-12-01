@@ -107,8 +107,6 @@ public class DoorMove : MonoBehaviour
 
         doorOpening = true;
 
-        //GetComponentInChildren<BoxCollider>().isTrigger = true;
-
         doorCollider.enabled = false;
 
 
@@ -119,8 +117,6 @@ public class DoorMove : MonoBehaviour
         //Debug.Log("closeDoor has been called");
 
         doorClosing = true;
-
-        //GetComponentInChildren<BoxCollider>().isTrigger = true;
 
         doorCollider.enabled = false;
     }
