@@ -2045,7 +2045,7 @@ Transform:
   m_GameObject: {fileID: 156665447}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.24, z: -6.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2063,7 +2063,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.59171915, b: 0, a: 1}
-  m_Intensity: 3
+  m_Intensity: 5.27
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6231,8 +6231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d786864650e642816c8db59e81dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 844468986}
-  sceneIndex: 3
+  sceneName: Dark Ground Floor
 --- !u!1001 &534270125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8460,6 +8459,10 @@ PrefabInstance:
     - target: {fileID: 1207058779231721316, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509958153114779812, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
+      propertyPath: m_Intensity
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6096645373103942558, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
       propertyPath: m_Name

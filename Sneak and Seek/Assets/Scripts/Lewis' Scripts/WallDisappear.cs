@@ -41,7 +41,7 @@ public class WallDisappear : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
+        
         // Checks if the materials are to be made transparents
         if (makeTrans == true)
         {
@@ -50,15 +50,17 @@ public class WallDisappear : MonoBehaviour
             {
                 if (trans < dynamicTrans)
                 {
-                    dynamicTrans = dynamicTrans - 1f * Time.deltaTime;
+                    dynamicTrans -= 1.5f * Time.deltaTime; //needs fixing
                 }
                 else if (trans > dynamicTrans)
                 {
-                    dynamicTrans = dynamicTrans + 1f * Time.deltaTime;
+                    dynamicTrans += 1f * Time.deltaTime;
                 }
 
                 // Rounds to 2 decimal points
                 dynamicTrans = (Mathf.Round(dynamicTrans * 100f) / 100f);
+
+                //Debug.Log(dynamicTrans);
 
                 // Runs through all materials on the wall
                 for (int i = 0; i < wallRender.materials.Length; i++)
@@ -68,7 +70,8 @@ public class WallDisappear : MonoBehaviour
                     {
                         // Sets the alpha value of the material based on dynamic trans
                         colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, dynamicTrans);
-                        wallRender.materials[i].SetColor("_Color", colourValue);
+
+                        wallRender.materials[i].SetColor("_BaseColor", colourValue);
                         wallRender.materials[i].renderQueue = 3003;
                     }
                 }
@@ -85,7 +88,7 @@ public class WallDisappear : MonoBehaviour
                     {
                         // Sets the alpha value of the material based on trans
                         colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                        wallRender.materials[i].SetColor("_Color", colourValue);
+                        wallRender.materials[i].SetColor("_BaseColor", colourValue);
                     }
 
                 }
@@ -110,7 +113,7 @@ public class WallDisappear : MonoBehaviour
                     {
                         // Sets the alpha value of the material based on trans
                         colourValue = new Color(originalColourValue.r, originalColourValue.b, originalColourValue.g, trans);
-                        wallRender.materials[i].SetColor("_Color", colourValue);
+                        wallRender.materials[i].SetColor("_BaseColor", colourValue);
                         wallRender.materials[i].renderQueue = 3001;
                     }
                 }

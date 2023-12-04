@@ -48,7 +48,7 @@ public class PickupScript : MonoBehaviour
             else
             {
                 // Calls the dark level
-                gameManager.LoadScene(3);
+                gameManager.LoadScene(4);
             }
         }
     }

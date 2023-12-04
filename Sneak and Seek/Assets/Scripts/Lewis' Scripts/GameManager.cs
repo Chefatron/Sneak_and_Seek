@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     void SetupLevel(int currentScene)
     {
-        if (currentScene == 1)
+        if (currentScene == 2)
         {
             // Spawn the player
 
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
             PlayerPrefs.SetInt("CurrentStage", 1);
         }
-        else if (currentScene == 2)
+        else if (currentScene == 3)
         {
             // Spawn the player
 
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
             PlayerPrefs.SetInt("CurrentStage", 2);
         }
-        else if (currentScene == 3)
+        else if (currentScene == 4)
         {
             // Spawn the player
 
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
 
             PlayerPrefs.SetInt("CurrentStage", 3);
         }
-        else if (currentScene == 4)
+        else if (currentScene == 5)
         {
             // Spawn the player
 

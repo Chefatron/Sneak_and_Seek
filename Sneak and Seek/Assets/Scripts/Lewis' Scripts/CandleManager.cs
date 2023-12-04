@@ -25,7 +25,7 @@ public class CandleManager : MonoBehaviour
     void Start()
     {
         // Sets the light value to the defualt value of 90
-        lightValue = 3;
+        lightValue = 15;
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
@@ -38,17 +38,17 @@ public class CandleManager : MonoBehaviour
         if (resetLight == true)
         {
             // Checks if it hasn't reached the desired value and increases if not
-            if (lightValue < 3)
+            if (lightValue < 15)
             {
-                lightValue = lightValue + (4f * Time.deltaTime);
+                lightValue = lightValue + (12f * Time.deltaTime);
 
-                candleBar.fillAmount = lightValue / 3;
+                candleBar.fillAmount = lightValue / 15;
             }
             else
             {
-                lightValue = 3;
+                lightValue = 15;
 
-                candleBar.fillAmount = lightValue / 3;
+                candleBar.fillAmount = lightValue / 15;
 
                 resetLight = false;
             }
@@ -56,9 +56,9 @@ public class CandleManager : MonoBehaviour
         else if (lightValue > 0)
         {
             // Lowers the light value
-            lightValue = lightValue - (0.1f * Time.deltaTime);
+            lightValue = lightValue - (0.3f * Time.deltaTime);
 
-            candleBar.fillAmount = lightValue / 3;
+            candleBar.fillAmount = lightValue / 15;
 
             //print("Lightvalue: " + lightValue);
 

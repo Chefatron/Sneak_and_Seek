@@ -16,7 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
     Vector3 lastKnownLocation;
 
     // == A bad thing ==
-    Quaternion spriteRotation = Quaternion.Euler(45, 0, 0);
+    Quaternion spriteRotation = Quaternion.Euler(35, 0, 0);
     //
 
     //
@@ -72,6 +72,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Node temp = trigger.GetComponent<Node>();
 
+            //Debug.Log(trigger.gameObject.tag);
+
             // Debug.Log("Trigger - " + temp.nodeID);
             // Debug.Log(path[targetNode]);
 
@@ -80,13 +82,15 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (trigger.gameObject.tag == "Door (Enemy)")
                 {
+                    //Debug.Log("Door Opening");
+
                     trigger.GetComponentInParent<DoorMove>().doorOpening = true;
                     trigger.GetComponentInParent<DoorMove>().doorClosing = false;
                 }
             }
             catch (System.Exception)
             {
-
+                //Debug.Log("Can't open");
             }
 
             try
