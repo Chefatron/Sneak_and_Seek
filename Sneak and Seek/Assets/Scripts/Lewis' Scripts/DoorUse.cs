@@ -24,7 +24,7 @@ public class DoorUse : MonoBehaviour
         if (DoesTagExist("Door (Player)") == true)
         {
             // Gets the door
-            activeDoor = GameObject.FindWithTag("Door (Player)").GetComponent<DoorMove>();
+            activeDoor = GameObject.FindWithTag("Door (Player)").GetComponentInParent<DoorMove>();
 
             // Checks if the door is unlocked or, is locked and the player has the key or, is locked and the player doesn't have the key
             if (activeDoor.isLocked == false)
@@ -58,6 +58,26 @@ public class DoorUse : MonoBehaviour
 
                 // Removes the key from the players inventory
                 playerInventory.RemoveItem(activeDoor.lockID);
+            }
+            else if (activeDoor.isDoubleLocked == true && playerInventory.inventory.Contains(activeDoor.lockID) && playerInventory.inventory.Contains(activeDoor.lock2ID))
+            {
+                Debug.Log("The toy room door has been unlocked");
+
+                activeDoor.isDoubleLocked = false;
+
+                // Checks if the door is opened or closed and calls the correct function based on said state
+                if (activeDoor.doorIsOpen == false)
+                {
+                    activeDoor.openDoor();
+                }
+                else if (activeDoor.doorIsOpen == true)
+                {
+                    activeDoor.closeDoor();
+                }
+
+                // Removes the keys from the players inventory
+                playerInventory.RemoveItem(activeDoor.lockID);
+                playerInventory.RemoveItem(activeDoor.lock2ID);
             }
             else
             {

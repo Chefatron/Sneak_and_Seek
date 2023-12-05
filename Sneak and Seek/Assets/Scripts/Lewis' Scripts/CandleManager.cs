@@ -1,42 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CandleManager : MonoBehaviour
 {
     // The candle light attached to the player
-    Light candle;
+    [SerializeField] Light candle;
 
     // Used to set the range of the players candle
     float lightValue;
 
     Inventory inventory;
 
-    GameManager gameManager;
+    [SerializeField] GameManager gameManager;
+
+    // The ui element for the candle
+    [SerializeField] Image candleBar;
+
+    bool resetLight;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        // Finds the players candle light and assigns it to candle
-        candle = GameObject.Find("Candle").GetComponent<Light>();
-
         // Sets the light value to the defualt value of 90
-        lightValue = 3;
+        lightValue = 15;
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
-
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Checks if the candle reaches a low enough level and either keeps lowering it or checks if the player has a candle item to refill it
-        if (lightValue > 0.5)
+        // Checks if the candle reaches a low enough level and either keeps lowering it or checks if the player has a candle item to refill it and then resets it slowly if needed
+        if (resetLight == true)
+        {
+            // Checks if it hasn't reached the desired value and increases if not
+            if (lightValue < 15)
+            {
+                lightValue = lightValue + (12f * Time.deltaTime);
+
+                candleBar.fillAmount = lightValue / 15;
+            }
+            else
+            {
+                lightValue = 15;
+
+                candleBar.fillAmount = lightValue / 15;
+
+                resetLight = false;
+            }
+        }
+        else if (lightValue > 0)
         {
             // Lowers the light value
-            lightValue = lightValue - 0.05f * Time.deltaTime;
+            lightValue = lightValue - (0.3f * Time.deltaTime);
+
+            candleBar.fillAmount = lightValue / 15;
 
             //print("Lightvalue: " + lightValue);
 
@@ -47,12 +69,14 @@ public class CandleManager : MonoBehaviour
             // Calls the remove function item and removes the correct item
             inventory.RemoveItem(1);
 
+            resetLight = true;
+
             // Resets light value
-            lightValue = 3;
+            //lightValue = 3;
         }
         else
         {
-            //gameManager.ResetScene();
+            gameManager.ResetScene();
         }
 
         // Sets the light value devided by an amount so it is reasonable for a lights range
