@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,21 +11,25 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerHide Hiding;
 
-    SpriteRenderer playerSprite;
-
-    [SerializeField] Sprite upSprite;
-
-    [SerializeField] Sprite downSprite;
-
-    [SerializeField] Sprite leftSprite;
-
-    [SerializeField] Sprite rightSprite;
-
     Vector3 movement;
 
     Vector2 stickInputData;
 
     [SerializeField] int speed;
+
+    [SerializeField] Image staminaBar;
+
+    // A multiplier to make the player faster when dashing
+    int dashSpeed;
+
+    // A variable used to store the time that the player cannot dash for
+    float dashCooldown;
+
+    // Used to time how long the player can dash
+    float dashTimer;
+
+    // Used to tell if the player is dashing
+    bool isDashing; 
 
     [SerializeField] Animator playerAnimator;
 
@@ -33,9 +38,12 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody>();
 
-        playerSprite = GetComponentInChildren<SpriteRenderer>();
-
         Hiding = GetComponent<PlayerHide>();
+
+        // Defualts to one or zero
+        dashSpeed = 1;
+        dashCooldown = 0f;
+        dashTimer = 0f;
     }
 
     // Is called when left stick on controller is used
@@ -51,14 +59,65 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetFloat("Move_Y", stickInputData.y);
     }
 
+    void OnDash()
+    {
+        //Debug.Log("Dash has been called");
+
+        // Checks if the player is moving, isn't hidden, and isn't in cooldown
+        if ((stickInputData.x != 0f || stickInputData.y != 0f) && Hiding.Hidden == false && Time.unscaledTime > dashCooldown) 
+        {
+            dashSpeed = 2;
+
+            isDashing = true;
+
+            // Sets the 2 seconds timer
+            dashTimer = Time.unscaledTime + 2f;
+
+            //Debug.Log("Dash Timer ends: " + dashTimer);
+        }
+    }
+
     // Runs physics update for movement
     void FixedUpdate()
     {
-
         if (Hiding.Hidden == false)
         {
             // Applying physics based movement
-            playerRB.AddForce(movement * speed * Time.deltaTime);
+            playerRB.AddForce(movement * speed * dashSpeed * Time.deltaTime);
         }
+    }
+
+    private void Update()
+    {
+        //Debug.Log("Time is: " + Time.unscaledTime);
+
+        if (isDashing == true)
+        {
+            // Checks if the dash timer is up, adjusts the bar if not
+            if (Time.unscaledTime >= dashTimer)
+            {
+                dashSpeed = 1;
+
+                // Adds a 7 second cooldown
+                dashCooldown = Time.unscaledTime + 7f;
+
+                //Debug.Log("Cooldown ends: " + dashCooldown);
+
+                // Resets the timer
+                dashTimer = 0f;
+
+                isDashing = false;
+            }
+            else
+            {
+                staminaBar.fillAmount -= Time.unscaledDeltaTime / 2;
+            }
+        }
+        else if (dashCooldown >= Time.unscaledTime)
+        {
+            staminaBar.fillAmount += Time.unscaledDeltaTime / 7;
+        }
+
+
     }
 }
