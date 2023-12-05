@@ -5,17 +5,26 @@ using UnityEngine;
 public class DoorMove : MonoBehaviour
 {
     // Used to check and set the current state of the door
-    bool doorOpening;
+    public bool doorOpening;
 
-    bool doorClosing;
+    public bool doorClosing;
 
     public bool doorIsOpen;
 
     // Used to set whether this door is a locked door or not
     public bool isLocked;
 
+    public bool isDoubleLocked;
+
     // Used to set which key corresponds to the door
     public int lockID;
+
+    public int lock2ID;
+
+    //Vector3 startRotation;
+
+    // The collider for the door mesh
+    BoxCollider doorCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -24,15 +33,22 @@ public class DoorMove : MonoBehaviour
 
         doorClosing = false;
 
+        //startRotation = transform.localEulerAngles;
+
+        //Debug.Log("Start rotation: " + startRotation.y);
+
+        //Debug.Log("Start rotation plus 120: " + (startRotation.y + 120));
+
         // Sets the rotation of the door based on the state set in editor
         if (doorIsOpen == true)
         {
             transform.localEulerAngles = new Vector3(0, 120, 0);
         }
-        else if (doorIsOpen == false) 
-        {
-            transform.localEulerAngles = new Vector3(0, 0, 0);
-        }
+
+        // Gets the collider then enables it
+        doorCollider = GetComponentInChildren<BoxCollider>();
+            
+        doorCollider.enabled = true;
     }
 
     // Update is called once per frame
@@ -75,6 +91,13 @@ public class DoorMove : MonoBehaviour
 
             doorIsOpen = false;
         }
+
+        if (!doorOpening && !doorClosing)
+        {
+            //GetComponentInChildren<BoxCollider>().isTrigger = false;
+
+            doorCollider.enabled = true;
+        }
     }
 
     // These are both self-explanatory
@@ -83,6 +106,10 @@ public class DoorMove : MonoBehaviour
         //Debug.Log("openDoor has been called");
 
         doorOpening = true;
+
+        doorCollider.enabled = false;
+
+
     }
 
     public void closeDoor()
@@ -90,5 +117,7 @@ public class DoorMove : MonoBehaviour
         //Debug.Log("closeDoor has been called");
 
         doorClosing = true;
+
+        doorCollider.enabled = false;
     }
 }

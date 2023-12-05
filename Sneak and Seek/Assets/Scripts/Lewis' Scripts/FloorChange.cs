@@ -5,43 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class FloorChange : MonoBehaviour
 {
-    GameManager gameManager;
+    // The gamemanager script
+    //[SerializeField] GameManager gameManager;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
+    // The name of the scene for the stairs to load
+    [SerializeField] string sceneName;
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator loadNextScene(string nextScene)
     {
-        
+        Debug.Log("Scene Change start");
+
+        SceneManager.LoadScene("LoadingScene");
+        AsyncOperation asyncLoading = SceneManager.LoadSceneAsync(nextScene);
+
+        while (!asyncLoading.isDone)
+        {
+            yield return null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("The stair trigger has been entered");
+        //Debug.Log("Trigger active");
+        //Debug.Log(other.gameObject.tag);
 
-        if (SceneManager.GetActiveScene().name == "First Floor")
+        if (other.gameObject.tag == "Player")
         {
-            //Debug.Log("Loading 2nd level");
-            gameManager.LoadScene("Ground Floor");
+            //Debug.Log("Player Found");
+            //loadNextScene(sceneName);
+            SceneManager.LoadScene(sceneName);
         }
-        else if (SceneManager.GetActiveScene().name == "Ground Floor")
-        {
-            //Debug.Log("Loading 1st level");
-            gameManager.LoadScene("First Floor");
-        }
-        else if (SceneManager.GetActiveScene().name == "Dark First Floor")
-        {
-            //Debug.Log("Loading 2nd level");
-            gameManager.LoadScene("Dark Ground Floor");
-        }
-        else if (SceneManager.GetActiveScene().name == "Dark Ground Floor")
-        {
-            //Debug.Log("Loading 1st level");
-            gameManager.LoadScene("Dark First Floor");
-        }
+    }
+
+    public void OnButtonPress()
+    {
+        loadNextScene(sceneName);
     }
 }

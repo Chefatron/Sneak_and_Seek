@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    GameObject playerLocation;
+    [SerializeField] GameObject playerLocation;
+    [SerializeField] GameObject UIeye;
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
 
@@ -16,7 +16,8 @@ public class EnemyBehaviour : MonoBehaviour
     Vector3 lastKnownLocation;
 
     // == A bad thing ==
-    Quaternion spriteRotation = Quaternion.Euler(45, 0, 0);
+    Quaternion spriteRotation = Quaternion.Euler(35, 0, 0);
+    //
 
     //
     bool changeTarget = false;
@@ -32,7 +33,9 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerLocation = GameObject.Find("Player");
+        UIeye.GetComponent<Animator>().SetBool("Hidden", true);
+        UIeye.GetComponent<Animator>().SetBool("Searching", false);
+        UIeye.GetComponent<Animator>().SetBool("Seen", false);
 
         enemyState = 1;
 
@@ -63,27 +66,38 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider trigger)
+    private void OnTriggerStay(Collider trigger)
     {
         if (enemyState == 1)
         {
             Node temp = trigger.GetComponent<Node>();
 
+            //Debug.Log(trigger.gameObject.tag);
+
             // Debug.Log("Trigger - " + temp.nodeID);
             // Debug.Log(path[targetNode]);
 
             // Debug.Log(temp.name);
+            try
+            {
+                if (trigger.gameObject.tag == "Door (Enemy)")
+                {
+                    //Debug.Log("Door Opening");
+
+                    trigger.GetComponentInParent<DoorMove>().doorOpening = true;
+                    trigger.GetComponentInParent<DoorMove>().doorClosing = false;
+                }
+            }
+            catch (System.Exception)
+            {
+                //Debug.Log("Can't open");
+            }
 
             try
             {
                 if (temp.nodeID != path[targetNode])
                 {
                     // Debug.Log("Ignore");
-                }
-                else if (trigger.gameObject.tag == "Door (Enemy)")
-                {
-                    trigger.GetComponent<DoorMove>().openDoor();
-                    
                 }
                 else
                 {
@@ -97,6 +111,23 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 // Debug.Log("Ignore");
             }
+        }
+    }
+
+    void OnTriggerExit(Collider trigger)
+    {
+        try
+        {
+            if (trigger.gameObject.tag == "Door (Enemy)")
+            {
+                trigger.GetComponentInParent<DoorMove>().doorOpening = false;
+                trigger.GetComponentInParent<DoorMove>().doorClosing = true;
+
+            }
+        }
+        catch (System.Exception)
+        {
+
         }
     }
 
@@ -118,6 +149,9 @@ public class EnemyBehaviour : MonoBehaviour
 
                     changeTarget = false;
                 }
+
+
+
                 break;
 
             case 2:     // Staring
@@ -129,6 +163,10 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    UIeye.GetComponent<Animator>().SetBool("Hidden", false);
+                    UIeye.GetComponent<Animator>().SetBool("Searching", false);
+                    UIeye.GetComponent<Animator>().SetBool("Seen", true);
+
                     timerDuration = 15;
                     enemyState = 3;
                 }
@@ -138,6 +176,8 @@ public class EnemyBehaviour : MonoBehaviour
             case 3:     // Chasing
                 if (Mathf.RoundToInt(timerDuration) > 0)
                 {
+                    
+
                     target.destination = playerLocation.transform.position;
 
                     timerDuration -= Time.deltaTime;
@@ -145,7 +185,7 @@ public class EnemyBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if (GameObject.Find("Player").GetComponent<PlayerHide>().Hidden == true)
+                    if (playerLocation.GetComponent<PlayerHide>().Hidden == true)
                     {
                         lastKnownLocation = nodeList[GameObject.Find("Hiding spot (Active)").GetComponent<HideCheck>().nearestNodeID].transform.position;
                     }
@@ -153,7 +193,11 @@ public class EnemyBehaviour : MonoBehaviour
                     {
                         lastKnownLocation = playerLocation.transform.position;
                     }
-                    
+
+                    UIeye.GetComponent<Animator>().SetBool("Hidden", false);
+                    UIeye.GetComponent<Animator>().SetBool("Searching", true);
+                    UIeye.GetComponent<Animator>().SetBool("Seen", false);
+
                     enemyState = 4;
                     timerDuration = 5;
                 }
@@ -170,6 +214,10 @@ public class EnemyBehaviour : MonoBehaviour
                     }
                     else
                     {
+                        UIeye.GetComponent<Animator>().SetBool("Hidden", true);
+                        UIeye.GetComponent<Animator>().SetBool("Searching", false);
+                        UIeye.GetComponent<Animator>().SetBool("Seen", false);
+
                         target.destination = nodeList[path[targetNode]-1].transform.position;
                         enemyState = 1;
                     }

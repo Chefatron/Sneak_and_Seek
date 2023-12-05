@@ -14,6 +14,11 @@ public class Node : MonoBehaviour
     int rayCount;
     int angleChange;
 
+    private void Start()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+    }
+
     //
     public void connectionMapping()
     {
@@ -62,7 +67,7 @@ public class Node : MonoBehaviour
                     {
                         hitInfo.collider.GetComponentInParent<GameObject>().GetComponentInChildren<HideCheck>().nearestNodeID = nodeID;
                     }
-                    catch(System.Exception ex)
+                    catch(System.Exception)
                     {
 
                     }

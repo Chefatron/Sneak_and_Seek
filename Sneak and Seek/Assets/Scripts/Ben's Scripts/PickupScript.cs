@@ -6,6 +6,10 @@ public class PickupScript : MonoBehaviour
 {
     [SerializeField] Inventory inventory;
 
+    [SerializeField] GameManager gameManager;
+
+    PickupCheck currentPickup;
+
     // This function checks that an object with a certain tag exists
     private bool DoesTagExist(string tag)
     {
@@ -30,11 +34,22 @@ public class PickupScript : MonoBehaviour
     {
         if (DoesTagExist("Pickup (Active)") == true)
         {
-            // This calls the function from inventory to add the correct item id to the players inventory
-            inventory.AddItem(GameObject.FindGameObjectWithTag("Pickup (Active)").GetComponent<PickupCheck>().ID);
+            // Gets the active pick up
+            currentPickup = GameObject.FindWithTag("Pickup (Active)").GetComponent<PickupCheck>();
 
-            // This destroys the pickup object
-            Destroy(GameObject.FindWithTag("Pickup (Active)"));
+            if (currentPickup.ID != 16)
+            {
+                // This calls the function from inventory to add the correct item id to the players inventory
+                inventory.AddItem(currentPickup.ID);
+
+                // This destroys the pickup object
+                Destroy(currentPickup.gameObject);
+            }
+            else
+            {
+                // Calls the dark level
+                gameManager.LoadScene(4);
+            }
         }
     }
 }
