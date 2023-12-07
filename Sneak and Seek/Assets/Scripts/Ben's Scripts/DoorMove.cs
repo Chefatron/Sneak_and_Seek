@@ -26,6 +26,8 @@ public class DoorMove : MonoBehaviour
     // The collider for the door mesh
     BoxCollider doorCollider;
 
+    Animator doorAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +44,10 @@ public class DoorMove : MonoBehaviour
         // Sets the rotation of the door based on the state set in editor
         if (doorIsOpen == true)
         {
-            transform.localEulerAngles = new Vector3(0, 120, 0);
+            
         }
+
+        doorAnimator = GetComponent<Animator>();
 
         // Gets the collider then enables it
         doorCollider = GetComponentInChildren<BoxCollider>();
@@ -55,38 +59,20 @@ public class DoorMove : MonoBehaviour
     void Update()
     {
         // Checks if the door opening state is true and then if it is also less than or greater than 120 degrees rotation
-        if (doorOpening == true && transform.localEulerAngles.y < 120)
+        if (doorOpening == true)
         {
-            //Debug.Log("Door is opening");
+            doorAnimator.SetBool("Animate", true);
 
-            // Rotates the door
-            transform.Rotate(0, 50 * Time.deltaTime, 0);
-        }
-        else if (doorOpening == true && transform.localEulerAngles.y >= 120)
-        {
-            // Sets the door to the correct angle incase it over shot at all
-            transform.localEulerAngles = new Vector3(0, 120, 0);
-
-            // Sets correct states
             doorOpening = false;
 
             doorIsOpen = true;
         }
 
         // Checks if the door closing state is true and then if it is also less than or greater than 0 degrees rotation
-        if (doorClosing == true && transform.localEulerAngles.y > 1)
+        if (doorClosing == true)
         {
-            //Debug.Log("Door is closing");
+            doorAnimator.SetBool("Animate", false);
 
-            // Rotates the door
-            transform.Rotate(0, -50 * Time.deltaTime, 0);
-        }
-        else if (doorClosing == true && transform.localEulerAngles.y <= 1)
-        {
-            // Sets the door to the correct angle incase it over shot at all
-            transform.localEulerAngles = new Vector3(0, 0, 0);
-
-            // Sets correct states
             doorClosing = false;
 
             doorIsOpen = false;
@@ -108,8 +94,6 @@ public class DoorMove : MonoBehaviour
         doorOpening = true;
 
         doorCollider.enabled = false;
-
-
     }
 
     public void closeDoor()
