@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
             // Open the doors that were opened prevoisly by the player
 
-            PlayerPrefs.SetInt("CurrentStage", 1);
+            PlayerPrefs.SetInt("CurrentStage", 2);
         }
         else if (currentScene == 3)
         {
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
             // Open the doors that were opened prevoisly by the player
 
-            PlayerPrefs.SetInt("CurrentStage", 2);
+            PlayerPrefs.SetInt("CurrentStage", 3);
         }
         else if (currentScene == 4)
         {
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 
             // Open the doors that were opened prevoisly by the player
 
-            PlayerPrefs.SetInt("CurrentStage", 3);
+            PlayerPrefs.SetInt("CurrentStage", 4);
         }
         else if (currentScene == 5)
         {
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
 
             winBackground.SetActive(false);
 
-            PlayerPrefs.SetInt("CurrentStage", 4);
+            PlayerPrefs.SetInt("CurrentStage", 5);
         }
         else if (currentScene == 0)
         {
