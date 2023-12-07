@@ -44,7 +44,7 @@ public class DoorMove : MonoBehaviour
         // Sets the rotation of the door based on the state set in editor
         if (doorIsOpen == true)
         {
-            
+            doorAnimator.SetBool("Animate", true);
         }
 
         doorAnimator = GetComponent<Animator>();
