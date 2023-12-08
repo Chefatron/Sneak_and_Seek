@@ -20270,6 +20270,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
       propertyPath: m_Name
       value: Wall (Single) (11)
@@ -20281,6 +20285,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
       propertyPath: m_TagString
       value: Architecture
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28849,8 +28857,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1456651490}
     - target: {fileID: 8995959031935919979, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995959031935919979, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016636766624904433, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
