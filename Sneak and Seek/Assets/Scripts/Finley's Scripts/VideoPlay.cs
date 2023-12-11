@@ -27,6 +27,10 @@ public class VideoPlay : MonoBehaviour
     {
         Debug.Log("Video has finished");
 
+        PlayerPrefs.SetInt("IntroSeen", 1);
+
+        SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentStage"));
+
         //SceneManager.LoadScene("First Floor");
         //SceneManager.LoadSceneAsync("First Floor");
     }
