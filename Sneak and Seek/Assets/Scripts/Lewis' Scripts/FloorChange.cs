@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class FloorChange : MonoBehaviour
 {
     // The gamemanager script
-    //[SerializeField] GameManager gameManager;
+    [SerializeField] GameManager gameManager;
 
     // The name of the scene for the stairs to load
     [SerializeField] string sceneName;
@@ -26,14 +26,14 @@ public class FloorChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Trigger active");
-        //Debug.Log(other.gameObject.tag);
+        Debug.Log("Trigger active");
+        Debug.Log(other.gameObject.tag);
 
         if (other.gameObject.tag == "Player")
         {
-            //Debug.Log("Player Found");
-            //loadNextScene(sceneName);
-            SceneManager.LoadScene(sceneName);
+            Debug.Log("Player Found");
+            loadNextScene(sceneName);
+            //SceneManager.LoadScene(sceneName);
         }
     }
 

@@ -8,6 +8,8 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject playerLocation;
     [SerializeField] GameObject UIeye;
+    [SerializeField] GameObject DetectedText;
+
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
 
@@ -17,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     // == A bad thing ==
     Quaternion spriteRotation = Quaternion.Euler(35, 0, 0);
-    //
+    // =================
 
     //
     bool changeTarget = false;
@@ -167,6 +169,11 @@ public class EnemyBehaviour : MonoBehaviour
                     UIeye.GetComponent<Animator>().SetBool("Searching", false);
                     UIeye.GetComponent<Animator>().SetBool("Seen", true);
 
+                    DetectedText.SetActive(true);
+
+                    DetectedText.GetComponentInChildren<Animator>().SetBool("Hidden", false);
+                    DetectedText.GetComponentInChildren<Animator>().SetBool("Seen", true);
+
                     timerDuration = 15;
                     enemyState = 3;
                 }
@@ -217,6 +224,11 @@ public class EnemyBehaviour : MonoBehaviour
                         UIeye.GetComponent<Animator>().SetBool("Hidden", true);
                         UIeye.GetComponent<Animator>().SetBool("Searching", false);
                         UIeye.GetComponent<Animator>().SetBool("Seen", false);
+
+                        DetectedText.GetComponentInChildren<Animator>().SetBool("Hidden", true);
+                        DetectedText.GetComponentInChildren<Animator>().SetBool("Seen", false);
+
+                        DetectedText.SetActive(false);
 
                         target.destination = nodeList[path[targetNode]-1].transform.position;
                         enemyState = 1;
