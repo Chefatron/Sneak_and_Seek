@@ -4361,6 +4361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 320257544}
+  - component: {fileID: 320257545}
   m_Layer: 0
   m_Name: ViktorShouts
   m_TagString: Untagged
@@ -4376,8 +4377,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320257543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35017484, y: -0, z: -0, w: 0.9366844}
-  m_LocalPosition: {x: 0.716, y: 3.211, z: 1.068}
+  m_LocalRotation: {x: 0.13913871, y: -0, z: -0, w: 0.99027294}
+  m_LocalPosition: {x: 1.0160007, y: 2.3015144, z: -0.17064977}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4388,8 +4389,20 @@ Transform:
   - {fileID: 555343438}
   - {fileID: 1084021109}
   - {fileID: 823180128}
-  m_Father: {fileID: 1016632706}
+  m_Father: {fileID: 1817450475}
   m_LocalEulerAnglesHint: {x: 40.996, y: 0, z: 0}
+--- !u!114 &320257545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320257543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c119256bfb334f9e8be9699f8ae8662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &327673136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11226,10 +11239,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4650230611809402332, guid: 82680e531fda47744a470501456944a6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 320257544}
-    - targetCorrespondingSourceObject: {fileID: 4650230611809402332, guid: 82680e531fda47744a470501456944a6, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1151298077}
+    - targetCorrespondingSourceObject: {fileID: 3114552898931525368, guid: 82680e531fda47744a470501456944a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 320257544}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2509685520850292187, guid: 82680e531fda47744a470501456944a6, type: 3}
       insertIndex: -1
@@ -14829,7 +14842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1151298077
 Transform:
   m_ObjectHideFlags: 0
@@ -24825,6 +24838,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 909527851}
   navMeshAgent: {fileID: 91503113}
+--- !u!4 &1817450475 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3114552898931525368, guid: 82680e531fda47744a470501456944a6, type: 3}
+  m_PrefabInstance: {fileID: 909527850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1822582866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
