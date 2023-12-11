@@ -142,8 +142,16 @@ public class GameManager : MonoBehaviour
 
     public void PlayGame()
     {
+        // Checks if the player has seen the intro video
+        if(PlayerPrefs.GetInt("IntroSeen") == 0)
+        {
+            GameObject.Find("VideoCanvas").GetComponent<VideoPlay>().PlayVideo();
+
+            PlayerPrefs.SetInt("IntroSeen", 1);
+        }
+
         // Checks the level the player last saved on to say which level to load
-        LoadScene(PlayerPrefs.GetInt("CurrentStage"));     
+        LoadScene(PlayerPrefs.GetInt("CurrentStage"));
     }
 
     public void CloseGame()
