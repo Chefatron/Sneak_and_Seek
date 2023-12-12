@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 46991660342208616}
   - component: {fileID: 1505205197628866579}
+  - component: {fileID: 2669216303572783272}
   m_Layer: 0
   m_Name: Door Hinge
   m_TagString: Untagged
@@ -54,6 +55,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2669216303572783272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441449464505471041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddea726d2d900b43b4fb6b7c0d62e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorOpening: 0
+  doorClosing: 0
+  doorIsOpen: 0
+  isLocked: 0
+  isDoubleLocked: 0
+  lockID: 0
+  lock2ID: 0
 --- !u!1 &1916356014342386337
 GameObject:
   m_ObjectHideFlags: 0
