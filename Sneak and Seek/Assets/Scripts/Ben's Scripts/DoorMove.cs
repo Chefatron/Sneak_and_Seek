@@ -35,19 +35,13 @@ public class DoorMove : MonoBehaviour
 
         doorClosing = false;
 
-        //startRotation = transform.localEulerAngles;
-
-        //Debug.Log("Start rotation: " + startRotation.y);
-
-        //Debug.Log("Start rotation plus 120: " + (startRotation.y + 120));
+        doorAnimator = GetComponent<Animator>();
 
         // Sets the rotation of the door based on the state set in editor
         if (doorIsOpen == true)
         {
             doorAnimator.SetBool("Animate", true);
         }
-
-        doorAnimator = GetComponent<Animator>();
 
         // Gets the collider then enables it
         doorCollider = GetComponentInChildren<BoxCollider>();

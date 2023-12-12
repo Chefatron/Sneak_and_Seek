@@ -6,6 +6,8 @@ public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] GameObject Door;
 
+    [SerializeField] GameObject xButton;
+
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.tag);
@@ -20,11 +22,15 @@ public class DoorTrigger : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             Door.tag = "Door (Player)";
+
+            xButton.SetActive(true);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-            Door.tag = "Door";
+        Door.tag = "Door";
+
+        xButton.SetActive(false);
     }
 }

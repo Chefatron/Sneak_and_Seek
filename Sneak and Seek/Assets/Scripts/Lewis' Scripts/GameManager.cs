@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         SetupLevel(SceneManager.GetActiveScene().buildIndex);
 
         // Checks if the player pref saves have been made and makes them if not
-        if (!PlayerPrefs.HasKey("SavesMade") || PlayerPrefs.GetInt("SavesMade") == 1)
+        if (!PlayerPrefs.HasKey("SavesMade") || PlayerPrefs.GetInt("SavesMade") == 0)
         {
             CreateSaves();
         }
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         // Current stage is 1 because we don't want it to load the player into the tutorial
         if (!PlayerPrefs.HasKey("CurrentStage"))
         {
-            PlayerPrefs.SetInt("CurrentStage", 1);
+            PlayerPrefs.SetInt("CurrentStage", 2);
         }
 
         if (!PlayerPrefs.HasKey("CandleAmount"))
@@ -133,17 +133,53 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Loads the loading scene and starts loading the desired scene
     public void LoadScene(int sceneIndex)
     {
+        // Unfreezes time just in case
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene(sceneIndex);
+        // Loads the loading scene
+        SceneManager.LoadSceneAsync(1);
+
+        // Starts the loading of the indexed scene at the same time 
+        StartCoroutine(loadAsyncScene(sceneIndex));
+    }
+
+    // Used to load the desired scene while the loading scene plays
+    IEnumerator loadAsyncScene(int sceneIndex)
+    {
+        // Loads the scene in the background
+        AsyncOperation asyncLoading = SceneManager.LoadSceneAsync(sceneIndex);
+
+        // Checks if the scene is done loading
+        while (asyncLoading != null)
+        {
+            yield return null;
+        }
+    }
+
+    public void SkipVideo()
+    {
+        // Sets video to seen
+        PlayerPrefs.SetInt("IntroSeen", 1);
+
+        // Loads scene now
+        LoadScene(PlayerPrefs.GetInt("CurrentStage"));
     }
 
     public void PlayGame()
     {
-        // Checks the level the player last saved on to say which level to load
-        LoadScene(PlayerPrefs.GetInt("CurrentStage"));     
+        // Checks if the player has seen the intro video
+        if(PlayerPrefs.GetInt("IntroSeen") == 0)
+        {
+            GameObject.Find("VideoCanvas").GetComponent<VideoPlay>().PlayVideo();
+        }
+        else 
+        {
+            // Checks the level the player last saved on to say which level to load
+            LoadScene(PlayerPrefs.GetInt("CurrentStage"));
+        }        
     }
 
     public void CloseGame()
