@@ -6,15 +6,8 @@ public class FogOfWar : MonoBehaviour
 {
     [SerializeField] GameObject furnitureParent;
 
-    [SerializeField] List<GameObject> furnitureList;
-
     private void Start()
     {
-        //for (int i = 0; i < furnitureList.Count; i++)
-        //{
-        //    furnitureList[i].gameObject.SetActive(false);
-        //}
-
         furnitureParent.SetActive(false);
     }
 
@@ -22,11 +15,6 @@ public class FogOfWar : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //for (int i = 0; i < furnitureList.Count; i++)
-            //{
-            //    furnitureList[i].gameObject.SetActive(true);
-            //}
-
             furnitureParent.SetActive(true);
         }
     }
@@ -35,11 +23,6 @@ public class FogOfWar : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //for (int i = 0; i < furnitureList.Count; i++)
-            //{
-            //    furnitureList[i].gameObject.SetActive(false);
-            //}
-
             furnitureParent.SetActive(false);
         }
     }
