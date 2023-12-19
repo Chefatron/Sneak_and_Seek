@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("TutorialCompleted", 0);
         }
 
-        // Current stage is 1 because we don't want it to load the player into the tutorial
+        // Current stage is 2 because we don't want it to load the player into the main menu or the loading screen
         if (!PlayerPrefs.HasKey("CurrentStage"))
         {
             PlayerPrefs.SetInt("CurrentStage", 2);
@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("CandleAmount"))
         {
             PlayerPrefs.SetInt("CandleAmount", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("LightLevel"))
+        {
+            PlayerPrefs.SetInt("LightLevel", 0);
         }
 
         if (!PlayerPrefs.HasKey("KeyID1"))
@@ -138,6 +143,8 @@ public class GameManager : MonoBehaviour
     {
         // Unfreezes time just in case
         Time.timeScale = 1f;
+
+        
 
         // Loads the loading scene
         SceneManager.LoadSceneAsync(1);
