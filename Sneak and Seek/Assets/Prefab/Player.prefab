@@ -5299,7 +5299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693246613726342454}
   - component: {fileID: 9016636766624904433}
-  - component: {fileID: 3425073282956186042}
+  - component: {fileID: 6168522335205252514}
   - component: {fileID: 1651965392894491304}
   - component: {fileID: 8892161853256316312}
   - component: {fileID: 6542748577871797115}
@@ -5361,7 +5361,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &3425073282956186042
+--- !u!136 &6168522335205252514
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5380,10 +5380,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1.68
+  m_Radius: 0.5
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.21, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1651965392894491304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5499,7 +5499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22724ed1533299469c186e7a461621c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: 
+  candleAmount: 0
+  keySlot1: 0
+  keySlot2: 0
 --- !u!114 &3395955272473699163
 MonoBehaviour:
   m_ObjectHideFlags: 0

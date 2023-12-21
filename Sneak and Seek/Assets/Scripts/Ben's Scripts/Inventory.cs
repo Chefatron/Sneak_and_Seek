@@ -14,6 +14,16 @@ public class Inventory : MonoBehaviour
     // Used to store the key currently in the players second inventory slot
     public int keySlot2;
 
+    private void Start()
+    {
+        // Default vals
+        //candleAmount = 0;
+
+        //keySlot1 = 0;
+
+        //keySlot2 = 0;   
+    }
+
     // This adds an item to the players inventory (will need to be changed later if needing to accommodate for different items)
     public bool AddItem(int itemID)
     {

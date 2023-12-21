@@ -10,7 +10,7 @@ public class CandleManager : MonoBehaviour
     [SerializeField] Light candle;
 
     // Used to set the range of the players candle
-    float lightValue;
+    public float lightValue;
 
     Inventory inventory;
 
@@ -26,7 +26,7 @@ public class CandleManager : MonoBehaviour
     void Start()
     {
         // Sets the light value to the defualt value of 90
-        lightValue = 100;
+        //lightValue = 100;
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
