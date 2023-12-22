@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-
-
     Transform cam; 
+
     // Start is called before the first frame update
     void Start()
     {
