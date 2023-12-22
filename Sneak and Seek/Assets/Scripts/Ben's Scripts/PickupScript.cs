@@ -51,5 +51,21 @@ public class PickupScript : MonoBehaviour
                 gameManager.LoadScene(4);
             }
         }
+
+        else if (DoesTagExist("Note (Active)") == true)
+        {
+            currentPickup = GameObject.FindWithTag("Note (Active)").GetComponent<PickupCheck>();
+
+            for (int i = 0; i < gameManager.notesInventory.Length; i++)
+            {
+                if (gameManager.notesInventory[i] == 0)
+                {
+                    gameManager.notesInventory[i] = currentPickup.ID;
+                }
+            }
+
+            Destroy(currentPickup.gameObject);
+
+        }
     }
 }

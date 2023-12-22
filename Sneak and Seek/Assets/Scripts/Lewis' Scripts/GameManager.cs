@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     GameObject winBackground;
 
+    // This is used a the 'notes inventory'
+    public int[] notesInventory = new int[20];
+
     // Start is called before the first frame update
     void Start()
     {
