@@ -74,8 +74,8 @@ public class EnemyBehaviour : MonoBehaviour
 
             //Debug.Log(trigger.gameObject.tag);
 
-            // Debug.Log("Trigger - " + temp.nodeID);
-            // Debug.Log(path[targetNode]);
+            //Debug.Log("Trigger - " + temp.nodeID);
+            //Debug.Log(path[targetNode]);
 
             // Debug.Log(temp.name);
             try
@@ -97,11 +97,11 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (temp.nodeID != path[targetNode])
                 {
-                    // Debug.Log("Ignore");
+                    Debug.Log("Ignore");
                 }
                 else
                 {
-                    // Debug.Log("State changed");
+                    Debug.Log("State changed");
 
                     changeTarget = true;
                 }

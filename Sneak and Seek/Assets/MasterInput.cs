@@ -98,6 +98,15 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""98958aa6-532c-40b6-8ea9-a6e1a5604590"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -204,6 +213,61 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""d8a64d98-0f24-44e6-925f-48228b60476c"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""D-Pad"",
+                    ""id"": ""b1eda444-f60d-4f3a-8043-7c40edb96770"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6bb706da-d6b9-4bf4-913d-d1d43c4f319c"",
+                    ""path"": ""<XInputController>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4b12da90-afdb-463a-acba-d92f3080b768"",
+                    ""path"": ""<XInputController>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""2b4ae8a2-7c26-4dcf-89cf-056722b2836b"",
+                    ""path"": ""<XInputController>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a6d8038e-0ed1-46d6-a9a5-4f9702477344"",
+                    ""path"": ""<XInputController>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -342,6 +406,17 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""335c8910-1a62-470d-9828-b005d0c0ce50"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -358,6 +433,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
         m_Player_PauseMenu = m_Player.FindAction("PauseMenu", throwIfNotFound: true);
         m_Player_OpenDoor = m_Player.FindAction("OpenDoor", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -427,6 +503,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PauseMenu;
     private readonly InputAction m_Player_OpenDoor;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Skip;
     public struct PlayerActions
     {
         private @MasterInput m_Wrapper;
@@ -439,6 +516,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
         public InputAction @PauseMenu => m_Wrapper.m_Player_PauseMenu;
         public InputAction @OpenDoor => m_Wrapper.m_Player_OpenDoor;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Skip => m_Wrapper.m_Player_Skip;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -472,6 +550,9 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Skip.started += instance.OnSkip;
+            @Skip.performed += instance.OnSkip;
+            @Skip.canceled += instance.OnSkip;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -500,6 +581,9 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Skip.started -= instance.OnSkip;
+            @Skip.performed -= instance.OnSkip;
+            @Skip.canceled -= instance.OnSkip;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -527,5 +611,6 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnOpenDoor(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
 }

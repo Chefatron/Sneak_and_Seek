@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6287861752757514532}
   - component: {fileID: 3036568704618732857}
   - component: {fileID: 8674138740218792685}
-  - component: {fileID: 1286420907342461292}
+  - component: {fileID: 5947863383395794133}
   m_Layer: 0
   m_Name: NavNode
   m_TagString: Nodes
@@ -54,7 +54,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.2
   m_Center: {x: 0.0000076293945, y: -0.0000012516975, z: 0}
 --- !u!33 &3036568704618732857
 MeshFilter:
@@ -106,7 +106,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1286420907342461292
+--- !u!114 &5947863383395794133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,5 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0a1c47bdc097140a9b0fc8fe0794de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 1
+  nodeID: 2
   speed: 50

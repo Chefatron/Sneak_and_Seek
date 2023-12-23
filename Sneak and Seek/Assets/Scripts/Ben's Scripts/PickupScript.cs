@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickupScript : MonoBehaviour
@@ -9,6 +10,9 @@ public class PickupScript : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     PickupCheck currentPickup;
+
+    // Used to check if the inventory has the capacity for the item being added
+    bool inventorySuccess;
 
     // This function checks that an object with a certain tag exists
     private bool DoesTagExist(string tag)
@@ -40,10 +44,17 @@ public class PickupScript : MonoBehaviour
             if (currentPickup.ID != 16)
             {
                 // This calls the function from inventory to add the correct item id to the players inventory
-                inventory.AddItem(currentPickup.ID);
+                inventorySuccess = inventory.AddItem(currentPickup.ID);
 
-                // This destroys the pickup object
-                Destroy(currentPickup.gameObject);
+                if (inventorySuccess == true)
+                {
+                    // This destroys the pickup object
+                    Destroy(currentPickup.gameObject);
+                }
+                else if (inventorySuccess == false) 
+                {
+                    Debug.Log("The inv was full");
+                }
             }
             else
             {
