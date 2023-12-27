@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class CandleManager : MonoBehaviour
     [SerializeField] Light candle;
 
     // Used to set the range of the players candle
-    float lightValue;
+    public float lightValue;
 
     Inventory inventory;
 
@@ -25,7 +26,7 @@ public class CandleManager : MonoBehaviour
     void Start()
     {
         // Sets the light value to the defualt value of 90
-        lightValue = 15;
+        //lightValue = 100;
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
@@ -38,17 +39,17 @@ public class CandleManager : MonoBehaviour
         if (resetLight == true)
         {
             // Checks if it hasn't reached the desired value and increases if not
-            if (lightValue < 15)
+            if (lightValue < 100)
             {
-                lightValue = lightValue + (12f * Time.deltaTime);
+                lightValue = lightValue + (50 * Time.deltaTime);
 
-                candleBar.fillAmount = lightValue / 15;
+                candleBar.fillAmount = lightValue / 100;
             }
             else
             {
-                lightValue = 15;
+                lightValue = 100;
 
-                candleBar.fillAmount = lightValue / 15;
+                candleBar.fillAmount = lightValue / 100;
 
                 resetLight = false;
             }
@@ -56,23 +57,35 @@ public class CandleManager : MonoBehaviour
         else if (lightValue > 0)
         {
             // Lowers the light value
-            lightValue = lightValue - (0.3f * Time.deltaTime);
+            if (lightValue > 50)
+            {
+                lightValue = lightValue - (1f * Time.deltaTime);
+            }
+            else if (lightValue > 25)
+            {
+                lightValue = lightValue - (2f * Time.deltaTime);
+            }
+            else 
+            {
+                lightValue = lightValue - (4f * Time.deltaTime);
+            }
 
-            candleBar.fillAmount = lightValue / 15;
+            candleBar.color = new Color32(255, Convert.ToByte(lightValue * 2.55f), Convert.ToByte(lightValue * 2.55f), 255);
+
+            candleBar.fillAmount = lightValue / 100;
 
             //print("Lightvalue: " + lightValue);
 
             //Debug.Log("Lightvalue: " + lightValue);
         }
-        else if (inventory.inventory.Contains(1))
+        else if (inventory.candleAmount > 0)
         {
             // Calls the remove function item and removes the correct item
             inventory.RemoveItem(1);
 
-            resetLight = true;
+            candleBar.color = new Color32(255, 255, 255, 255);
 
-            // Resets light value
-            //lightValue = 3;
+            resetLight = true;
         }
         else
         {

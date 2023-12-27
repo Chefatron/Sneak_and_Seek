@@ -5299,7 +5299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693246613726342454}
   - component: {fileID: 9016636766624904433}
-  - component: {fileID: 3425073282956186042}
+  - component: {fileID: 6168522335205252514}
   - component: {fileID: 1651965392894491304}
   - component: {fileID: 8892161853256316312}
   - component: {fileID: 6542748577871797115}
@@ -5307,6 +5307,7 @@ GameObject:
   - component: {fileID: 3548846474483197873}
   - component: {fileID: 311484645428984303}
   - component: {fileID: 3395955272473699163}
+  - component: {fileID: 8320365666692158723}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5360,7 +5361,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &3425073282956186042
+--- !u!136 &6168522335205252514
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5379,10 +5380,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1.68
+  m_Radius: 0.5
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.21, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1651965392894491304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5498,7 +5499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22724ed1533299469c186e7a461621c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: 
+  candleAmount: 0
+  keySlot1: 0
+  keySlot2: 0
 --- !u!114 &3395955272473699163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5511,6 +5514,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c1b25bed3bac942894e87c631ef8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &8320365666692158723
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297830439188651435}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &8383303174559776550
 GameObject:
   m_ObjectHideFlags: 0

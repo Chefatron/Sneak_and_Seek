@@ -110,12 +110,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                staminaBar.fillAmount -= Time.unscaledDeltaTime / 2;
+                //staminaBar.fillAmount -= Time.unscaledDeltaTime / 2;
             }
         }
         else if (dashCooldown >= Time.unscaledTime)
         {
-            staminaBar.fillAmount += Time.unscaledDeltaTime / 7;
+            //staminaBar.fillAmount += Time.unscaledDeltaTime / 7;
         }
 
 
