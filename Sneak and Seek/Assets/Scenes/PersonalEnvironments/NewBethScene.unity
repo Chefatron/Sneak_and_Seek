@@ -21294,7 +21294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d786864650e642816c8db59e81dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  gameManager: {fileID: 0}
+  sceneIndex: 0
 --- !u!1001 &814673725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23494,7 +23495,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 693246613726342454, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.3
+      value: -117.3
       objectReference: {fileID: 0}
     - target: {fileID: 693246613726342454, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23502,7 +23503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 693246613726342454, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.7
+      value: 32.7
       objectReference: {fileID: 0}
     - target: {fileID: 693246613726342454, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25575,7 +25576,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   furnitureParent: {fileID: 0}
-  furnitureList: []
 --- !u!114 &1042486265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43850,7 +43850,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   furnitureParent: {fileID: 120220243}
-  furnitureList: []
 --- !u!114 &1989355652
 MonoBehaviour:
   m_ObjectHideFlags: 0
