@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -16,8 +18,6 @@ public class GameManager : MonoBehaviour
     // The player object
     [SerializeField] GameObject player;
 
-    GameObject winBackground;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         SetupLevel(SceneManager.GetActiveScene().buildIndex);
 
         // Checks if the player pref saves have been made and makes them if not
-        if (!PlayerPrefs.HasKey("SavesMade") || PlayerPrefs.GetInt("SavesMade") == 1)
+        if (!PlayerPrefs.HasKey("SavesMade") || PlayerPrefs.GetInt("SavesMade") == 0)
         {
             CreateSaves();
         }
@@ -54,46 +54,45 @@ public class GameManager : MonoBehaviour
 
     void CreateSaves()
     {
-        // Checks if all of the necessary saves for the game have been made
-        if (!PlayerPrefs.HasKey("IntroSeen"))
-        {
-            PlayerPrefs.SetInt("IntroSeen", 0);
-        }
+        // Makes all the saves and sets them to defualt vals
+        PlayerPrefs.SetInt("IntroSeen", 0);
 
-        if (!PlayerPrefs.HasKey("TutorialCompleted"))
-        {
-            PlayerPrefs.SetInt("TutorialCompleted", 0);
-        }
+        PlayerPrefs.SetInt("TutorialCompleted", 0);
 
-        // Current stage is 1 because we don't want it to load the player into the tutorial
-        if (!PlayerPrefs.HasKey("CurrentStage"))
-        {
-            PlayerPrefs.SetInt("CurrentStage", 1);
-        }
+        PlayerPrefs.SetInt("CurrentStage", 2);
 
-        if (!PlayerPrefs.HasKey("CandleAmount"))
-        {
-            PlayerPrefs.SetInt("CandleAmount", 0);
-        }
+        PlayerPrefs.SetInt("CandleAmount", 0);
+        
+        PlayerPrefs.SetFloat("LightLevel", 100f);
 
-        if (!PlayerPrefs.HasKey("KeyID1"))
-        {
-            PlayerPrefs.SetInt("KeyID1", 0);
-        }
+        PlayerPrefs.SetInt("KeyID1", 0);
 
-        if (!PlayerPrefs.HasKey("KeyID2"))
-        {
-            PlayerPrefs.SetInt("KeyID2", 0);
-        }
+        PlayerPrefs.SetInt("KeyID2", 0);
 
+        // Sets the one that says the saves are made
         PlayerPrefs.SetInt("SavesMade", 1);
     }
 
     void SetupLevel(int currentScene)
     {
+        Debug.Log("CandleAmount has been read as: " + PlayerPrefs.GetInt("CandleAmount"));
+
+        Debug.Log("LightLevel has been read as: " + PlayerPrefs.GetFloat("LightLevel"));
+
+        Debug.Log("KeyID1 has been read as: " + PlayerPrefs.GetInt("KeyID1"));
+
+        Debug.Log("KeyID2 has been read as:  " + PlayerPrefs.GetInt("KeyID2"));
+
         if (currentScene == 2)
         {
             // Spawn the player
+
+            // Reads the saves to give the correct values
+            player.GetComponent<Inventory>().candleAmount = PlayerPrefs.GetInt("CandleAmount");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID1");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID2");
 
             // Open the doors that were opened prevoisly by the player
 
@@ -103,6 +102,13 @@ public class GameManager : MonoBehaviour
         {
             // Spawn the player
 
+            // Reads the saves to give the correct values
+            player.GetComponent<Inventory>().candleAmount = PlayerPrefs.GetInt("CandleAmount");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID1");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID2");
+
             // Open the doors that were opened prevoisly by the player
 
             PlayerPrefs.SetInt("CurrentStage", 3);
@@ -110,6 +116,15 @@ public class GameManager : MonoBehaviour
         else if (currentScene == 4)
         {
             // Spawn the player
+
+            // Reads the saves to give the correct values
+            player.GetComponent<Inventory>().candleAmount = PlayerPrefs.GetInt("CandleAmount");
+
+            player.GetComponent<CandleManager>().lightValue = PlayerPrefs.GetFloat("LightLevel");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID1");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID2");
 
             // Open the doors that were opened prevoisly by the player
 
@@ -119,11 +134,16 @@ public class GameManager : MonoBehaviour
         {
             // Spawn the player
 
+            // Reads the saves to give the correct values
+            player.GetComponent<Inventory>().candleAmount = PlayerPrefs.GetInt("CandleAmount");
+
+            player.GetComponent<CandleManager>().lightValue = PlayerPrefs.GetFloat("LightLevel");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID1");
+
+            player.GetComponent<Inventory>().keySlot1 = PlayerPrefs.GetInt("KeyID2");
+
             // Open the doors that were opened prevoisly by the player
-
-            winBackground = GameObject.Find("WinBackground");
-
-            winBackground.SetActive(false);
 
             PlayerPrefs.SetInt("CurrentStage", 5);
         }
@@ -133,17 +153,82 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Loads the loading scene and starts loading the desired scene
     public void LoadScene(int sceneIndex)
     {
+        // Unfreezes time just in case
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene(sceneIndex);
+        // Saves all the stuff only if the current scene isn't the main menu
+        if (SceneManager.GetActiveScene().buildIndex > 1)
+        {
+            Debug.Log("The saves saved supposedly ran");
+
+            // Saves the amount of candles owned
+            PlayerPrefs.SetInt("CandleAmount", player.GetComponent<Inventory>().candleAmount);
+
+            // Checks if the candle is in play and saves the current level its at
+            if (player.GetComponent<CandleManager>() != null)
+            {
+                PlayerPrefs.SetFloat("LightLevel", player.GetComponent<CandleManager>().lightValue);
+            }
+
+            // Saves both keys currently held by the player
+            PlayerPrefs.SetInt("KeyID1", player.GetComponent<Inventory>().keySlot1);
+            PlayerPrefs.SetInt("KeyID2", player.GetComponent<Inventory>().keySlot2);
+
+
+            Debug.Log("CandleAmount has been saved as: " + PlayerPrefs.GetInt("CandleAmount"));
+
+            Debug.Log("LightLevel has been saved as: " + PlayerPrefs.GetFloat("LightLevel"));
+
+            Debug.Log("KeyID1 has been saved as: " + PlayerPrefs.GetInt("KeyID1"));
+
+            Debug.Log("KeyID2 has been saved as:  " + PlayerPrefs.GetInt("KeyID2"));
+        }
+
+
+        // Loads the loading scene
+        SceneManager.LoadSceneAsync(1);
+
+        // Starts the loading of the indexed scene at the same time 
+        StartCoroutine(loadAsyncScene(sceneIndex));
+    }
+
+    // Used to load the desired scene while the loading scene plays
+    IEnumerator loadAsyncScene(int sceneIndex)
+    {
+        // Loads the scene in the background
+        AsyncOperation asyncLoading = SceneManager.LoadSceneAsync(sceneIndex);
+
+        // Checks if the scene is done loading
+        while (asyncLoading != null)
+        {
+            yield return null;
+        }
+    }
+
+    public void SkipVideo()
+    {
+        // Sets video to seen
+        PlayerPrefs.SetInt("IntroSeen", 1);
+
+        // Loads scene now
+        LoadScene(PlayerPrefs.GetInt("CurrentStage"));
     }
 
     public void PlayGame()
     {
-        // Checks the level the player last saved on to say which level to load
-        LoadScene(PlayerPrefs.GetInt("CurrentStage"));     
+        // Checks if the player has seen the intro video
+        if(PlayerPrefs.GetInt("IntroSeen") == 0)
+        {
+            GameObject.Find("VideoCanvas").GetComponent<VideoPlay>().PlayVideo();
+        }
+        else 
+        {
+            // Checks the level the player last saved on to say which level to load
+            LoadScene(PlayerPrefs.GetInt("CurrentStage"));
+        }        
     }
 
     public void CloseGame()
@@ -176,8 +261,6 @@ public class GameManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        winBackground.SetActive(true);
-
         Time.timeScale = 0f;  
     }
 }

@@ -8,12 +8,11 @@ public class VideoPlay : MonoBehaviour
 {
 
     [SerializeField] GameObject video;
-    [SerializeField] FloorChange floorChange;
-
-
 
     public void PlayVideo()
     {
+        Debug.Log("Video is playing");
+
         //Calls the video player so it can be played whenever
         var videoPlayer = video.GetComponent<UnityEngine.Video.VideoPlayer>();
 
@@ -28,7 +27,11 @@ public class VideoPlay : MonoBehaviour
     {
         Debug.Log("Video has finished");
 
-        SceneManager.LoadScene("First Floor");
+        PlayerPrefs.SetInt("IntroSeen", 1);
+
+        SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentStage"));
+
+        //SceneManager.LoadScene("First Floor");
         //SceneManager.LoadSceneAsync("First Floor");
     }
 }
