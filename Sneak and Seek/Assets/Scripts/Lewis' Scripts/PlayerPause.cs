@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPause : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerPause : MonoBehaviour
     {
         //Sets the pause panel's active status to whatever it currently isn't out of true or false
         pausePanel.SetActive(!pausePanel.activeInHierarchy);
+
+        pausePanel.GetComponentInChildren<Button>().Select();
 
         if (pausePanel.activeInHierarchy)
         {

@@ -1559,6 +1559,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7053473228194673393, guid: 364f63a6c91a6c44a990c029c8867293, type: 3}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 1100009641}
     - target: {fileID: 8909173539126931060, guid: 364f63a6c91a6c44a990c029c8867293, type: 3}
       propertyPath: m_Name
       value: Mom Variant
@@ -11614,6 +11618,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 311484645428984303, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+      propertyPath: NotesInvUI
+      value: 
+      objectReference: {fileID: 1137061431}
+    - target: {fileID: 311484645428984303, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: keySprite1
       value: 
       objectReference: {fileID: 1003134714}
@@ -13118,6 +13126,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!95 &1100009641 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7176259451536074719, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
+  m_PrefabInstance: {fileID: 675610981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1106890365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ea339ceab935e4b4da0297019bbd65d2, type: 3}
@@ -13532,6 +13545,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a27e0ab7482d490438548e047d2f6827, type: 3}
+--- !u!1 &1137061431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2086754269825803795, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
+  m_PrefabInstance: {fileID: 675610981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1139532390
 GameObject:
   m_ObjectHideFlags: 0
@@ -18863,6 +18881,10 @@ PrefabInstance:
       propertyPath: path.Array.data[9]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7954765505435875688, guid: 7286a43b93250ef4ca01b5fca56e6fbb, type: 3}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 1100009641}
     - target: {fileID: 8368892839567042029, guid: 7286a43b93250ef4ca01b5fca56e6fbb, type: 3}
       propertyPath: m_Name
       value: Dad Variant

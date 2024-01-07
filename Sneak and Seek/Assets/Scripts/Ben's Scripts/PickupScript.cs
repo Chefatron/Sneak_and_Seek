@@ -70,6 +70,8 @@ public class PickupScript : MonoBehaviour
                 backButton.SetActive(true);
 
                 backButton.GetComponent<Button>().Select();
+
+                Destroy(currentPickup.gameObject);
             }    
             else
             {

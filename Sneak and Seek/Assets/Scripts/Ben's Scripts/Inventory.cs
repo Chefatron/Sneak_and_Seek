@@ -22,6 +22,9 @@ public class Inventory : MonoBehaviour
     // The inventory ui as a whole
     [SerializeField] GameObject inventoryUI;
 
+    // The ui for the notes inventory
+    [SerializeField] GameObject NotesInvUI;
+
     // Used to tell if the inventory is out or not
     bool invIsOut;
 
@@ -105,16 +108,27 @@ public class Inventory : MonoBehaviour
 
     public void addNote(int noteIndex)
     {
+       // Debug.Log("The id was: " +  noteIndex);
+
         // Sets the given note index to hold a true value to basically say they have the note
-        noteInv.Insert(noteIndex - 17, true);
+        noteInv[noteIndex - 17] = true;
+
+        //Debug.Log("The List is now: ");
+
+        //for (int i = 0; i < noteInv.Count; i++) 
+        //{
+        //    Debug.Log(noteInv[i]);
+        //}
     }
 
     // Used to only show the notes the player owns when they open the notes page
     public void showNotes()
     {
         for (int i = 0; i < noteInv.Count; i++) 
-        { 
-            
+        {
+            //Debug.Log(noteInv[i]);
+
+            NotesInvUI.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(noteInv[i]);
         }
     }
 

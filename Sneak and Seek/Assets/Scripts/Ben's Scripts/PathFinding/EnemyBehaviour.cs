@@ -97,7 +97,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (temp.nodeID != path[targetNode])
                 {
-                    Debug.Log("Ignore");
+                    //Debug.Log("Ignore");
                 }
                 else
                 {
