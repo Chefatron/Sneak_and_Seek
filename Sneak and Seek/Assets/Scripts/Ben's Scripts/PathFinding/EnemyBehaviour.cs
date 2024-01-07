@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,13 +8,8 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject playerLocation;
     [SerializeField] GameObject UIeye;
-    [SerializeField] GameObject detectedText;
-
     public GameObject nodeMatrix;
     private GameObject[] nodeList;
-
-    public GameObject shoutouts;
-    private GameObject[] shoutoutList;
 
     NavMeshAgent target;
 
@@ -25,7 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     // == A bad thing ==
     Quaternion spriteRotation = Quaternion.Euler(35, 0, 0);
-    // =================
+    //
 
     //
     bool changeTarget = false;
@@ -37,8 +29,6 @@ public class EnemyBehaviour : MonoBehaviour
     public int[] path;
 
     int targetNode;
-
-    int shoutoutValue = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -61,13 +51,6 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         target.destination = nodeList[path[0] - 1].transform.position;
-
-        shoutoutList = new GameObject[shoutouts.transform.childCount];
-
-        for (int i = 0; i < shoutouts.transform.childCount; i++)
-        {
-            shoutoutList[i] = shoutouts.transform.GetChild(i).gameObject;
-        }
     }
 
     // Update is called once per frame
@@ -91,8 +74,8 @@ public class EnemyBehaviour : MonoBehaviour
 
             //Debug.Log(trigger.gameObject.tag);
 
-            // Debug.Log("Trigger - " + temp.nodeID);
-            // Debug.Log(path[targetNode]);
+            //Debug.Log("Trigger - " + temp.nodeID);
+            //Debug.Log(path[targetNode]);
 
             // Debug.Log(temp.name);
             try
@@ -114,11 +97,11 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (temp.nodeID != path[targetNode])
                 {
-                    // Debug.Log("Ignore");
+                    //Debug.Log("Ignore");
                 }
                 else
                 {
-                    // Debug.Log("State changed");
+                    Debug.Log("State changed");
 
                     changeTarget = true;
                 }
@@ -184,11 +167,6 @@ public class EnemyBehaviour : MonoBehaviour
                     UIeye.GetComponent<Animator>().SetBool("Searching", false);
                     UIeye.GetComponent<Animator>().SetBool("Seen", true);
 
-                    detectedText.SetActive(true);
-
-                    detectedText.GetComponentInChildren<Animator>().SetBool("Hidden", false);
-                    detectedText.GetComponentInChildren<Animator>().SetBool("Seen", true);
-
                     timerDuration = 15;
                     enemyState = 3;
                 }
@@ -196,21 +174,10 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
 
             case 3:     // Chasing
-                if (shoutoutValue == -1)
-                {
-                    shoutoutValue = UnityEngine.Random.Range(0, shoutoutList.Length);
-                    //Debug.Log(shoutoutValue);
-
-                    shoutoutList[shoutoutValue].SetActive(true);
-                }
-
-                if (Mathf.RoundToInt(timerDuration) < timerDuration * 0.75f)
-                {
-                    shoutoutList[shoutoutValue].SetActive(false);
-                }
-
                 if (Mathf.RoundToInt(timerDuration) > 0)
                 {
+                    
+
                     target.destination = playerLocation.transform.position;
 
                     timerDuration -= Time.deltaTime;
@@ -230,9 +197,6 @@ public class EnemyBehaviour : MonoBehaviour
                     UIeye.GetComponent<Animator>().SetBool("Hidden", false);
                     UIeye.GetComponent<Animator>().SetBool("Searching", true);
                     UIeye.GetComponent<Animator>().SetBool("Seen", false);
-
-                    detectedText.GetComponentInChildren<Animator>().SetBool("Hidden", true);
-                    detectedText.GetComponentInChildren<Animator>().SetBool("Seen", false);
 
                     enemyState = 4;
                     timerDuration = 5;
@@ -254,11 +218,8 @@ public class EnemyBehaviour : MonoBehaviour
                         UIeye.GetComponent<Animator>().SetBool("Searching", false);
                         UIeye.GetComponent<Animator>().SetBool("Seen", false);
 
-                        detectedText.SetActive(false);
-
                         target.destination = nodeList[path[targetNode]-1].transform.position;
                         enemyState = 1;
-                        shoutoutValue = -1;
                     }
 
                 }
