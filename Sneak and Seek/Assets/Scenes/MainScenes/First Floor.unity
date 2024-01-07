@@ -6908,6 +6908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488099891}
   - component: {fileID: 488099892}
+  - component: {fileID: 488099893}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -6944,12 +6945,174 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: FloorCreaks1
+    clip: {fileID: 8300000, guid: a2714b1feedf34031a08bbfdab6faedb, type: 3}
+    volume: 0.329
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: FloorCreaks2
+    clip: {fileID: 8300000, guid: 77df5bfa66fb14b1b8339636ad2c2ab9, type: 3}
+    volume: 0.393
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: FloorCreaks3
+    clip: {fileID: 8300000, guid: f65c7415c92394ea993c3a9f2f87a877, type: 3}
+    volume: 0.375
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: FloorCreaks4
+    clip: {fileID: 8300000, guid: 857207738c3b14269930f5f6b7eb3a7b, type: 3}
+    volume: 0.37
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: FloorCreaks5
+    clip: {fileID: 8300000, guid: 3a0941c49f78a4c95a05e9bcf6f2d410, type: 3}
+    volume: 0.333
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: EvilGroaning1
+    clip: {fileID: 8300000, guid: 0257fe92d7fd94c22873e6934aa2b5e8, type: 3}
+    volume: 0.317
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: EvilGroaning2
+    clip: {fileID: 8300000, guid: 34c8b5f99604e4cd9af35824b5ee7faa, type: 3}
+    volume: 0.425
+    pitch: 0.99
+    loop: 0
+    source: {fileID: 0}
+  - name: EvilGroaning3
+    clip: {fileID: 8300000, guid: 0fd9445da886f4173b86f01d0f12361c, type: 3}
+    volume: 0.338
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: EvilGroaning4
+    clip: {fileID: 8300000, guid: 4561733c388784b2ca8f0b97315edb4f, type: 3}
+    volume: 0.338
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: EvilGroaning5
+    clip: {fileID: 8300000, guid: 8f6fa68b7c5154b3984a32b64f37b971, type: 3}
+    volume: 0.384
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HouseholdAmbience1
+    clip: {fileID: 8300000, guid: ec59f5366c5d74b31b342ca7ada3860e, type: 3}
+    volume: 0.361
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HouseholdAmbience2
+    clip: {fileID: 8300000, guid: 4da5c2740b2184f3cb20f8393390a9d9, type: 3}
+    volume: 0.398
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HouseholdAmbience3
+    clip: {fileID: 8300000, guid: 6418c6a8fc85f44b1889af05d37e23b3, type: 3}
+    volume: 0.301
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HouseholdAmbience4
+    clip: {fileID: 8300000, guid: 47501eb2dab044eefa1f077cdf5a9464, type: 3}
+    volume: 0.361
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HouseholdAmbience5
+    clip: {fileID: 8300000, guid: 39a304428845d4b75ac02333b44fe4ae, type: 3}
+    volume: 0.324
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HumanMuffledSounds1
+    clip: {fileID: 8300000, guid: 3bbcde5cdc8bb4af283b7f9305fdd27d, type: 3}
+    volume: 0.333
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HumanMuffledSounds2
+    clip: {fileID: 8300000, guid: 7e5472ebb1a794d9e92d3b389c8c96f8, type: 3}
+    volume: 0.379
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HumanMuffledSounds3
+    clip: {fileID: 8300000, guid: 54ad655d9fc41489d93c784392651f45, type: 3}
+    volume: 0.361
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HumanMuffledSounds4
+    clip: {fileID: 8300000, guid: ecf98bbd4f2574497a4436021248413c, type: 3}
+    volume: 0.333
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: HumanMuffledSounds5
+    clip: {fileID: 8300000, guid: 7440ec531477546d3a1dbb1a5b17525f, type: 3}
+    volume: 0.306
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: OutsideCreatureAmbience1
+    clip: {fileID: 8300000, guid: 1cb60937db01c445181015b0a4268342, type: 3}
+    volume: 0.366
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: OutsideCreatureAmbience2
+    clip: {fileID: 8300000, guid: d42935a81daac493299cd3ab3a6baa34, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: OutsideCreatureAmbience3
+    clip: {fileID: 8300000, guid: eb5e770526481411aad64db2b419e340, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: OutsideCreatureAmbience4
+    clip: {fileID: 8300000, guid: 9ab39c50ca0534c78b5d3ddced0c4139, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: OutsideCreatureAmbience5
+    clip: {fileID: 8300000, guid: 8fa11ec1214ab484db6b8cd73174af2c, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
   - name: FirstFloorAmbience
     clip: {fileID: 8300000, guid: 711a75ea61c604ed6b59e7c008d7ba09, type: 3}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
+--- !u!114 &488099893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488099890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b2e7ff8b4bed4428acf3a41a77b654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &493017972
 PrefabInstance:
   m_ObjectHideFlags: 0
