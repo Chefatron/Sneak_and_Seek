@@ -4641,6 +4641,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
   m_PrefabInstance: {fileID: 1983886953}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &278025022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1396304958482699828, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
+  m_PrefabInstance: {fileID: 1028823210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &284487354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8745,6 +8750,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618949332}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &621810479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4829075264452162701, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
+  m_PrefabInstance: {fileID: 1028823210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &627252465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
@@ -14486,6 +14496,11 @@ GameObject:
 --- !u!1 &1028823212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 966927547772384969, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
+  m_PrefabInstance: {fileID: 1028823210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1028823213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4340536463942385309, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
   m_PrefabInstance: {fileID: 1028823210}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1029099131
@@ -23369,6 +23384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc97c75788684e94c89cb8700ec0e3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1563725177 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 121637221483237501, guid: 5b2708f8d0ccee040bfe7b7e948905a4, type: 3}
+  m_PrefabInstance: {fileID: 1028823210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1564218301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32398,6 +32418,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 311484645428984303, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+      propertyPath: keySprite1
+      value: 
+      objectReference: {fileID: 278025022}
+    - target: {fileID: 311484645428984303, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+      propertyPath: keySprite2
+      value: 
+      objectReference: {fileID: 1028823213}
+    - target: {fileID: 311484645428984303, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 621810479}
     - target: {fileID: 531678678627724249, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: m_ClearFlags
       value: 2
@@ -32533,7 +32565,7 @@ PrefabInstance:
     - target: {fileID: 3548846474483197873, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: notes.Array.data[7]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1563725177}
     - target: {fileID: 3548846474483197873, guid: 687de2f68526de144a043e9000a82e82, type: 3}
       propertyPath: notes.Array.data[8]
       value: 

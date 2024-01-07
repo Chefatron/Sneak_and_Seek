@@ -69,7 +69,7 @@ public partial class @MasterInput: IInputActionCollection2, IDisposable
                     ""id"": ""0e91193f-df80-4ba6-8306-bbbd48921193"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
