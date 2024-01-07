@@ -41,7 +41,7 @@ public class PickupScript : MonoBehaviour
             // Gets the active pick up
             currentPickup = GameObject.FindWithTag("Pickup (Active)").GetComponent<PickupCheck>();
 
-            if (currentPickup.ID != 16)
+            if (currentPickup.ID < 16)
             {
                 // This calls the function from inventory to add the correct item id to the players inventory
                 inventorySuccess = inventory.AddItem(currentPickup.ID);
@@ -56,6 +56,10 @@ public class PickupScript : MonoBehaviour
                     Debug.Log("The inv was full");
                 }
             }
+            else if (currentPickup.ID > 16)
+            {
+                inventory.addNote(currentPickup.ID);
+            }    
             else
             {
                 // Calls the dark level
