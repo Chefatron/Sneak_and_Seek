@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 
 public class Inventory : MonoBehaviour
 {
@@ -14,6 +15,19 @@ public class Inventory : MonoBehaviour
     // Used to store the key currently in the players second inventory slot
     public int keySlot2;
 
+    // The sprites for the keys in the inv
+    [SerializeField] GameObject keySprite1;
+    [SerializeField] GameObject keySprite2;
+
+    // The inventory ui as a whole
+    [SerializeField] GameObject inventoryUI;
+
+    // Used to tell if the inventory is out or not
+    bool invIsOut;
+
+    // Stores the narrative notes the player has collected
+    List<bool> noteInv = new List<bool>();
+
     private void Start()
     {
         // Default vals
@@ -22,6 +36,14 @@ public class Inventory : MonoBehaviour
         //keySlot1 = 0;
 
         //keySlot2 = 0;   
+
+        // Sets all of the values in the list to false by default
+        for (int i = 0; i < 11; i++)
+        {
+            noteInv.Add(false);
+        }
+
+        invIsOut = false;
     }
 
     // This adds an item to the players inventory (will need to be changed later if needing to accommodate for different items)
@@ -31,6 +53,7 @@ public class Inventory : MonoBehaviour
         if (itemID == 1)
         {
             candleAmount++;
+
         }
         else if (itemID != 1 && keySlot1 == 0)
         {
@@ -78,5 +101,51 @@ public class Inventory : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void addNote(int noteIndex)
+    {
+        // Sets the given note index to hold a true value to basically say they have the note
+        noteInv.Insert(noteIndex - 17, true);
+    }
+
+    // Used to only show the notes the player owns when they open the notes page
+    public void showNotes()
+    {
+        for (int i = 0; i < noteInv.Count; i++) 
+        { 
+            
+        }
+    }
+
+    void OnOpenInventory()
+    {
+
+        // Updates the count of candles in the UI
+        inventoryUI.GetComponentInChildren<TextMeshProUGUI>().text = ("x" + candleAmount.ToString());
+
+        if (keySlot1 != 0)
+        {
+            keySprite1.SetActive(true);
+        }
+        else
+        {
+            keySprite1.SetActive(false);
+        }
+
+        if (keySlot2 != 0)
+        {
+            keySprite2.SetActive(true);
+        }
+        else
+        {
+            keySprite2.SetActive(false);
+        }
+
+        // Reverses inventory state
+        invIsOut = !invIsOut;
+
+        // PLays animation
+        inventoryUI.GetComponent<Animator>().SetBool("Y", invIsOut);
     }
 }
