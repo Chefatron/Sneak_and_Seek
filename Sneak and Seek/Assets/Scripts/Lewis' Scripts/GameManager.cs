@@ -270,6 +270,18 @@ public class GameManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Time.timeScale = 0f;  
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(quitAnimation());
+        }
+    }
+
+    IEnumerator quitAnimation()
+    {
+        GameObject.Find("Death Panel").GetComponent<Animator>().SetBool("Play", true);
+
+        yield return new WaitForSeconds(1);
+
+        quitToMenu();
     }
 }
