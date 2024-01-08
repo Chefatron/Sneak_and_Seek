@@ -176,6 +176,7 @@ public class EnemyBehaviour : MonoBehaviour
                 {
                     target.destination = transform.position;
                     timerDuration -= Time.deltaTime;
+
                     //Debug.Log(timerDuration);
                 }
                 else

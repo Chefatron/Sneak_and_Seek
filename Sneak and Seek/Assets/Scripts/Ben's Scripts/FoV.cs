@@ -70,6 +70,8 @@ public class FoV : MonoBehaviour
 
                     if (GetComponentInParent<EnemyBehaviour>().enemyState == 1)
                     {
+                        GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(0.2f, 1f);
+
                         GetComponentInParent<EnemyBehaviour>().enemyState = 2;
                         GetComponentInParent<EnemyBehaviour>().timerDuration = 1;
                     }

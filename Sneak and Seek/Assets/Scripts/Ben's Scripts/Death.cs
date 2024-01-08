@@ -11,7 +11,9 @@ public class Death : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            StartCoroutine(death()); 
+            StartCoroutine(death());
+
+            GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(1f, 1f);
         }
     }
 
