@@ -11,11 +11,6 @@ public class HideCheck : MonoBehaviour
 
     public int nearestNodeID;
 
-    private void Start()
-    {
-        
-    }
-
     // When the player walks into the trigger zone, update the hiding spots tag
     private void OnTriggerEnter(Collider other)
     {

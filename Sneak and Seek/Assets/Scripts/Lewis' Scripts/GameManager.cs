@@ -16,13 +16,15 @@ public class GameManager : MonoBehaviour
     float rumbleStopTime;
 
     // The player object
-    [SerializeField] GameObject player;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         // Sets isRumbling to default of false
         isRumbling = false;
+
+        player = GameObject.Find("Player");
 
         // Call setupLevel with the current scene name so it can set everything up based on the current level
         SetupLevel(SceneManager.GetActiveScene().buildIndex);
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CreateSaves()
+    public void CreateSaves()
     {
         // Makes all the saves and sets them to defualt vals
         PlayerPrefs.SetInt("IntroSeen", 0);

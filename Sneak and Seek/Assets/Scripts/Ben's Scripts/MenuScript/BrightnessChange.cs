@@ -23,7 +23,7 @@ public class BrightnessChange : MonoBehaviour
         // Checks if has save, makes if not
         if (!PlayerPrefs.HasKey("Brightness"))
         {
-            PlayerPrefs.SetFloat("Brightness",1f);
+            PlayerPrefs.SetFloat("Brightness", 0f);
         }
 
         // Assigns default vals
@@ -40,17 +40,22 @@ public class BrightnessChange : MonoBehaviour
         try
         {
             gammaVolume.profile.TryGet(out LGG);
-            Debug.Log("It worked");
-            Debug.Log(LGG.gamma);
+            //Debug.Log("It worked");
+            //Debug.Log(LGG.gamma);
             LGG.gamma.Override(new Vector4(1f, 1f, 1f, brightness));
         } 
         catch (System.Exception)
         {
-            Debug.Log("It didn't work");
+            //Debug.Log("It didn't work");
         }
         
 
         // Updates the brightness
         //gammaVolume.gamma.Override(new Vector4(0, 0, 0, brightness));
+    }
+
+    public void updateSave()
+    {
+        PlayerPrefs.SetFloat("Brightness", brightness);
     }
 }

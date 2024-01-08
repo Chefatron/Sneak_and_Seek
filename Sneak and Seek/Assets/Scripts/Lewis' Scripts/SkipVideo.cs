@@ -31,13 +31,10 @@ public class SkipVideo : MonoBehaviour
             {
                 skip = skip + 1f;
 
-                GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(skip / 300f, 0.1f);
-
                 radial.fillAmount = skip / 300f; 
             }
             else if (skip >= 100)
             {
-                GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(0f, 0f);
 
                 gameManager.SkipVideo();
             }
@@ -47,8 +44,6 @@ public class SkipVideo : MonoBehaviour
             if (skip > 0)
             {
                 skip = skip - 1f;
-
-                GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(skip / 300f, 0.1f);
 
                 radial.fillAmount = skip / 300f;
             }

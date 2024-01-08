@@ -110,6 +110,6 @@ public class CandleManager : MonoBehaviour
         }
 
         // Sets the light value devided by an amount so it is reasonable for a lights range
-        candle.intensity = lightValue;
+        candle.intensity = lightValue * 2;
     }
 }

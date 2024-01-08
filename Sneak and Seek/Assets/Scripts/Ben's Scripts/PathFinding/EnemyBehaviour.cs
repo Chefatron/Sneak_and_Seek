@@ -235,6 +235,8 @@ public class EnemyBehaviour : MonoBehaviour
                     detectedText.GetComponentInChildren<Animator>().SetBool("Hidden", true);
                     detectedText.GetComponentInChildren<Animator>().SetBool("Seen", false);
 
+                    playerLocation.GetComponent<PlayerHide>().playerSpotted = false;
+
                     enemyState = 4;
                     timerDuration = 5;
                 }

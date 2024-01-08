@@ -2594,6 +2594,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1464988664544997862, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1673238652}
+    - target: {fileID: 1464988664544997862, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updateSave
+      objectReference: {fileID: 0}
     - target: {fileID: 1467577594162438399, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2605,6 +2613,14 @@ PrefabInstance:
     - target: {fileID: 2256787850148515308, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: quitToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633920521130668453, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1600707357}
+    - target: {fileID: 5633920521130668453, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updateVolumeSave
       objectReference: {fileID: 0}
     - target: {fileID: 7050141278511309311, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6590,6 +6606,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.70000035, y: 20, z: 15.000006}
   m_Center: {x: 0, y: -0.0000017881397, z: 7.500003}
+--- !u!95 &428532279 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7176259451536074719, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+  m_PrefabInstance: {fileID: 160057016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &430757773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12790,6 +12811,17 @@ Transform:
   - {fileID: 1168585439}
   m_Father: {fileID: 1592894622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892562066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5633920521130668453, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+  m_PrefabInstance: {fileID: 160057016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &893382561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13772,8 +13804,8 @@ GameObject:
   - component: {fileID: 948611722}
   - component: {fileID: 948611721}
   - component: {fileID: 948611720}
-  - component: {fileID: 948611719}
   - component: {fileID: 948611718}
+  - component: {fileID: 948611723}
   m_Layer: 0
   m_Name: DarkWall
   m_TagString: Untagged
@@ -13802,20 +13834,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &948611719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948611717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2d786864650e642816c8db59e81dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 844468986}
-  sceneIndex: 5
 --- !u!23 &948611720
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13881,6 +13899,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &948611723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948611717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efa9f3950eb2594f943999451a5ad1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimation: {fileID: 428532279}
 --- !u!1001 &949842837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14560,8 +14591,8 @@ GameObject:
   - component: {fileID: 1005757167}
   - component: {fileID: 1005757166}
   - component: {fileID: 1005757165}
-  - component: {fileID: 1005757164}
   - component: {fileID: 1005757163}
+  - component: {fileID: 1005757168}
   m_Layer: 0
   m_Name: DarkWall 2
   m_TagString: Untagged
@@ -14590,20 +14621,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1005757164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005757162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2d786864650e642816c8db59e81dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 844468986}
-  sceneIndex: 5
 --- !u!23 &1005757165
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14669,6 +14686,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1005757168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005757162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efa9f3950eb2594f943999451a5ad1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimation: {fileID: 428532279}
 --- !u!1001 &1016159660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18311,6 +18341,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc97c75788684e94c89cb8700ec0e3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1293110452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1464988664544997862, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+  m_PrefabInstance: {fileID: 160057016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1309243515
@@ -22263,6 +22304,7 @@ GameObject:
   - component: {fileID: 1600707356}
   - component: {fileID: 1600707355}
   - component: {fileID: 1600707354}
+  - component: {fileID: 1600707357}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -22485,6 +22527,19 @@ Transform:
   - {fileID: 2144512435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1600707357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600707353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b139c72eca1dc643b2afac9d139556f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 892562066}
 --- !u!1001 &1602387206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23486,6 +23541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673238651}
   - component: {fileID: 1673238650}
+  - component: {fileID: 1673238652}
   m_Layer: 0
   m_Name: GlobalVolume
   m_TagString: Untagged
@@ -23525,6 +23581,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673238652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673238649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1661954fe603d4fabfde2422b03c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightnessSlider: {fileID: 1293110452}
+  gammaVolume: {fileID: 1673238650}
 --- !u!1 &1687390298
 GameObject:
   m_ObjectHideFlags: 0

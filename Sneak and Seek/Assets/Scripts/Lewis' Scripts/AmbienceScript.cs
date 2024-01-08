@@ -67,7 +67,7 @@ public class AmbienceScript : MonoBehaviour
                 goAheadChance = Random.Range(0, 10);
 
                 // Checks if that chosen number is above zero and rechooses sound below the index level if not
-                if (goAheadChance > 4)
+                if (goAheadChance > 6)
                 {
                     randomSound = Random.Range(0, 15);
                 }
@@ -78,7 +78,7 @@ public class AmbienceScript : MonoBehaviour
                 goAheadChance = Random.Range(0, 10);
 
                 // Checks if that chosen number is above zero and rechooses sound below the index level if not
-                if (goAheadChance > 0)
+                if (goAheadChance > 2)
                 {
                     randomSound = Random.Range(0, 20);
                 }

@@ -7,20 +7,20 @@ using UnityEngine.UIElements;
 
 public class AudioChange : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;
     [SerializeField] UnityEngine.UI.Slider volumeSlider;
 
-    //public float audioValue;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", 1f);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    
+
+    public void updateVolumeSave()
     {
-        audioSource.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
     }
 }
