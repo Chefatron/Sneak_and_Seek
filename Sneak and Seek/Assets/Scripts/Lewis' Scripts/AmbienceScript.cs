@@ -23,7 +23,7 @@ public class AmbienceScript : MonoBehaviour
         audioManager = GetComponent<AudioManager>();
 
         // Sets the first delay
-        delay = Random.Range(5, 15);
+        delay = Random.Range(2, 5);
 
         // Sets the starting last play time
         lastPlayTime = Time.time;
@@ -32,6 +32,8 @@ public class AmbienceScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         // Checks if time has passed the set delay
         if (Time.time > lastPlayTime + delay)
         {
@@ -91,7 +93,7 @@ public class AmbienceScript : MonoBehaviour
             lastPlayTime = Time.time;
 
             // Randomly chooses a delay
-            delay = Random.Range(5, 15);
+            delay = Random.Range(2, 5);
         }
     }
 }
