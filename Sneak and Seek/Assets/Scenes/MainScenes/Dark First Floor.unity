@@ -1891,6 +1891,7 @@ GameObject:
   - component: {fileID: 101280727}
   - component: {fileID: 101280726}
   - component: {fileID: 101280725}
+  - component: {fileID: 101280728}
   m_Layer: 0
   m_Name: Front Walls Outside
   m_TagString: Architecture
@@ -1964,6 +1965,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 19.6, y: 10, z: 19.973347}
   m_Center: {x: 8.4, y: 6, z: 9.986673}
+--- !u!114 &101280728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101280723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  furnitureParent: {fileID: 926136228}
 --- !u!1001 &102271384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4859,7 +4873,6 @@ Transform:
   - {fileID: 1873603125}
   - {fileID: 1229566357}
   - {fileID: 413611556}
-  - {fileID: 1531239661}
   - {fileID: 1490014617}
   - {fileID: 1315175321}
   - {fileID: 1862083515}
@@ -4889,7 +4902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furnitureParent: {fileID: 0}
+  furnitureParent: {fileID: 881770806}
 --- !u!65 &314699109
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9218,7 +9231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furnitureParent: {fileID: 0}
+  furnitureParent: {fileID: 797845893}
 --- !u!65 &609199470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9816,6 +9829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candle
       objectReference: {fileID: 0}
+    - target: {fileID: 1936665102640042059, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6087090874033238640, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9857,8 +9874,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7585810215613517389, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
+      propertyPath: m_Range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585810215613517389, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585810215613517389, guid: f6af8ea94f84f3d48b301e00c583bc07, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14437,8 +14462,8 @@ GameObject:
   - component: {fileID: 1001417670}
   - component: {fileID: 1001417674}
   - component: {fileID: 1001417673}
-  - component: {fileID: 1001417672}
   - component: {fileID: 1001417671}
+  - component: {fileID: 1001417675}
   m_Layer: 0
   m_Name: Front Walls Corridor
   m_TagString: Architecture
@@ -14478,19 +14503,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_SortAtRoot: 0
---- !u!114 &1001417672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001417669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  furnitureParent: {fileID: 0}
 --- !u!114 &1001417673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14524,6 +14536,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 16.42, y: 10, z: 12.58}
   m_Center: {x: 6.120181, y: 6, z: 4.5}
+--- !u!114 &1001417675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001417669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  furnitureParent: {fileID: 1649320822}
 --- !u!1 &1005757162
 GameObject:
   m_ObjectHideFlags: 0
@@ -18068,7 +18093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furnitureParent: {fileID: 0}
+  furnitureParent: {fileID: 116805806}
 --- !u!114 &1276838607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21240,19 +21265,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 314699106}
+    m_TransformParent: {fileID: 1645596555}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.409988
+      value: -39.41002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 7.5171785
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.10959053
+      value: 18.677471
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28445034c227f284390e668aa90ee8ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22971,6 +22996,7 @@ Transform:
   - {fileID: 970418862}
   - {fileID: 1020140270}
   - {fileID: 1625405620}
+  - {fileID: 1531239661}
   - {fileID: 1726294589}
   - {fileID: 776305459}
   - {fileID: 89863440}
@@ -24800,7 +24826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furnitureParent: {fileID: 0}
+  furnitureParent: {fileID: 320499864}
 --- !u!114 &1788248055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28920,6 +28946,7 @@ GameObject:
   - component: {fileID: 2076425222}
   - component: {fileID: 2076425221}
   - component: {fileID: 2076425220}
+  - component: {fileID: 2076425223}
   m_Layer: 0
   m_Name: Front Walls Outside
   m_TagString: Architecture
@@ -28990,6 +29017,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.587409, y: 10, z: 20}
   m_Center: {x: 5.7074895, y: 6, z: 10}
+--- !u!114 &2076425223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076425218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  furnitureParent: {fileID: 320499864}
 --- !u!1 &2081003591
 GameObject:
   m_ObjectHideFlags: 0
@@ -29055,7 +29095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b5a2d98d4953143894e73d24f2fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furnitureParent: {fileID: 0}
+  furnitureParent: {fileID: 272771085}
 --- !u!65 &2081003595
 BoxCollider:
   m_ObjectHideFlags: 0

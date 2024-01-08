@@ -27,6 +27,8 @@ public class PlayerPause : MonoBehaviour
 
         pausePanel.GetComponentInChildren<Button>().Select();
 
+        GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(0.1f, 0.5f);
+
         if (pausePanel.activeInHierarchy)
         {
             Time.timeScale = 0;

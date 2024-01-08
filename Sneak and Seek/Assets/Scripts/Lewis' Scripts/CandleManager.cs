@@ -21,6 +21,8 @@ public class CandleManager : MonoBehaviour
 
     bool resetLight;
 
+    float deathTimer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,8 @@ public class CandleManager : MonoBehaviour
 
         // Gets the inventory script from the player
         inventory = GetComponent<Inventory>();
+
+        deathTimer = 0f;
     }
 
     // Update is called once per frame
@@ -83,13 +87,26 @@ public class CandleManager : MonoBehaviour
             // Calls the remove function item and removes the correct item
             inventory.RemoveItem(1);
 
+            deathTimer = 0;
+
             candleBar.color = new Color32(255, 255, 255, 255);
 
             resetLight = true;
         }
         else
         {
-            gameManager.ResetScene();
+            if (deathTimer < 3)
+            {
+                deathTimer = deathTimer + Time.deltaTime;
+
+                GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(deathTimer, 0.1f);
+            }
+            else if (deathTimer >= 3)
+            {
+                GameObject.Find("Game Manager").GetComponent<GameManager>().Rumble(0f, 0f);
+
+                gameManager.ResetScene();
+            }
         }
 
         // Sets the light value devided by an amount so it is reasonable for a lights range
