@@ -32,8 +32,6 @@ public class AmbienceScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
         // Checks if time has passed the set delay
         if (Time.time > lastPlayTime + delay)
         {
