@@ -7,19 +7,20 @@ using UnityEngine.UIElements;
 
 public class AudioChange : MonoBehaviour
 {
-    AudioSource audioSource;
-    public float audioValue;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] UnityEngine.UI.Slider volumeSlider;
+
+    //public float audioValue;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        audioValue = GetComponent<UnityEngine.UI.Slider>().value;
-        audioSource.volume = audioValue;
+        audioSource.volume = volumeSlider.value;
     }
 }
