@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Image staminaBar;
 
+    float stepTime;
+
     // A multiplier to make the player faster when dashing
     int dashSpeed;
 
@@ -44,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         dashSpeed = 1;
         dashCooldown = 0f;
         dashTimer = 0f;
+
+        stepTime = Time.time;
     }
 
     // Is called when left stick on controller is used
@@ -90,9 +94,16 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //Debug.Log("Time is: " + Time.unscaledTime);
-        if(stickInputData.x > 0 || stickInputData.y > 0){
+        if ((stickInputData.x != 0 || stickInputData.y != 0) && Time.time > stepTime)
+        {
+            //Debug.Log("Conditions Met");
+
             FindObjectOfType<AudioManager>().Play("Footsteps");
+
+            stepTime = Time.time + 0.5f;
         }
+
+
         if (isDashing == true)
         {
             // Checks if the dash timer is up, adjusts the bar if not

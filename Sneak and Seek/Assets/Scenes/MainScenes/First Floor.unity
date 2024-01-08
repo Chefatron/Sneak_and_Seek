@@ -7302,8 +7302,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Footsteps
     clip: {fileID: 8300000, guid: 37effe4ae5b5142ebbb845d57fca6eb1, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.3
+    pitch: 0.8
     loop: 0
     source: {fileID: 0}
   - name: DoorCreak
@@ -18315,7 +18315,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 5, y: 3, z: 5}
-  m_Center: {x: -6, y: 0, z: 0.22933751}
+  m_Center: {x: 6, y: 0, z: 0.22933751}
 --- !u!114 &1213152393
 MonoBehaviour:
   m_ObjectHideFlags: 0
