@@ -84,7 +84,7 @@ public class DoorMove : MonoBehaviour
     public void openDoor()
     {
         //Debug.Log("openDoor has been called");
-
+        FindObjectOfType<AudioManager>().Play("DoorCreak");
         doorOpening = true;
 
         doorCollider.enabled = false;
@@ -93,7 +93,7 @@ public class DoorMove : MonoBehaviour
     public void closeDoor()
     {
         //Debug.Log("closeDoor has been called");
-
+        FindObjectOfType<AudioManager>().Play("DoorCreak");
         doorClosing = true;
 
         doorCollider.enabled = false;

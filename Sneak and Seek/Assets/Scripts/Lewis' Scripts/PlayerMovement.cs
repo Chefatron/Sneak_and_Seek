@@ -90,7 +90,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //Debug.Log("Time is: " + Time.unscaledTime);
-
+        if(stickInputData.x > 0 || stickInputData.y > 0){
+            FindObjectOfType<AudioManager>().Play("Footsteps");
+        }
         if (isDashing == true)
         {
             // Checks if the dash timer is up, adjusts the bar if not

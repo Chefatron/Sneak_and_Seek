@@ -23,7 +23,7 @@ public class AmbienceScript : MonoBehaviour
         audioManager = GetComponent<AudioManager>();
 
         // Sets the first delay
-        delay = Random.Range(2, 5);
+        delay = Random.Range(5, 15);
 
         // Sets the starting last play time
         lastPlayTime = Time.time;
