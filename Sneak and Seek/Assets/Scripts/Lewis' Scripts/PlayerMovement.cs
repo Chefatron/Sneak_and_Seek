@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     void OnMovement(InputValue stickInput)
     {
         //Debug.Log("Left stick input taken");
-       
+        FindObjectOfType<AudioManager>().Play("EvilGroaning2");
         // Processing input data for physics based movement
         stickInputData = stickInput.Get<Vector2>();
         movement = new Vector3(stickInputData.x, 0f, stickInputData.y);
