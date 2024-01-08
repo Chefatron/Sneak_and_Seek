@@ -5,8 +5,6 @@ using UnityEngine.Rendering;
 
 public class LayerTrigger : MonoBehaviour
 {
-    // The player
-    [SerializeField] GameObject player;
 
     // The desired sorting layer to set the player to
     [SerializeField] int layer;
@@ -14,6 +12,9 @@ public class LayerTrigger : MonoBehaviour
     // if enter trigger change players layer
     private void OnTriggerEnter(Collider other)
     {
-        player.GetComponent<SortingGroup>().sortingOrder = layer;  
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
+        {
+            other.GetComponent<SortingGroup>().sortingOrder = layer;
+        }
     }
 }
