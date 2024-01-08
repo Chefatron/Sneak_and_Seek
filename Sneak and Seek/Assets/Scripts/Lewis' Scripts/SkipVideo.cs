@@ -37,6 +37,8 @@ public class SkipVideo : MonoBehaviour
             {
 
                 gameManager.SkipVideo();
+
+                Destroy(gameObject);
             }
         }
         else if (skipping == false)

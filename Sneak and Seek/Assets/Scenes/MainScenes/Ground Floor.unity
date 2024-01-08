@@ -8917,7 +8917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e632c6000fd5a4cb988fff8da8990c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 989639759}
 --- !u!4 &812607342
 Transform:
   m_ObjectHideFlags: 0
@@ -9875,6 +9874,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
+      propertyPath: keyIcon
+      value: 
+      objectReference: {fileID: 989639763}
+    - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
       propertyPath: xButton
       value: 
       objectReference: {fileID: 2023303845}
@@ -10624,6 +10627,10 @@ PrefabInstance:
       propertyPath: ID
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9041319149712128165, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
+      propertyPath: xButton
+      value: 
+      objectReference: {fileID: 2023303845}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11316,6 +11323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22724ed1533299469c186e7a461621c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &989639763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 291740153283730566, guid: 687de2f68526de144a043e9000a82e82, type: 3}
+  m_PrefabInstance: {fileID: 989639758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &989927309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12241,6 +12253,10 @@ PrefabInstance:
       propertyPath: ID
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 9041319149712128165, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
+      propertyPath: xButton
+      value: 
+      objectReference: {fileID: 2023303845}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2428101962936336383, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
@@ -13942,7 +13958,9 @@ PrefabInstance:
       value: showNotes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2424680731065100975, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
+    - {fileID: 2909915279262255093, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9d5dd929544d14491379a45e3a0da9, type: 3}
@@ -15978,6 +15996,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
+      propertyPath: keyIcon
+      value: 
+      objectReference: {fileID: 989639763}
+    - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
       propertyPath: xButton
       value: 
       objectReference: {fileID: 2023303845}
@@ -16695,6 +16717,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
+      propertyPath: keyIcon
+      value: 
+      objectReference: {fileID: 989639763}
     - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
       propertyPath: xButton
       value: 
@@ -17535,6 +17561,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
+      propertyPath: keyIcon
+      value: 
+      objectReference: {fileID: 989639763}
+    - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
       propertyPath: xButton
       value: 
       objectReference: {fileID: 2023303845}
@@ -18359,6 +18389,10 @@ PrefabInstance:
       propertyPath: ID
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9041319149712128165, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
+      propertyPath: xButton
+      value: 
+      objectReference: {fileID: 2023303845}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18609,6 +18643,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
+      propertyPath: keyIcon
+      value: 
+      objectReference: {fileID: 989639763}
     - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
       propertyPath: xButton
       value: 
@@ -20018,6 +20056,10 @@ PrefabInstance:
       propertyPath: ID
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 9041319149712128165, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
+      propertyPath: xButton
+      value: 
+      objectReference: {fileID: 2023303845}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2428101962936336383, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
@@ -20192,6 +20234,10 @@ PrefabInstance:
       propertyPath: ID
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 9041319149712128165, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
+      propertyPath: xButton
+      value: 
+      objectReference: {fileID: 2023303845}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2428101962936336383, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
@@ -20695,6 +20741,10 @@ PrefabInstance:
       propertyPath: ID
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 9041319149712128165, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
+      propertyPath: xButton
+      value: 
+      objectReference: {fileID: 2023303845}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2428101962936336383, guid: a0032787629e9814a82f7f57f0f52bb4, type: 3}
@@ -21792,6 +21842,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
+      propertyPath: keyIcon
+      value: 
+      objectReference: {fileID: 989639763}
     - target: {fileID: 7535263448407614873, guid: 7efa53b64f6dce6488ec79cd2c37ea6d, type: 3}
       propertyPath: xButton
       value: 

@@ -6,6 +6,8 @@ public class PickupCheck : MonoBehaviour
 {
     [SerializeField] GameObject pickup;
 
+    [SerializeField] GameObject xButton;
+
     public int ID;
 
     // Start is called before the first frame update
@@ -13,6 +15,8 @@ public class PickupCheck : MonoBehaviour
     {
         // Replaces the pickup objects tag with "Pickup (Active)" 
         pickup.tag = "Pickup (Active)";
+
+        xButton.SetActive(true);
         //Debug.Log("Status: Active");
     }
 
@@ -20,6 +24,8 @@ public class PickupCheck : MonoBehaviour
     {
         // Replaces the pickup objects tag with "Pickup"
         pickup.tag = "Pickup";
+
+        xButton.SetActive(false);
         //Debug.Log("Status: Inactive");
     }
 }

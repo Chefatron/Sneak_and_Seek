@@ -8,6 +8,8 @@ public class DoorTrigger : MonoBehaviour
 
     [SerializeField] GameObject xButton;
 
+    [SerializeField] GameObject keyIcon;
+
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.tag);
@@ -18,6 +20,12 @@ public class DoorTrigger : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Door.tag = "Door (Enemy)";
+        }
+        else if (other.CompareTag("Player") && (GetComponentInParent<DoorMove>().isLocked || GetComponentInParent<DoorMove>().isDoubleLocked))
+        {
+            Door.tag = "Door (Player)";
+
+            keyIcon.SetActive(true);
         }
         else if (other.CompareTag("Player"))
         {

@@ -53,6 +53,8 @@ public class PickupScript : MonoBehaviour
 
                 if (inventorySuccess == true)
                 {
+                    GameObject.Find("X").SetActive(false);
+
                     // This destroys the pickup object
                     Destroy(currentPickup.gameObject);
                 }
@@ -70,6 +72,8 @@ public class PickupScript : MonoBehaviour
                 backButton.SetActive(true);
 
                 backButton.GetComponent<Button>().Select();
+
+                GameObject.Find("X").SetActive(false);
 
                 Destroy(currentPickup.gameObject);
             }    
