@@ -208,6 +208,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void quitToMenu()
+    {
+        // Loads the loading scene
+        SceneManager.LoadSceneAsync(1);
+
+        // Starts the loading of the indexed scene at the same time 
+        StartCoroutine(loadAsyncScene(0));
+    }
+
     public void SkipVideo()
     {
         // Sets video to seen
