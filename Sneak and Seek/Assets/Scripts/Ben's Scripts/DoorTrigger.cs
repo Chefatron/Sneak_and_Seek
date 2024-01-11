@@ -40,5 +40,7 @@ public class DoorTrigger : MonoBehaviour
         Door.tag = "Door";
 
         xButton.SetActive(false);
+
+        keyIcon.SetActive(false);
     }
 }

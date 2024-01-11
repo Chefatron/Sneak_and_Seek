@@ -20,6 +20,8 @@ public class VideoPlay : MonoBehaviour
 
         videoPlayer.loopPointReached += EndReached;
 
+        Destroy(GameObject.Find("GameAudio"));
+
         videoPlayer.Play();
     }
 
