@@ -59,8 +59,6 @@ public class GameManager : MonoBehaviour
         // Makes all the saves and sets them to defualt vals
         PlayerPrefs.SetInt("IntroSeen", 0);
 
-        PlayerPrefs.SetInt("TutorialCompleted", 0);
-
         PlayerPrefs.SetInt("CurrentStage", 2);
 
         PlayerPrefs.SetInt("CandleAmount", 0);
